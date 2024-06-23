@@ -6,7 +6,6 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://sakakibara-yuuki.github.io',
-    base: '/blog',
     output: 'static',
 	integrations: [mdx(), sitemap()],
 });
