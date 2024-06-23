@@ -2,11 +2,9 @@
 title: "gitのいろは"
 author: "sakakibara"
 description: "gitのいろは"
-image:
-    url: "https://docs.astro.build/assets/rays.webp"
-    alt: "Astroの光線のサムネイル。"
 pubDate: 2024-03-04
 tags: ["git", "初心者"]
+heroImage: '/git/git-basic.webp'
 ---
 
 <!-- ## gitのいろは -->

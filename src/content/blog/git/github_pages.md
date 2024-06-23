@@ -3,6 +3,7 @@ title: "github pagesでの投稿"
 author: "sakakibara"
 description: "GitHub Pagesの使い方とGitHub Actionsを使った自動デプロイについて。"
 pubDate: 2024-06-22
+heroImage: '/git/github_pages.webp'
 ---
 
 ## GitHub Pagesとは
