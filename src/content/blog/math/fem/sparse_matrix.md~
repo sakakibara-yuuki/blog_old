@@ -1,0 +1,24 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: "疎行列"
+author: "sakakibara"
+description: "上手くいかないことがありましたが、コミュニティに質問して助けてもらいました！"
+image:
+    url: "https://docs.astro.build/assets/rays.webp"
+    alt: "Astroの光線のサムネイル。"
+pubDate: 2024-03-22
+tags: ["行列", "疎行列"]
+---
+
+## 疎行列
+疎行列とはその成分がほとんど$0$となる行列のことを指す。
+
+## 渦電流解析の安定的な解法
+以下の内容は[新積分手法を用いた有限要素法による過度電磁界解析](https://www.jstage.jst.go.jp/article/ieejfms1972/109/2/109_2_56/_pdf)を参考にしている。
+
+
+### 逐次積分法
+- (2)逐次積分法
+- (3)逐次積分法
+- (4)電磁界解析特有の問題
+- ()

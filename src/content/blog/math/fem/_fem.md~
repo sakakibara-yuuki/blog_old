@@ -1,0 +1,56 @@
+---
+layout: ../../../../layouts/MarkdownPostLayout.astro
+title: "有限要素法"
+author: "sakakibara"
+description: "上手くいかないことがありましたが、コミュニティに質問して助けてもらいました！"
+image:
+    url: "https://docs.astro.build/assets/rays.webp"
+    alt: "Astroの光線のサムネイル。"
+pubDate: 2024-03-22
+tags: ["有限要素法", "fem"]
+---
+
+## 有限要素法(r・ｈ・ｐ)
+有限要素法の精度向上には以下の3つの方法がある。
+以下の方法を用いた有限要素法をアダプティブ有限要素法とよぶ。
+
+- r : (realocation) 節点や要素の数を変化させず、節点を移動させる方法
+- h : (height) 誤差が大きい部分のメッシュをさらに細かくメッシュする方法
+- p : (polynomial) 要素内補間を多項式で近似する際に次数を上げる方法
+
+私が参考にしている[書籍](https://www.amazon.co.jp/Higher-Order-Element-Methods-Advanced-Mathematics-ebook/dp/B00SC8NBC6/ref=sr_1_1?dib=eyJ2IjoiMSJ9.AEDgM03VHZiJqN0ea5MtNA.y7PFfUJVgqe7ar1g4huqrENGeVmJ0RHkigciic_EM9Y&dib_tag=se&qid=1711087934&refinements=p_27%3APavel+Solin&s=digital-text&sr=1-1&text=Pavel+Solin)では主にhp法について書かれている。
+
+hp法。つまりメッシュが大きい部分を細かくメッシュして高次多項式でメッシュの精度を上げる方法だ。
+
+基本的にメッシュを無限小まで分割して無限次元まで多項式近似すれば現実と同じ現象が観測できるはずである。
+(アダプティブ有限要素法の参考書として[アダプティブ有限要素法](https://www.amazon.co.jp/%E3%82%A2%E3%83%80%E3%83%97%E3%83%86%E3%82%A3%E3%83%96%E6%9C%89%E9%99%90%E8%A6%81%E7%B4%A0%E6%B3%95-%E8%A8%88%E7%AE%97%E5%8A%9B%E5%AD%A6%E3%83%AC%E3%82%AF%E3%83%81%E3%83%A3%E3%83%BC%E3%82%B7%E3%83%AA%E3%83%BC%E3%82%BA-%E6%89%8B%E5%A1%9A-%E6%98%8E/dp/4621072579/ref=sr_1_1?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&crid=1G2ZCGQYTOY71&dib=eyJ2IjoiMSJ9.hEXwBWarmOIQ9ImQKomx5wgdBNaTy37q66aHkDBd94rrKpoa-WKXbwL9IqjxrNsY2tU6qSq8LTSToEWncuKAEHVvUiCoY_qAMs8ifsAa71f42lPemKzUciQR2UZhtMZb4hM6e6DV_hAFyqsbxd3-Y-AE7tiUEiNrRmtmIiE5KLAnNNwDTKTfKNcrml_euxgdMNMMCRHM6jwyhTaT907FYMa1sWp_QSGlQPK9fAHZt8Q.SNQ2UxH3H_sMj04WeumH0PQIJJ7lEU_klYQCvDm__fk&dib_tag=se&keywords=%E3%82%A2%E3%83%80%E3%83%97%E3%83%86%E3%82%A3%E3%83%96%E6%9C%89%E9%99%90%E8%A6%81%E7%B4%A0%E6%B3%95&qid=1711088209&s=books&sprefix=%E3%82%A2%E3%83%80%E3%83%97%E3%83%86%E3%82%A3%E3%83%96%E6%9C%89%E9%99%90%E8%A6%81%E7%B4%A0%E6%B3%95%2Cstripbooks%2C147&sr=1-1)があるが、amazonではなぜか文字化けしてる。俺だけ？)
+
+### 3D-メッシュアルゴリズム
+gmshが提供する主なメッシュアルゴリズムには以下のものがある。
+- Delaunay
+- Initial mesh only
+- Frontal
+- MMG3D
+- R-tree
+- HXT
+以下ではそれぞれに対して説明していく。
+[メッシュの参考](https://www.jstage.jst.go.jp/article/transjsme/86/882/86_19-00337/_pdf)
+[frontal](https://gmsh.info/doc/preprints/gmsh_quad2_preprint.pdf)
+[gmsh-meshing](https://gmsh.info/doc/texinfo/gmsh.html#Specifying-mesh-element-sizes)
+
+##### 単体(simplexes)
+多様体の記事へ
+
+##### Delaunay
+ドロネーメッシュ法。ドロネー三角形分割。
+このメッシュで作成された要素の特徴として、
+その要素の頂点が持つ三角形の外接円は他の要素の頂点を含まない。
+##### Initial mesh only
+初期メッシュをそのまま使用する。
+##### Frontal
+
+##### MMG3D
+##### R-tree
+##### HXT
+
+### 要素の品質
