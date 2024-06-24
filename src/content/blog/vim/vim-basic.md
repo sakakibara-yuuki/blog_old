@@ -131,7 +131,7 @@ vimには単語単位で移動するmotionが用意されている。
 
 ![vim-word_motion](./img/_vim-word_motion.webp)
 
-<iframe id="ytplayer" type="text/html" src="https://www.youtube.com/embed/vYEnHg6YZLA?autoplay=1" frameborder="0">Sorry, your browser doesn't support embedded videos.</iframe>
+<iframe id="ytplayer" type="text/html" width="640" height="360" src="https://www.youtube.com/embed/vYEnHg6YZLA?autoplay=1" frameborder="0">Sorry, your browser doesn't support embedded videos.</iframe>
 
 
 #### 文字の検索による移動{motion}
@@ -151,7 +151,7 @@ fは検索文字を踏むが, tは検索文字の前に留まる。
 
 `f{char}`で検索した文字に移動した後、`;`で次の{char}に移動でき、`,`で前の{char}に移動できる。
 
-<iframe id="ytplayer" type="text/html" src="https://www.youtube.com/embed/9s_w1JTiGEs?autoplay=1" frameborder="0">Sorry, your browser doesn't support embedded videos.</iframe>
+<iframe id="ytplayer" type="text/html" width="640" height="360" src="https://www.youtube.com/embed/9s_w1JTiGEs?autoplay=1" frameborder="0">Sorry, your browser doesn't support embedded videos.</iframe>
 
 vimのプラグインで["takac/vim-hardtime"](https://github.com/takac/vim-hardtime)というものがある。  
 これはmotionを連続して押すと、カーソルが1秒間フリーズするようになっている。  
@@ -265,7 +265,7 @@ vimには繰り返しを行う"."というコマンドがある。
 に変更したいとしよう。  
 "a"にカーソルが置かれている状況で"x ...."のように"."を繰り返すのは非効率的だ。  
 
-<iframe id="ytplayer" type="text/html" src="https://www.youtube.com/embed/FJ_Xr9vmprk?autoplay=1" frameborder="0">Sorry, your browser doesn't support embedded videos.</iframe>
+<iframe id="ytplayer" type="text/html" width="640" height="360" src="https://www.youtube.com/embed/FJ_Xr9vmprk?autoplay=1" frameborder="0">Sorry, your browser doesn't support embedded videos.</iframe>
 
 もっといい方法がある。
 
@@ -273,7 +273,7 @@ vimには繰り返しを行う"."というコマンドがある。
 こうすると目的の文に変更できる。  
 また、実は"daw", "4."でも同じ結果が得られる。
 
-<iframe id="ytplayer" type="text/html" src="https://www.youtube.com/embed/QHsSQvTNE8E?autoplay=1" frameborder="0">Sorry, your browser doesn't support embedded videos.</iframe>
+<iframe id="ytplayer" type="text/html" width="640" height="360" src="https://www.youtube.com/embed/QHsSQvTNE8E?autoplay=1" frameborder="0">Sorry, your browser doesn't support embedded videos.</iframe>
 
 
 このドットコマンドだが、他のモードから復帰してくるまでを一まとまりとして扱う。
