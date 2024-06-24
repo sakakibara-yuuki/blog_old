@@ -1,0 +1,23 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: "共有メモリと分散メモリ"
+author: "sakakibara"
+description: "Shared memory or distributed memory? Which one is better for your application?"
+image:
+    url: "https://docs.astro.build/assets/rays.webp"
+    alt: "Astroの光線のサムネイル。"
+pubDate: 2024-04-16
+tags: ["astro", "公開学習", "後退", "コミュニティ"]
+---
+
+# 共有メモリと分散メモリ
+- 共有メモリ: メモリに対して、複数のCPUからアクセス可能
+- 分散メモリ: メモリが分散されていて、各CPUから直接繋がっているメモリのみ参照可能
+
+openMP
+openMPI
+
+## 共有メモリ
+## 分散メモリ
+こちらは通常、というかHPCでの分野以外ではあまり使われないのではないだろうか。
+逆にHPCでは分散メモリがめっちゃ使われる。
