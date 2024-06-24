@@ -1,0 +1,27 @@
+---
+layout: ../../../layouts/MarkdownPostLayout.astro
+title: "Vimの基本: ファイル内移動・ファイル間移動"
+author: "sakakibara"
+description: "vimの使い方"
+image:
+    url: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Vimlogo.svg/800px-Vimlogo.svg.png"
+    alt: "Astroの光線のサムネイル。"
+pubDate: 2024-03-04
+tags: ["vim", "インサートモード"]
+---
+
+## ファイル内・ファイル間
+`{motion}`はファイル内を移動する。
+ファイル間を移動するキーストロークとして**jump**に分類されるものがある。
+
+### jump in a file
+
+|       command       | description                 |
+|:-------------------:|:----------------------------|
+|       [count]G      | [count]行目に移動           |
+| [count](h, j, k, l) | [count]回(h, j, k, l)を実行 |
+|       H, M, L       | 画面の上、中央、下に移動    |
+
+
+### マークをつける
+#### グローバルにマークをつける
