@@ -5,8 +5,8 @@ import Layout from '../layouts/BlogPost.astro';
 <Layout
 	title="About Me"
 	description="Lorem ipsum dolor sit amet"
-	pubDate={new Date('August 08 2021')}
-	heroImage="/blog-placeholder-about.jpg"
+	pubDate={new Date('Jun 24 2024')}
+	heroImage="/blog-placeholder-about-me.webp"
 >
 	<p>
       I'm sakakibara yuuki. I have experience developing high-level software using machine learning. I provide solid solutions to companies through research and experimental designs.
@@ -33,6 +33,31 @@ import Layout from '../layouts/BlogPost.astro';
 I have a strong interest in machine learning and finance and spend a lot of time reading and implementing papers on Fintech. I also like mathematics and read a lot, especially books on geometry.
 	</p>
 
+    <h2>Skills</h2>
+    <ul class="list-inline">
+      <li class="list-inline-item"><img src="https://cdn.simpleicons.org/python/#3776AB" alt="Python" height="60" width="60" /></li>
+      <li class="list-inline-item"><img src="https://cdn.simpleicons.org/pytorch/#EE4C2C" alt="Pytorch" height="60" width="60" /></li>
+      <li class="list-inline-item"><img src="https://cdn.simpleicons.org/sphinx/#000000" alt="sphinx" height="60" width="60" /></li>
+      <li class="list-inline-item"><img src="https://cdn.simpleicons.org/C/#A8B9CC" alt="C" height="60" width="60" /></li>
+      <li class="list-inline-item"><img src="https://cdn.simpleicons.org/cplusplus/#00599C" alt="Cplusepluse" height="60" width="60" /></li>
+      <li class="list-inline-item"><img src="https://cdn.simpleicons.org/javascript/#F7DF1E" alt="javascript" height="60" width="60" /></li>
+      <li class="list-inline-item"><img src="https://cdn.simpleicons.org/nodedotjs/#5FA04E" alt="nodejs" height="60" width="60" /></li>
+      <li class="list-inline-item"><img src="https://cdn.simpleicons.org/svelte/#FF3E00" alt="svelte" height="60" width="60" /></li>
+      <li class="list-inline-item"><img src="https://cdn.simpleicons.org/html5/#E34F26" alt="html5" height="60" width="60" /></li>
+      <li class="list-inline-item"><img src="https://cdn.simpleicons.org/css3/#1572B6" alt="css3" height="60" width="60" /></li>
+      <li class="list-inline-item"><img src="https://cdn.simpleicons.org/linux/#FCC624" alt="linux" height="60" width="60" /></li>
+      <li class="list-inline-item"><img src="https://cdn.simpleicons.org/archlinux/#FCC624" alt="archlinux" height="60" width="60" /></li>
+      <li class="list-inline-item"><img src="https://cdn.simpleicons.org/docker/#2496ED" alt="docker" height="60" width="60" /></li>
+      <li class="list-inline-item"><img src="https://cdn.simpleicons.org/cisco/#1BA0D7" alt="cisco" height="60" width="60" /></li>
+      <li class="list-inline-item"><img src="https://cdn.simpleicons.org/raspberrypi/#A22846" alt="raspberrypi" height="60" width="60" /></li>
+      <li class="list-inline-item"><img src="https://cdn.simpleicons.org/vim/#019733" alt="vim" height="60" width="60" /></li>
+      <li class="list-inline-item"><img src="https://cdn.simpleicons.org/neovim/#57A143" alt="nvim" height="60" width="60" /></li>
+    </ul>
+    <h3>Special Skills</h3>
+    <p>
+      Network Science, Machine-learning, Deep-learning, Reinforcement-learning
+    </p>
+
     <h2>Certifications</h2>
     <ul>
       <li>Fundamental Information Technology Engineer Examination</li>
@@ -40,3 +65,12 @@ I have a strong interest in machine learning and finance and spend a lot of time
     </ul>
 
 </Layout>
+
+<style>
+  ul.list-inline {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    gap: 0.25rem;
+  }
+</style>
