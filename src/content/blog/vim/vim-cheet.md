@@ -118,3 +118,7 @@ tags: ["vim", "公開学習"]
 |     ブラックホールレジスタ(black hole register)    |          "_          |
 | 検索パターンレジスタ(last search pattern register) |          "/          |
 
+### その他
+| command | description          |
+| :---:   | :----                |
+| `<shift-k>`       | その単語のmanを引く                 |
