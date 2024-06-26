@@ -2,10 +2,8 @@
 title: "仮想化: QEMU x KVM = Arch on Arch"
 author: "sakakibara"
 description: ""
-image:
-    url: "https://docs.astro.build/assets/rays.webp"
-    alt: "Astroの光線のサムネイル。"
 pubDate: 2024-03-08
+heroImage: "/virtualize/qemu.webp"
 tags: ["astro", "公開学習", "後退", "コミュニティ"]
 ---
 

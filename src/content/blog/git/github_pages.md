@@ -6,7 +6,7 @@ pubDate: 2024-06-22
 heroImage: '/git/github_pages.webp'
 ---
 
-## GitHub Pagesとは
+# GitHub Pagesとは
 github pagesとは[GitHub](https://docs.github.com/ja/pages/getting-started-with-github-pages/about-github-pages)が提供する(静的)サイトホスティングサービスである。
 リポジトリにhtmlファイルを置くことで、`https://username.github.io/repo-name/file_name.html`のようにそのページへアクセスできるようになる。
 
