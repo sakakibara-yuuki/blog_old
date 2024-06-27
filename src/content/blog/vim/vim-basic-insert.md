@@ -34,9 +34,7 @@ tags: ["vim", "インサートモード"]
 
 インサートモード中で`Ctrl+r`を押せばよいのだ。
 
-<video controls playsinline width="80%" autoplay loop muted="true" src="https://github.com/sakakibara-yuuki/blog/blob/main/src/pages/posts/vim/motion/insert/_insertregister.mp4?raw=true" type="video/mp4" >
- Sorry, your browser doesn't support embedded videos.
-</video>
+<iframe id="ytplayer" type="text/html" width="640" height="360" src="https://www.youtube.com/embed/UW_UNqy0qn4?autoplay=1" frameborder="0">Sorry, your browser doesn't support embedded videos.</iframe>
 
 この動画では`Ctrl+r "`を押すことで無名レジスタの内容(`yiw`でコピーした単語)がペーストされている。
 
@@ -46,28 +44,21 @@ tags: ["vim", "インサートモード"]
 また、意外と便利なのが`Express register`だ。
 割り算は整数で閉じているが、その他の加減乗除については浮動小数点数で閉じている。
 
-<video controls playsinline width="80%" autoplay loop muted="true" src="https://github.com/sakakibara-yuuki/blog/blob/main/src/pages/posts/vim/motion/insert/_express1.mp4?raw=true" type="video/mp4" >
- Sorry, your browser doesn't support embedded videos.
-</video>
+<iframe id="ytplayer" type="text/html" width="640" height="360" src="https://www.youtube.com/embed/YsvHc3mjRcM?autoplay=1" frameborder="0">Sorry, your browser doesn't support embedded videos.</iframe>
 
-<video controls playsinline width="80%" autoplay loop muted="true" src="https://github.com/sakakibara-yuuki/blog/blob/main/src/pages/posts/vim/motion/insert/_express2.mp4?raw=true" type="video/mp4" >
- Sorry, your browser doesn't support embedded videos.
-</video>
+<iframe id="ytplayer" type="text/html" width="640" height="360" src="https://www.youtube.com/embed/MuSanpE02BU?autoplay=1" frameborder="0">Sorry, your browser doesn't support embedded videos.</iframe>
+
 
 ### 抜刀術
 以下はインサートモードの奥義である。
 
-<video controls playsinline width="80%" autoplay loop muted="true" src="https://github.com/sakakibara-yuuki/blog/blob/main/src/pages/posts/vim/motion/insert/_normalinsert1.mp4?raw=true" type="video/mp4" >
- Sorry, your browser doesn't support embedded videos.
-</video>
+<iframe id="ytplayer" type="text/html" width="640" height="360" src="https://www.youtube.com/embed/85-S3Y2NcaE?autoplay=1" frameborder="0">Sorry, your browser doesn't support embedded videos.</iframe>
 
-<video controls playsinline width="80%" autoplay loop muted="true" src="https://github.com/sakakibara-yuuki/blog/blob/main/src/pages/posts/vim/motion/insert/_normalinsert2.mp4?raw=true" type="video/mp4" >
- Sorry, your browser doesn't support embedded videos.
-</video>
 
-<video controls playsinline width="80%" autoplay loop muted="true" src="https://github.com/sakakibara-yuuki/blog/blob/main/src/pages/posts/vim/motion/insert/_normalinsert3.mp4?raw=true" type="video/mp4" >
- Sorry, your browser doesn't support embedded videos.
-</video>
+<iframe id="ytplayer" type="text/html" width="640" height="360" src="https://www.youtube.com/embed/EU6fFJV-r5I?autoplay=1" frameborder="0">Sorry, your browser doesn't support embedded videos.</iframe>
+
+
+<iframe id="ytplayer" type="text/html" width="640" height="360" src="https://www.youtube.com/embed/1Hs0abw6pxI?autoplay=1" frameborder="0">Sorry, your browser doesn't support embedded videos.</iframe>
 
 `Ctrl+o`を押すことで、インサートモードを一瞬置き去りにし、ノーマルモードのコマンドを実行し、再びインサートモードに戻ることができる。
 
