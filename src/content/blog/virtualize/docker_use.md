@@ -209,15 +209,15 @@ Dockerの登場以前はこちらのコンテナが主流であった。
 具体的には
 
 1. 最小限の構成にする
- - 1コンテナ1アプリケーションを守る。
+    - 1コンテナ1アプリケーションを守る。
 1. 軽量なベースイメージを使用する
- - Googleが提供しているdistroless imageを使う. distolessイメージはアプリケーションの実行に必要なものだけが含まれているコンテナイメージであり、パッケージマネージャーやシェルは含まれていない。distorelessイメージを使うことで、イメージのサイズを最小限に抑えることができ、ロールバックやスケジューリングにかかる時間を短縮することができる。同時に、セキュリティリスクを最小限に抑えることができる。
+    - Googleが提供しているdistroless imageを使う. distolessイメージはアプリケーションの実行に必要なものだけが含まれているコンテナイメージであり、パッケージマネージャーやシェルは含まれていない。distorelessイメージを使うことで、イメージのサイズを最小限に抑えることができ、ロールバックやスケジューリングにかかる時間を短縮することができる。同時に、セキュリティリスクを最小限に抑えることができる。
 1. Multi-Stage Buildを使う
- - distorelessイメージを使うとビルドができないが、Multi-Stage Buildを使うことでビルド環境と実行環境を分けることができる。Multi-Stage BuildとはDockerfile内で複数のFROMを使ってアプリケーションをビルドするステージとDockerコンテナで使用するイメージを作成するステージを分ける方法である。この最後のFROMでdistrolessイメージを使うことでイメージサイズを軽減することができる。
+    - distorelessイメージを使うとビルドができないが、Multi-Stage Buildを使うことでビルド環境と実行環境を分けることができる。Multi-Stage BuildとはDockerfile内で複数のFROMを使ってアプリケーションをビルドするステージとDockerコンテナで使用するイメージを作成するステージを分ける方法である。この最後のFROMでdistrolessイメージを使うことでイメージサイズを軽減することができる。
 1. .dockerignoreを使う
- - `.git`や`node_modules`のような上書きされると困るものを記述する。`.dockerignore`は`.gitignore`と同じ書き方が可能。
+    - `.git`や`node_modules`のような上書きされると困るものを記述する。`.dockerignore`は`.gitignore`と同じ書き方が可能。
 1. Build時にcacheを意識する
- - build後にコマンドの変更、ファイルの追加や更新などが行われたら、変化が起こったレイヤーのキャッシュからビルドを実行する。コードの変換を行えばキャッシュが効かなくなる。
+    - build後にコマンドの変更、ファイルの追加や更新などが行われたら、変化が起こったレイヤーのキャッシュからビルドを実行する。コードの変換を行えばキャッシュが効かなくなる。
 
 その他: [The Twelve-Factor App （日本語訳）](https://12factor.net/ja/)
 <!-- - https://y-ohgi.com/introduction-docker/3_production/dockerfile/#_1 -->
@@ -230,7 +230,7 @@ rootユーザーを使わない。
 ビルド時に機密情報を与えない。
  - ビルド時にパスワードなどの機密情報を与えないようにする。[`--secret`](https://docs.docker.com/engine/swarm/secrets/)や[`--ssh`](https://docs.docker.com/reference/cli/docker/buildx/build/#ssh)を使ってセキュアにビルドする。パスワードなどの接続情報や環境変数は[Vault](https://developer.hashicorp.com/vault)などのシークレットマネージャーを使う。
 .dockerignoreファイルを使う。
- - `.env`のようなファイルを見逃すようにする。
+ - `.env`のようなファイルを含まないようにする。
 <!-- マウントには最小限の権限を与える。 -->
 <!--  - ホストのファイルをマウントす -->
 <!-- - https://y-ohgi.com/introduction-docker/3_production/security/#root -->
@@ -247,12 +247,6 @@ rootユーザーを使わない。
 `docker start`でコンテナを起動したとしてもCMDが実行されてしまう。
 
 このような場合、`docker commit`で停止したコンテナの状態を保存し、その状態から新しいコンテナを作成することができる。
-
-# docker compose
-
-## 最も簡単な使い方
-
-## webアプリのdocker化
 
 #### referenec
 - [入門 Docker](https://y-ohgi.com/introduction-docker/)
