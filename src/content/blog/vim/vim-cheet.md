@@ -2,10 +2,8 @@
 title: "Vimの基本: cheetsheet"
 author: "sakakibara"
 description: "vimの使い方"
-image:
-    url: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Vimlogo.svg/800px-Vimlogo.svg.png"
-    alt: "Astroの光線のサムネイル。"
 pubDate: 2024-03-04
+heroImage: '/vim/vim-cheet.webp'
 tags: ["vim", "公開学習"]
 ---
 
@@ -120,3 +118,7 @@ tags: ["vim", "公開学習"]
 |     ブラックホールレジスタ(black hole register)    |          "_          |
 | 検索パターンレジスタ(last search pattern register) |          "/          |
 
+### その他
+| command | description          |
+| :---:   | :----                |
+| `<shift-k>`       | その単語のmanを引く                 |
