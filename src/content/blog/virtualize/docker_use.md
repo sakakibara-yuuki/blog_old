@@ -118,15 +118,16 @@ docker rm 9f26d865c6c2    # container id
 docker rmi 35a88802559d   # image id
 
 docker rm stupefied_euclid  # names
-docker rmi ubuntu           # repository
+docker rmi ubuntu:latest           # repository
 ```
 ただし、注意が必要なのは
 - containerは停止している状態でないと削除できない。
-- imageはcontainerが存在していると削除できない。
+- imageはcontainerが存在していると削除できない。(`-f`を使わない限り)
 ということである。
 必ずcontainerが停止しているか確認してから削除すること。
-
-を入力すれば良い。
+また`docker rmi <image id>`と`docker rmi <repository>`は微妙に[挙動](https://docs.docker.com/reference/cli/docker/image/rm/)が異なる。
+`docker rmi <repository:tag>`はそのtagだけを消すが、`docker rmi <image id>`はimageレイヤー自体を消す。
+tagが複数ある場合に`docker rmi <image id>`を使うとエラーになる。
 
 次は、可搬性に関する機能、Dockerfileについて見ていこう。
 
@@ -208,22 +209,44 @@ Dockerの登場以前はこちらのコンテナが主流であった。
 具体的には
 
 1. 最小限の構成にする
+ - 1コンテナ1アプリケーションを守る。
 1. 軽量なベースイメージを使用する
-1. .dockerignoreを使う
-1. Build時にcacheを意識する
+ - Googleが提供しているdistroless imageを使う. distolessイメージはアプリケーションの実行に必要なものだけが含まれているコンテナイメージであり、パッケージマネージャーやシェルは含まれていない。distorelessイメージを使うことで、イメージのサイズを最小限に抑えることができ、ロールバックやスケジューリングにかかる時間を短縮することができる。同時に、セキュリティリスクを最小限に抑えることができる。
 1. Multi-Stage Buildを使う
+ - distorelessイメージを使うとビルドができないが、Multi-Stage Buildを使うことでビルド環境と実行環境を分けることができる。Multi-Stage BuildとはDockerfile内で複数のFROMを使ってアプリケーションをビルドするステージとDockerコンテナで使用するイメージを作成するステージを分ける方法である。この最後のFROMでdistrolessイメージを使うことでイメージサイズを軽減することができる。
+1. .dockerignoreを使う
+ - `.git`や`node_modules`のような上書きされると困るものを記述する。`.dockerignore`は`.gitignore`と同じ書き方が可能。
+1. Build時にcacheを意識する
+ - build後にコマンドの変更、ファイルの追加や更新などが行われたら、変化が起こったレイヤーのキャッシュからビルドを実行する。コードの変換を行えばキャッシュが効かなくなる。
 
 その他: [The Twelve-Factor App （日本語訳）](https://12factor.net/ja/)
 <!-- - https://y-ohgi.com/introduction-docker/3_production/dockerfile/#_1 -->
 
 ### Docker contaienr のセキュリティリスク
 Dockerと仮想マシンを比較した際の欠点は仮想マシンに対してセキュリティリスクが低いことである。
-- https://y-ohgi.com/introduction-docker/3_production/security/#root
-- https://y-ohgi.com/introduction-docker/3_production/image/#5
+
+rootユーザーを使わない。
+信頼されたimageを使う。
+ビルド時に機密情報を与えない。
+ - ビルド時にパスワードなどの機密情報を与えないようにする。[`--secret`](https://docs.docker.com/engine/swarm/secrets/)や[`--ssh`](https://docs.docker.com/reference/cli/docker/buildx/build/#ssh)を使ってセキュアにビルドする。パスワードなどの接続情報や環境変数は[Vault](https://developer.hashicorp.com/vault)などのシークレットマネージャーを使う。
+.dockerignoreファイルを使う。
+ - `.env`のようなファイルを見逃すようにする。
+<!-- マウントには最小限の権限を与える。 -->
+<!--  - ホストのファイルをマウントす -->
+<!-- - https://y-ohgi.com/introduction-docker/3_production/security/#root -->
+<!-- - https://y-ohgi.com/introduction-docker/3_production/image/#5 -->
 
 ## 故障かな？と思ったら
 ### docker logsを見る
+`docker logs`でログを確認することができる。ただし、ここで確認できるログは起動したプロセスの**標準出力と標準エラーのみ**であることに注意する。
+
 ### docker commitで別のimageを作る
+コンテナが停止し、その原因を探ろうと思っても、
+アプリケーションの中にはエラーの情報をファイルに吐き出すものがある。このような場合は`docker logs`でログを確認することができない。
+
+`docker start`でコンテナを起動したとしてもCMDが実行されてしまう。
+
+このような場合、`docker commit`で停止したコンテナの状態を保存し、その状態から新しいコンテナを作成することができる。
 
 # docker compose
 
