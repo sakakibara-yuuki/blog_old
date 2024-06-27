@@ -99,6 +99,9 @@ input {
 table {
 	width: 100%;
 }
+td {
+  border-bottom: 3px dashed rgb(var(--gray-light));
+}
 img {
 	max-width: 100%;
 	height: auto;
