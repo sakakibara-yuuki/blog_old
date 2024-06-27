@@ -180,33 +180,46 @@ Hello World!
 
 7つながりでDockerfileでよく使うcommandも7つなのでせっかくなのでここでまとめておく。
 
-| command     | description                                         |
-| ---         | ---                                                 |
-| FROM        | base imageを指定する                                |
-| COPY        | ファイルやディレクトリをコピーする                  |
-| ADD         | COPYと同じだがtarファイルを解凍する                 |
-| RUN         | コマンドを実行する                                  |
-| CMD         | containerが起動したときに実行するコマンドを指定する |
-| ENTRYPOINT  | containerが起動したときに実行するコマンドを指定する |
-| EXPOSE      | portを公開する                                      |
-| ENV         | 環境変数を設定する                                  |
-| ARG         | build時に指定する変数を設定する                     |
-| VOLUME      | マウントポイントを作成する                          |
-| WORKDIR     | 作業ディレクトリを指定する                          |
-| USER        | ユーザーを指定する                                  |
-| HEALTHCHECK | containerのhealthをチェックする                     |
-| ONBUILD     | build時に実行するコマンドを指定する                 |
+| command    | description                                                                                                                                                                     |
+| ---        | ---                                                                                                                                                                             |
+| FROM       | base image(ベースとなるDocker Image)を指定する                                                                                                                                  |
+| ENV        | Docker内で使用する環境変数を設定する                                                                                                                                            |
+| WORKDIR    | Dockerfileのコマンドを実行する作業ディレクトリを設定する。ディレクトリが存在しなければ自動的に作成される。デフォルトだと`/`が設定されている。                                  |
+| COPY       | ホストのファイルやディレクトリをDocker内へコピーする。ホスト側のディレクトリは`docker build .`で指定したディレクトリ。                                                          |
+| RUN        | Docker内でコマンドを実行する                                                                                                                                                    |
+| USER       | Docker Imageのログインするユーザー(ログインユーザー)を指定する                                                                                                                  |
+| CMD        | containerが起動したときに実行するコマンドを指定する。ここで設定したコマンドがフォアグラウンドで実行されている間が生存期間になる。バックグラウンドで起動するとDockerが終了する。 |
+| EXPOSE     | コンテナ起動時に公開するport記述する。ここで指定されたportをホスト側へ公開するには`-P`を使用する。                                                                             |
+| VOLUME     | マウントポイントを作成する。基本的にログのような更新頻度の激しいファイルで使用すると良い。                                                                                                                                                      |
+| ARG        | Dockerfileのbuild時に指定する変数を設定する。複雑になりすぎるため、基本的に使用しない。                                                                                                                                                 |
+| ADD        | COPYと同じだがurlからファイルをダウンロードし、コンテナへコピー。tarファイルを解凍する                                                                                                                                             |
+| ENTRYPOINT | containerが起動したときに実行するコマンドを指定する。引数を渡すと実行される。                                                                                                                             |
 
 ### Dockerfile　ベストプラクティス
+コンテナと言っても様々なタイプのコンテナがある。そのうち代表的なものが
+"アプリケーションコンテナ"と"システムコンテナ"である。
 
-https://y-ohgi.com/introduction-docker/3_production/dockerfile/#_1
-https://y-ohgi.com/introduction-docker/3_production/image/#5
-https://y-ohgi.com/introduction-docker/3_production/security/#root
+システムコンテナは通常のLinuxのように様々なアプリケーションを動かすためのコンテナである。
+Dockerの登場以前はこちらのコンテナが主流であった。
+対して、アプリケーションコンテナは1コンテナ1アプリケーションを動かすコンテナである。
+1つのアプリケーションを動かすためだけの環境しか含まないため、システムコンテナよりも軽量である。アプリケーションコンテナはアプリケーションを最初のプロセスとして直接立ち上げることが多い。
 
-アプリケーションコンテナとシステムコンテナ
+この使用例に沿って軽量なイメージを作成することがベストプラクティスである。
+具体的には
 
-その他
-[The Twelve-Factor App （日本語訳）](https://12factor.net/ja/)
+1. 最小限の構成にする
+1. 軽量なベースイメージを使用する
+1. .dockerignoreを使う
+1. Build時にcacheを意識する
+1. Multi-Stage Buildを使う
+
+その他: [The Twelve-Factor App （日本語訳）](https://12factor.net/ja/)
+<!-- - https://y-ohgi.com/introduction-docker/3_production/dockerfile/#_1 -->
+
+### Docker contaienr のセキュリティリスク
+Dockerと仮想マシンを比較した際の欠点は仮想マシンに対してセキュリティリスクが低いことである。
+- https://y-ohgi.com/introduction-docker/3_production/security/#root
+- https://y-ohgi.com/introduction-docker/3_production/image/#5
 
 ## 故障かな？と思ったら
 ### docker logsを見る
