@@ -109,7 +109,7 @@ ubuntu       latest    35a88802559d   2 weeks ago   78MB
 こんな感じで表示される。
 通常、`docker pull ubuntu`のようなコマンドを実行すると`docker hub`というrepositoryからimageを持ってくる。
 `docker hub`以外にもcontainerのimageを格納・公開しているrepositoryがある。
-GitHub Container RegistryやAWS Elastic Container Registryなどがある。
+GitHub Container RegistryやAWS Elastic Container Registry, Artifactなどがある。
 (imageファイルの規格OpenContainer Initiativeに準拠していれば、どのimageでも持ってくることができる!)
 
 さて、containerやimageを削除するには
@@ -124,10 +124,25 @@ docker rmi ubuntu:latest           # repository
 - containerは停止している状態でないと削除できない。
 - imageはcontainerが存在していると削除できない。(`-f`を使わない限り)
 ということである。
-必ずcontainerが停止しているか確認してから削除すること。
+必ずcontainerが停止しているか確認してから削除すること。  
+
 また`docker rmi <image id>`と`docker rmi <repository>`は微妙に[挙動](https://docs.docker.com/reference/cli/docker/image/rm/)が異なる。
 `docker rmi <repository:tag>`はそのtagだけを消すが、`docker rmi <image id>`はimageレイヤー自体を消す。
 tagが複数ある場合に`docker rmi <image id>`を使うとエラーになる。
+
+dockerを使っていくと、containerやimageがどんどん増えていくので、定期的に削除することが重要である。そこで、一括に削除する方法を紹介する。
+```bash
+docker prune prune
+docker system prune
+
+WARNING! This will remove:
+  - all stopped containers
+  - all networks not used by at least one container
+  - all dangling images
+  - unused build cache
+```
+dangling imagesというのは、tagがないimageのことである。Dockerfileからimageを作成すると、そのimageはtagがない状態で作成される。このようなimageをdangling imageという。
+
 
 次は、可搬性に関する機能、Dockerfileについて見ていこう。
 
@@ -147,8 +162,18 @@ CMD ["cat", "/home/hello.txt"]
 docker build -t hello .
 ```
 "buildする。`.`(current directoyのDockerfileをルートとし) tagはhelloにする"という意味である。
-ここで`-t`はtagの略であり、repository名を指定することができる。
-ややこしいのがtagの略のくせにimageのtagではなく、repositoryの名前を指定しているところである。
+ここで`-t`はtagの略であり、`<repository:tag>`を指定することができる。このように指定しなければ、tagは自動でlatestになる。
+
+imageの名前というのは大まかに`<repository:tag>`のことを指す。ただし文脈によっては`<repository>`だけを指すこともある。
+さらに厳密にはimageの名前というのは
+```bash
+<hostname>:<port>/<username>/<repository>:<tag>
+```
+でOCIで規定されている。
+dockerのimageというのは同じimageのimage idに対して複数の`<repository:tag>`をもつことができる。
+repository名はどこに保存するかの情報でありimageそのものを指しているわけではない。
+あくまでもimage idにtagがついているということである。
+<!-- ややこしいのがtagの略のくせにimageのtagではなく、repositoryの名前を指定しているところである。 -->
 `docker images`を実行すると
 ```bash
 REPOSITORY                       TAG       IMAGE ID       CREATED         SIZE
@@ -168,18 +193,7 @@ Hello World!
 今回は`cat /home/hello.txt`が実行された。
 **dockerの基本は1 container 1 processである。**
 
-しかしこのcontainerの中には入れない
-というのも`cat /home/hello.txt`のプロセスが終了するとcontainerも終了してしまうからである。
-[containerのライフサイクルは7つあり](https://docs.docker.com/reference/cli/docker/container/ls/#status)
-
-1. 一度も開始されていないcontainerは`created`(できたてほやほや)  
-1. `docker start`や`docker run`でCMDやENTRYPOINTが実行されると`running`になる。  
-1. `docker pause`で`pause`になり、再起動policyによって動き始めるcontainerは`restarting`になる。  
-1. container内のプロセスが完了したり、`docker stop`により、もう動作していないcontinaerは`exited`になる。
-1. 削除されたcontainerは`removed`になる。
-1. 削除がうまくいかず死にかけのcontainerは`dead`になる。
-
-7つながりでDockerfileでよく使うcommandも7つなのでせっかくなのでここでまとめておく。
+Dockerfileでよく使うcommandも7つなのでせっかくなのでここでまとめておく。
 
 | command    | description                                                                                                                                                                     |
 | ---        | ---                                                                                                                                                                             |
@@ -195,6 +209,40 @@ Hello World!
 | ARG        | Dockerfileのbuild時に指定する変数を設定する。複雑になりすぎるため、基本的に使用しない。                                                                                                                                                 |
 | ADD        | COPYと同じだがurlからファイルをダウンロードし、コンテナへコピー。tarファイルを解凍する                                                                                                                                             |
 | ENTRYPOINT | containerが起動したときに実行するコマンドを指定する。引数を渡すと実行される。                                                                                                                             |
+
+さて、先程のcontainerにはどうやって入ればいいのだろうか？
+実はそれはできない。  
+というのもCMDで定義した`cat /home/hello.txt`のプロセスが終了するとcontainerも終了してしまうからである。
+
+### Dockerのライフサイクル
+containerの[ライフサイクル](https://docs.docker.com/reference/cli/docker/container/ls/#status)は7つあり、以下のようである。
+
+1. 一度も開始されていないcontainerは`created`(できたてほやほや)  
+1. `docker start`や`docker run`でCMDやENTRYPOINTが実行されると`running`になる。  
+1. `docker pause`で`pause`になり、再起動policyによって動き始めるcontainerは`restarting`になる。  
+1. container内のプロセスが完了したり、`docker stop`により、もう動作していないcontinaerは`exited`になる。
+1. 削除されたcontainerは`removed`になる。
+1. 削除がうまくいかず死にかけのcontainerは`dead`になる。
+
+`exited`しただけでCMDの存続期間が長いcontainerでは
+```bash
+docker restart <container id>
+```
+で再起動できる。
+また, containerから出るには`exit`を実行するか、`Ctrl + p + q`を押す。
+`exit`はコンテナを動かしているプロセスを終了するので、containerも終了する。
+`Ctrl + q + p`はコンテナを動かしているプロセスを終了せずにコンテナから抜ける。
+この場合、コンテナのステータスは`running`のままである。
+| command | description |
+| --- | --- |
+|exit|コンテナを終了する|
+|Ctrl + p + q|コンテナを終了せずに抜ける(デタッチ)|
+
+デタッチで抜けたcontainerに対して
+```bash
+docker attach <container id>
+```
+とすることで再びそのコンテナに入ることができる。
 
 ### Dockerfile　ベストプラクティス
 コンテナと言っても様々なタイプのコンテナがある。そのうち代表的なものが
@@ -247,6 +295,132 @@ rootユーザーを使わない。
 `docker start`でコンテナを起動したとしてもCMDが実行されてしまう。
 
 このような場合、`docker commit`で停止したコンテナの状態を保存し、その状態から新しいコンテナを作成することができる。
+```bash
+docker commit <container id> <new image name:tag>
+```
+例
+```bash
+❯ docker images
+REPOSITORY                       TAG       IMAGE ID       CREATED         SIZE
+hello                            latest    1a65f2ede275   2 days ago      78MB
+❯ docker ps -a
+CONTAINER ID   IMAGE                                 COMMAND                  CREATED       STATUS                     PORTS     NAMES
+7716c45d1ea7   hello                                 "cat /home/hello.txt"    2 days ago    Exited (0) 2 minutes ago             brave_mestorf
+33ab02be4eda   hello                                 "cat /home/hello.txt"    2 days ago    Exited (0) 2 days ago                nostalgic_agnesi
+
+❯ docker commit 7716c45d1ea7 helloworld:update  
+sha256:b6dc487b3ce2243015e4fd0893eb7e26a1e250fe43cb4d8caa52834615def4d7
+
+❯ docker images
+REPOSITORY                       TAG       IMAGE ID       CREATED          SIZE
+helloworld                       update    b6dc487b3ce2   10 seconds ago   78MB
+hello                            latest    1a65f2ede275   2 days ago       78MB
+```
+
+#### docker Hub
+docker HubはDockerの公式レジストリであり、Dockerイメージを保存・管理するためのサービスである。
+ここに自分が作成したimageをpushしてみる。
+```bash
+❯ docker images
+REPOSITORY                       TAG       IMAGE ID       CREATED         SIZE
+sakakibarayuuki/hello            update    459db1b7e63a   3 seconds ago   78MB
+❯ docker login
+Login Succeeded
+❯ docker push sakakibarayuuki/hello:update
+The push refers to repository [docker.io/sakakibarayuuki/hello]
+4568fc594304: Pushed
+a30a5965a4f7: Mounted from library/ubuntu
+update: digest: sha256:3fe269400820339033658ec085e741f8761fd793ecb9e77ae9efb77e62c39c50 size: 736
+```
+こうすることで自分が作成したimageをdocker Hubにpushすることができる。
+docker Hubは変化したimage layerだけをpushするので、大きなファイルをpushするときには便利である。
+dockerのimageがどんなものかを知りたいときには`docker history`を使うと良い。
+```bash
+docker history
+```
+#### docker run再考
+docker runは`create + start`を一口におこなうコマンドである。
+`create`はimageからcontainerを作成するコマンドであり、
+`start`はcontainerのCMDを実行するコマンドである。
+CMDがすぐに終了するコマンドである場合、`docker run`はすぐに終了する。
+CMDを上書きするには以下のようにする。
+```bash
+❯ docker run hello whoami
+root
+```
+しかし、コンテナの中に入って作業をしたいという場合はどうすればいいのだろうか？
+`-it`オプションを使うことでコンテナの中に入ることができる。
+```bash
+docker run -it hello /bin/bash
+```
+この`-it`は`-i`と`-t`の略であり、`-i`はコンテナの標準入力を開き、`-t`はttyを開くという意味である。
+試しに、
+```bash
+❯ docker run -t hello bash
+root@ede2f58c7c2f:/# ls
+
+```
+のようにしてみると、コンテナの中に入ることができるが、`ls`などのコマンドから応答が帰ってこない。
+
+`-i`オプションはホスト側からコンテナへの標準入力をつなぐためのオプションであり、これが無いとコンテナの中でコマンドを実行してもホスト側には返ってこない。
+
+`-t`オプションはttyを開くためのオプションであり、これが無いとコンテナの中でコマンドを実行してもttyが開かれていないため、コマンドが実行されない。
+
+また、システムコンテナのように常時起動しているコンテナには名前をつけることができる。
+```bash
+docker run -it --name dev hello bash
+```
+また、名前をつけるとプログラムから呼び出せるときに便利という利点がある。
+また、
+detached mode と foreground mode(short-term)という２つの使い方がある。
+```bash
+docker run -d <image>  # コンテナをバックグラウンドで動かす(detached mode)
+docker run --rm <image>  # コンテナをExitする際に削除する (foreground mode)
+```
+
+#### docker run -u $(id -u):$(id -g)を使う
+dockerはデフォルトでrootユーザーでコンテナを起動する。
+これがセキュリティ的にまずいのは、例えばローカルのファイルをマウントした際に、root権限を持ってローカルのファイルを操作できる可能性があるからである。
+そこで、`-u`オプションを使ってログインユーザーを指定することができる。
+
+まず、適当にDockerfileを作成し、ビルドする。
+```bash
+FROM ubuntu:latest
+
+RUN mkdir created_in_Dockerfile
+```
+```bash
+~/tmp/hoge ❯ docker images
+REPOSITORY                       TAG       IMAGE ID       CREATED          SIZE
+<none>                           <none>    145de4e2c089   3 seconds ago    78MB
+```
+次に、`-u`オプションを使用してログインユーザーを指定しコンテナを起動する。
+```bash
+❯ docker run -it -u $(id -u):$(id -g) -v .:/created_in_run 145de4e2c089
+ubuntu@96722b4b8025:/$ id -u
+1000
+ubuntu@96722b4b8025:/$ id -g
+1000
+```
+するとどうだろう。コンテナ内でのユーザーが`1000:1000`になっている。rootユーザーではない。
+次に`run`実行時に作成したファイルとDockerfileで作成したファイルの権限を見てみる。
+
+```bash
+ubuntu@96722b4b8025:/$ ll
+total 64
+drwxr-xr-x   1 root   root   4096 Jun 28 09:11 ./
+drwxr-xr-x   1 root   root   4096 Jun 28 09:11 ../
+-rwxr-xr-x   1 root   root      0 Jun 28 09:11 .dockerenv*
+lrwxrwxrwx   1 root   root      7 Apr 22 13:08 bin -> usr/bin/
+drwxr-xr-x   2 root   root   4096 Apr 22 13:08 boot/
+drwxr-xr-x   2 root   root   4096 Jun 28 09:09 created_in_Dockerfile/
+drwxr-xr-x   2 ubuntu ubuntu 4096 Jun 28 09:09 created_in_run/
+```
+`created_in_Dockerfile`を見ると、アクセス権限が`drwxr-xr-x`になっている。
+今、自分は`1000:1000`のユーザーであり、`root`ユーザーでも`root`グループでもないのでその他の`r-x`の権限が適用される。
+
+この結果により`run`実行時に`-u`オプションを使うことで、マウント時のファイルの権限を制御し、ログインユーザーを指定することができる。
+また、Dockerfileで作成したファイルはroot権限で作成されることがわかる。
 
 #### referenec
 - [入門 Docker](https://y-ohgi.com/introduction-docker/)
