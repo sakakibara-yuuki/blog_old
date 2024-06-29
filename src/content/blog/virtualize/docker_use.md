@@ -390,7 +390,7 @@ FROM ubuntu:latest
 RUN mkdir created_in_Dockerfile
 ```
 ```bash
-~/tmp/hoge ❯ docker images
+❯ docker images
 REPOSITORY                       TAG       IMAGE ID       CREATED          SIZE
 <none>                           <none>    145de4e2c089   3 seconds ago    78MB
 ```
