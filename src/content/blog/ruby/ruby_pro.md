@@ -2,7 +2,7 @@
 title: 'プロRuby'
 author: "sakakibara"
 description: 'Lorem ipsum dolor sit amet'
-heroImage: '/blog-placeholder-3.jpg'
+heroImage: '/ruby/ruby_pro.webp'
 pubDate: 2024-06-26
 tags: ["astro", "math"]
 ---
