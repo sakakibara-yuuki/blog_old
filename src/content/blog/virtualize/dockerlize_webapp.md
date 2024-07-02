@@ -371,3 +371,40 @@ RUN bundle install
     command: /bin/bash -c "sleep 5 && rails webpacker:install && rails webpacker:compile && rails db:create && rails db:migrate && rails s -b 0.0.0.0"
 ```
 以上！
+
+### sleep 3の問題
+`sleep 3`を入れる理由は、dbが立ち上がるまで待つためである。
+そこで、`sleep 3`を入れるのではなく、docker composeの[`depends_on`](https://docs.docker.com/compose/compose-file/05-services/#long-syntax-1)と`healthcheck`を使おう。
+#### depends_on
+```yml
+depends_on:
+  db:
+    condition: service_healthy
+```
+これは`db`が`service_healthy`になるまで待つという意味である。
+conditionには以下の種類がある。
+| condition                      | Description                                                                                     |
+| ---                            | ---                                                                                             |
+| service_started                | 依存サービス(webなど)開始前に、依存関係(dbなど)が開始されたことをトリガーとする。                        |
+| service_healthy                | 依存サービス(webなど)開始前に、依存関係(dbなど)が'healthcheck'によってhealthであることをトリガーとする。 |
+| service_completed_successfully | 依存サービス(webなど)開始前に、依存関係(dbなど)が正常に完了したことをトリガーとする。                    |
+
+#### healthcheck
+`healthcheck`はサービスが正常に動作しているかを確認するための機能である。
+Dockerfileにも`HEALTHCHECK`を記述することができる。
+docker composeの`healthcheck`もDockerの`HEALTHCHECK`と同じように使うことができる。
+ただし、docker composeの`healthcheck`はDockerfileの`HEALTHCHECK`よりも優先(上書き)される。
+healthcheckのコマンドと期間指定を記述することができる。
+```yml
+healthcheck:
+    test: ["CMD-SHELL", "pg_isready -U postgres"]
+    interval: 1m30x
+    timeout: 10s
+    start_period: 40s
+    start_interval: 5s
+    retires: 3
+```
+`test`はコンテナの状態を確認するためにdocker composeが実行するコマンドを定義する。
+文字列かリストで指定することができる。
+- リストの場合は`NONE`, `CMD`, `CMD-SHELL`のいずれかを指定する。
+- 文字列の場合は`CMD_SHELL`を指定する。
