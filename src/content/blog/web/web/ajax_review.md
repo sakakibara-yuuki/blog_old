@@ -2,7 +2,7 @@
 title: 'Ajaxとその代替'
 author: "sakakibara"
 description: 'Lorem ipsum dolor sit amet'
-heroImage: '/blog-placeholder-3.jpg'
+heroImage: '/web/web/ajax_review.png'
 pubDate: 2024-07-01
 tags: ["astro", "math"]
 ---

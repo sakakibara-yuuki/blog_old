@@ -232,6 +232,7 @@ console.log(date.getDay()); // 6 week
 - shift: 先頭の要素を削除
 - pop: 末尾の要素を削除
 - unshift: 先頭に要素を追加
+- reduce: 配列を要素毎に走査して、前の結果に現在の配列の要素を加えていく。
 
 配列から特定の要素を検索するには、`indexOf`や`find`を使う。
 配列の要素がprimitive型の場合は`indexOf`を使う。

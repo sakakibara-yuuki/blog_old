@@ -2,9 +2,7 @@
 title: "web developper tool"
 author: "sakakibara"
 description: "上手くいかないことがありましたが、コミュニティに質問して助けてもらいました！"
-image:
-    url: "https://docs.astro.build/assets/rays.webp"
-    alt: "Astroの光線のサムネイル。"
+heroImage: '/web/web/developper_tool.png'
 pubDate: 2024-06-16
 tags: ["astro", "公開学習", "後退", "コミュニティ"]
 ---
