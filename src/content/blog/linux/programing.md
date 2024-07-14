@@ -2,9 +2,7 @@
 title: "C & Java & Python プログラミング言語の違い"
 author: "sakakibara"
 description: "上手くいかないことがありましたが、コミュニティに質問して助けてもらいました！"
-image:
-    url: "https://docs.astro.build/assets/rays.webp"
-    alt: "Astroの光線のサムネイル。"
+heroImage: '/linux/elf.png'
 pubDate: 2024-05-31
 tags: ["astro", "公開学習", "後退", "コミュニティ"]
 ---

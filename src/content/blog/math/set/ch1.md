@@ -2,9 +2,7 @@
 title: "集合"
 author: "sakakibara"
 description: "集合"
-image:
-    url: "https://docs.astro.build/assets/rays.webp"
-    alt: "Astroの光線のサムネイル。"
+heroImage: '/math/set/ch1.png'
 pubDate: 2024-03-19
 tags: ["集合"]
 ---

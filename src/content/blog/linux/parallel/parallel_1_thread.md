@@ -2,9 +2,7 @@
 title: "並行処理: #1 pthread 使い方"
 author: "sakakibara"
 description: "上手くいかないことがありましたが、コミュニティに質問して助けてもらいました！"
-image:
-    url: "https://docs.astro.build/assets/rays.webp"
-    alt: "Astroの光線のサムネイル。"
+heroImage: '/linux/parallel/parallel_1_thread.png'
 pubDate: 2024-05-30
 tags: ["astro", "公開学習", "後退", "コミュニティ"]
 ---
