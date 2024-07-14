@@ -2,9 +2,7 @@
 title: "linuxの基本コマンド  ~~意外と知らないコマンドたち~~"
 author: "sakakibara"
 description: "linuxの基本コマンド ~~意外と知らないコマンドたち~~"
-image:
-    url: "https://do-zan.com/wp-content/uploads/2016/01/3da5b3c3e6b5dd7d078bbc5705b88b9f.png"
-    alt: "terminalの画像"
+heroImage: '/linux/linux-command.png'
 pubDate: 2024-03-04
 tags: ["linux", "コマンド"]
 ---

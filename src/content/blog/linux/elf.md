@@ -2,9 +2,7 @@
 title: "ELF(Executable and Linkable Format)"
 author: "sakakibara"
 description: "上手くいかないことがありましたが、コミュニティに質問して助けてもらいました！"
-image:
-    url: "https://docs.astro.build/assets/rays.webp"
-    alt: "Astroの光線のサムネイル。"
+heroImage: '/linux/elf.png'
 pubDate: 2024-06-03
 tags: ["astro", "公開学習", "後退", "コミュニティ"]
 ---

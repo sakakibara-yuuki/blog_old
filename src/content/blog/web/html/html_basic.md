@@ -1,15 +1,13 @@
 ---
 title: "HTMLの基本"
 author: "sakakibara"
-description: "上手くいかないことがありましたが、コミュニティに質問して助けてもらいました！"
-image:
-    url: "https://docs.astro.build/assets/rays.webp"
-    alt: "Astroの光線のサムネイル。"
+description: 'Lorem ipsum dolor sit amet'
+heroImage: '/web/html/html_basic.png'
 pubDate: 2024-06-14
-tags: ["astro", "公開学習", "後退", "コミュニティ"]
+tags: ["astro", "math"]
 ---
 
-## HTMLのメモ
+# HTMLのメモ
 HTMLで自分がつまづきやすいところをメモしておきます。
 
 ### HTMLの基本構造
@@ -81,138 +79,6 @@ HTMLで自分がつまづきやすいところをメモしておきます。
     </body>
 </html>
 ```
-
-### h1~h6
-id属性を使って、他のhタグからリンクを貼ることができる。
-```html
-<h2 id="section-heading-three">h2タグ</h2>
-<a href="#section-heading-three">h2へのリンク</a>
-```
-
-### a tag
-別タブでリンクを開く。
-```html
-<a href="URL" target="_blank">
-```
-
-### ul ol dl li tag
-ul: unorder list(順序なしリスト) : ホームページのナビゲーションなど
-ol: order list(順序ありリスト): 数字付きリスト
-dl: definition list(定義リスト): 用語とその説明
-dt: definition title(用語)
-dd: definition detail(説明)
-li: list item(リストの要素)
-
-```html
-<ul>
-    <li>list1</li>
-    <li>list2</li>
-</ul>
-<ol>
-    <li>list1</li>
-    <li>list2</li>
-</ol>
-<dl>
-    <dt>用語1</dt>
-    <dd>説明1</dd>
-    <dt>用語2</dt>
-    <dd>説明2</dd>
-</dl>
-```
-
-### table tag
-- table: 表
-- tr: table row(行)
-- td: table data(セル)
-- th: table header(見出し)
-
-```html
-<table>
-    <tr>
-        <th>商品名</th>
-        <th>価格</th>
-    </tr>
-    <tr>
-        <td>りんご</td>
-        <td>100円</td>
-    </tr>
-    <tr>
-        <td>みかん</td>
-        <td>100円</td>
-    </tr>
-</table>
-```
-
-### video tag
-動画のコントロールは、`controls`属性を使う。
-```html
-<video src="URL" controls autoreplay loop>video name</video>
-```
-
-### header tag
-ロゴやページタイトル、navなどが含まれる。
-```html
-<header>
-    <img src="URL" alt="logo">
-    <ul>
-        <li>Home</li>
-        <li>About</li>
-    </ul>
-</header>
-```
-
-### nav tag
-ナビゲーションメニューが含まれる。headerに含まれることが多い。
-```html
-<header>
-    <img src="URL" alt="logo">
-    <nav>
-        <ul>
-            <li><a href="home">Home</a></li>
-            <li><a href="home">About</a></li>
-        </ul>
-    </nav>
-</header>
-```
-
-### main tag
-ページの核となるコンテンツが含まれる。多くのtagを含む。
-```html
-<main>
-    <h1>タイトル</h1>
-    <p>本文</p>
-    <img src="URL" alt="image">
-</main>
-```
-### aside tag
-本文とは関係の薄い補足情報が含まれる。サイドバーなどに使われる。
-```
-<aside>
-    <h2>著者について</h2>
-    <p>xx大学卒業後、yy社に入社。</p>
-</aside>
-```
-### article tag
-独立性の高いコンテンツが含まれる。ここだけ見てもページの内容が完結している。
-```html
-<article>
-    <h2>記事タイトル</h2>
-    <p>記事本文</p>
-</article>
-```
-
-### section tag
-意味のあるグループをまとめるためのタグ。articleと異なり、ここだけ見ても完結していない。
-```html
-<section>
-    <h3>その他関連する記事</h3>
-    <ul>
-        <li>記事1</li>
-        <li>記事2</li>
-    </ul>
-</section>
-```
-通常、sectionの次にはh3などの見出しタグが使われる。タイトルの内セクションができることは望ましく無い。
 
 ## コンテンツカテゴリー(containt category)
 htmlではあらゆる要素が入れ子にできそうだが、実際はそうではない。

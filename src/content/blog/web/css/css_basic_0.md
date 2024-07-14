@@ -3,9 +3,7 @@ title: "CSS基礎"
 author: "sakakibara"
 description: "cssは小学生でも書ける。しかし、うまく書くにはそれなりの知識と経験
 が求められる。"
-image:
-    url: "https://cdn-icons-png.flaticon.com/512/919/919826.png"
-    alt: "CSSの画像"
+heroImage: '/web/css/css_basic_0.png'
 pubDate: 2024-03-03
 tags: ["CSS", "公開学習", "基礎", "更新中"]
 ---

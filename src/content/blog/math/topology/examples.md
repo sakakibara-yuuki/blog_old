@@ -2,9 +2,7 @@
 title: "位相空間の具体例"
 author: "sakakibara"
 description: "位相空間の具体例"
-image:
-    url: "https://docs.astro.build/assets/rays.webp"
-    alt: "Astroの光線のサムネイル。"
+heroImage: "/math/topology/examples.png"
 pubDate: 2024-03-19
 tags: ["位相空間", "トポロジー"]
 ---
