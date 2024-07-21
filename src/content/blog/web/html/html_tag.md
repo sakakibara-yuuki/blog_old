@@ -209,6 +209,12 @@ google analyticsなどのトラッキングを防ぐために使われる。
 <label for="username">名前を忘れてしまいましたか？</label>
 ```
 
+## button tag
+[`button`](https://developer.mozilla.org/ja/docs/Web/HTML/Element/button)タグはクリック可能なボタンを作成する。
+[気をつけるべきこと](https://developer.mozilla.org/ja/docs/Web/HTML/Element/button#%E3%83%A1%E3%83%A2)
+として
+- `form`で囲むか`for`属性に`form`のidを指定する
+- `type=button`でないと、フォームが送信され、レスポンスをリロードしようとする
 
 ## fieldset tag
 [`fieldset`](https://developer.mozilla.org/ja/docs/Web/HTML/Element/fieldset)タグはいくつかのコントロールをグループ化するために使用される。
