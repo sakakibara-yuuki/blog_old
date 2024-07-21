@@ -17,7 +17,7 @@ tags: ["位相空間", "トポロジー"]
 > \mathbf{O}_ 3 : &\ \{O_{\lambda}\}_ {\lambda \in \Lambda} \in \mathcal{O} \implies \bigcup_{\lambda \in \Lambda} O_\lambda \in \mathcal{O}
 > \end{aligned}
 > $$
-> 位相$\mathcal{O}$が備わった空でない集合$X$を, 集合と位相の組$(X, \mathcal{O})$で表し**位相空間**とよぶ。$\mathcal{O}$の元$O$を(位相$\mathcal{O}の$)**開集合**と呼ぶ。
+> 位相$\mathcal{O}$が備わった空でない集合$X$を, 集合と位相の組$(X, \mathcal{O})$で表し**位相空間**とよぶ。$\mathcal{O}$の元$O$を(位相$\mathcal{O}$の)**開集合**と呼ぶ。
 > 
 初見で見ると何の役に立つのかわからず、定義も意味不明だし、具体例もわからず面喰らうだろう。
 だが、よくこの定義を見てみるととても素朴なことを要請していることに気づく。
