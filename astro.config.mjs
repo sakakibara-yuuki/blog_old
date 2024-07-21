@@ -4,6 +4,8 @@ import sitemap from '@astrojs/sitemap';
 
 import d2 from "astro-d2";
 import remarkToc from "remark-toc";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 
 // https://astro.build/config
 export default defineConfig({
@@ -11,6 +13,7 @@ export default defineConfig({
   output: 'static',
   integrations: [mdx(), sitemap(), d2()],
   markdown: {
-    remarkPlugins: [ [remarkToc, { heading: "Contents" }] ],
+    remarkPlugins: [ remarkMath, [remarkToc, { heading: "Contents" }] ],
+    rehypePlugins: [ rehypeKatex ],
   }
 });
