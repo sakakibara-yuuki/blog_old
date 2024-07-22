@@ -8,6 +8,8 @@ tags: ["astro", "math"]
 ---
 
 # 結合子
+## Contents
+## 子孫結合
 ```html
 <p>This is a paragraph.</p>
 <div>
@@ -28,6 +30,7 @@ div p {
 これはdivの下にあるpタグにどこまでも再帰的に適用される。
 これを子孫結合子という。
 
+## 子結合
 ```css
 div > p {
     color: blue;
@@ -37,6 +40,7 @@ div > p {
 これはdivの直下のみにあるpタグにのみ適用される。
 これを子結合子という。
 
+## 隣接兄弟結合 & 後続兄弟結合
 ```css
 div + p {
     color: green;
@@ -54,7 +58,7 @@ div ~ p {
 これは`div`タグの後ろ(直後でなくても良い)に`p`タグがある場合に`color: yellow;`が適用される。
 これは後続兄弟結合子という。
 
-### クラスセレクタ
+## クラスセレクタと注意点
 [`クラスセレクタ`](https://developer.mozilla.org/ja/docs/Web/CSS/Class_selectors)は、クラス属性に基づいて要素を選択するためのセレクタである。
 
 ```html

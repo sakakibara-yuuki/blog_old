@@ -22,16 +22,17 @@ tags: ["有限要素法", "電磁場解析", "数値解析"]
 以下ではどのようにしてマクスウェル方程式を数値解析に落とし込むか。
 より具体的に言えばどのようにして微分方程式を行列計算に落とし込むかについて説明する。
 
+## Contents
 ## 重み付き残差法
 ### 内積
 内積という概念が広いことを知っている人は多いだろう。
 $$
-\langle\cdot \rangle: V\times V \rightarrow \mathbb{R} \\
+\langle\cdot \rangle: V\times V \rightarrow \mathbb{R}
 $$
 $a, b, c \in V$, $\alpha \in \mathbb{R}$について以下が成り立つなら演算子$\langle\cdot\rangle$を内積という。
 $$
 \begin{aligned}
-\text{(正値性)}&\  \langle a\cdot a \rangle \ge 0\ \land\ \langle a\cdot a \rangle = 0 \implies a = 0\\
+\text{(正値性)}&\  \langle a\cdot a \rangle \ge 0\ \land\ \langle a\cdot a \rangle = 0 \implies a = 0 \\
 \text{(対称性)}&\  \langle a\cdot b \rangle = \langle b \cdot a \rangle \\
 \text{(多重線形性)}&\  \alpha \langle a \cdot b \rangle = \langle \alpha a \cdot b \rangle \\
 &\  \langle a + b \cdot c \rangle = \langle a \cdot c \rangle + \langle b \cdot c \rangle
@@ -93,16 +94,16 @@ $\bm{N}_ e$が$E$個あるため方程式が$E$個得られる。
 よく知られたようにマクスウェル方程式は以下の４つの式で表される。
 $$
 \begin{align}
-\mathrm{div}\bm{D} &= \rho \\
-\mathrm{div}\bm{B} &= 0 \\
-\mathrm{rot}\bm{E} &= -\frac{\partial \bm{B}}{\partial t} \\
+\mathrm{div}\bm{D} &= \rho
+\mathrm{div}\bm{B} &= 0
+\mathrm{rot}\bm{E} &= -\frac{\partial \bm{B}}{\partial t}
 \mathrm{rot}\bm{H} &= \bm{J}+\frac{\partial \bm{D}}{\partial t}
 \end{align}
 $$
 ただし、適当なテンソル$\epsilon, \mu, \sigma$を用いて
 $$
-\bm{D} = \epsilon \bm{E} \\
-\bm{B} = \mu \bm{H} \\
+\bm{D} = \epsilon \bm{E}
+\bm{B} = \mu \bm{H}
 \bm{J} = \sigma \bm{E} + \bm{J}_ {source}
 $$
 のような関係がある。
@@ -186,7 +187,7 @@ $$
 少し整理して
 $$
 \begin{equation}
-\mathrm{rot}\mu^{-1}\mathrm{rot}\bm{A} + \sigma\frac{\partial \bm{A}}{\partial t} + \sigma\mathrm{grad}\frac{\partial \phi}{\partial t} = \bm{J}_ {source} \tag{eq:$A-\phi$} \\
+\mathrm{rot}\mu^{-1}\mathrm{rot}\bm{A} + \sigma\frac{\partial \bm{A}}{\partial t} + \sigma\mathrm{grad}\frac{\partial \phi}{\partial t} = \bm{J}_ {source} \tag{eq:$A-\phi$}
 \end{equation}
 $$
 有限要素法ではこの式$(eq:A-\phi)$を解く。

@@ -14,6 +14,7 @@ tags: ["astro", "math"]
 ## ダミー
 - **ダミー画像生成**: [placehold.jp | ダミー画像生成 モック用画像作成](https://placehold.jp/)
 - **ダミー文章生成**: [ダミーテキストジェネレータ | Web制作小物ツール - dounokouno.com](https://webtools.dounokouno.com/dummytext/)
+- **ダミー画像その2**: [美しい無料画像と写真の数々 | Unsplash](https://unsplash.com/ja)
 
 ## レイアウト
 - **Grid Layoutの設計**: [CSS Grid Generator](https://cssgrid-generator.netlify.app/)
