@@ -10,10 +10,12 @@ tags: ["astro", "math"]
 # Introduction
 ## いい感じのデザイン
 - [Stripe Press — Ideas for progress](https://press.stripe.com/)
+- [Mridul2820/3d-html-css-js: 3D Projects made with HTML CSS & JS](https://github.com/Mridul2820/3d-html-css-js?tab=readme-ov-file)
 
 ## ダミー
 - **ダミー画像生成**: [placehold.jp | ダミー画像生成 モック用画像作成](https://placehold.jp/)
 - **ダミー文章生成**: [ダミーテキストジェネレータ | Web制作小物ツール - dounokouno.com](https://webtools.dounokouno.com/dummytext/)
+- **ダミー画像その2**: [美しい無料画像と写真の数々 | Unsplash](https://unsplash.com/ja)
 
 ## レイアウト
 - **Grid Layoutの設計**: [CSS Grid Generator](https://cssgrid-generator.netlify.app/)
@@ -58,3 +60,9 @@ tags: ["astro", "math"]
 
 - **いい感じのハンバーガーメニュー**: [数字を入力するだけ！ハンバーガーボタンジェネレーター](https://zarigani-design-office.com/hamburger/)
 <iframe src="https://zarigani-design-office.com/hamburger/" frameborder="0"></iframe>
+
+- **本っぽいやつ**: [(73) 3D Book Animation | HTML & CSS - YouTube](https://www.youtube.com/watch?v=9CAqojHY42o)
+
+- **本っぽいやつその2**: [3D Book Image CSS Generator · Sebastien Castiel](https://scastiel.dev/3dbook)
+
+- ** 3js ** : [3js](https://threejs.org/)

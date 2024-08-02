@@ -9,6 +9,7 @@ tags: ["astro", "math"]
 
 # Introduction
 使い方、慣習についてまとめる。
+## Contents
 
 ## File Structure
 [File Structure – React](https://legacy.reactjs.org/docs/faq-structure.html)にあるように、Reactプロジェクトではコンポーネントをどこに配置するかについてのルールは無い。
@@ -69,6 +70,15 @@ components/
 なお、個人プロジェクトではパターン1から初めてパターン2へ移行することを選択する。
 
 ### Atomic Design
+Atomic DesignとはBrad Frostが考案したデザインシステムである。
+画面を5段階に分割し、それを組み合わせることでUIを構築する。
+根底にはコンポーネント化された要素が画面を構成しているという考え方があり, Reactとの相性が良い。しかし, ReactやVue専用のツールなどではない。
 
+1. Atom: ボタンやテキストフィールドなどのこれ以上分割できない最小単位の要素
+1. Molecule: Atomを組み合わせたもの。アイコン+メニューや、プロフィール画像+テキストbox, iconのリンク集など
+1. Organism: AtomやMoleculeを組み合わせたもの。サイドメニュー, ツイート入力エリアなど
+1. Template: ページのレイアウトのみを表現する要素。Organismを配置するだけ。実際のデータを持たない。
+1. Page: 最終的に表示される1画面
 
-
+## Global State Management( Recoil )
+## Json Place Holder
