@@ -66,3 +66,10 @@ tags: ["astro", "math"]
 - **本っぽいやつその2**: [3D Book Image CSS Generator · Sebastien Castiel](https://scastiel.dev/3dbook)
 
 - ** 3js ** : [3js](https://threejs.org/)
+
+- **インディーズな感じ**: [Indie UI](https://ui.indie-starter.dev/)
+
+- **spinner**: [HTML-Spinner Examples](https://bvadata.com/html_spinner_examples.html)
+
+## メディア
+- **子リス**: [Coliss](https://coliss.com/)
