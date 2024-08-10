@@ -7,6 +7,7 @@ heroImage: '/vim/vim-basic-insert.webp'
 tags: ["vim", "インサートモード"]
 ---
 
+## Contents
 ## インサートモード
 白状しよう。ノーマルモードが一番大事だ。
 故に、インサートモードの機能的について言及することは少ない。

@@ -2,14 +2,12 @@
 title: "テスト技法"
 author: "sakakibara"
 description: "テスト技法についての所感"
-image:
-    url: "https://docs.astro.build/assets/rays.webp"
-    alt: "Astroの光線のサムネイル。"
+heroImage: '/blog-placeholder-3.jpg'
 pubDate: 2024-03-04
 tags: ["テスト技法", "テスト", "技法"]
 ---
 
-
+## Contents
 ## トップダウン・ボトムアップ
 テストをトップダウンから行うか、ボトムアップで行うかという問題が(自分の中で)ある。
 トップダウンのメリットとしては、全体の流れを把握しやすく、テストの範囲を絞りやすいという点がある。

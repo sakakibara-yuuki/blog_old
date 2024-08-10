@@ -7,7 +7,7 @@ heroImage: '/vim/vim-basic.webp'
 tags: ["vim", "公開学習"]
 ---
 
-
+## Contents
 ## vimの家系図
 > はじめに神はターミナルを創造された。  
 > 神は"edあれ"と言われた。するとedがあった。

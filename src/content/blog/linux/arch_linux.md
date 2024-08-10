@@ -2,9 +2,7 @@
 title: "Arch linux手術室"
 author: "sakakibara"
 description: "Arch linux小説です。"
-image:
-    url: "https://cdn.icon-icons.com/icons2/2699/PNG/512/archlinux_logo_icon_167835.png"
-    alt: "Arch linux logo"
+heroImage: "https://cdn.icon-icons.com/icons2/2699/PNG/512/archlinux_logo_icon_167835.png"
 pubDate: 2024-03-04
 tags: ["astro", "公開学習", "コミュニティ"]
 ---
@@ -22,7 +20,8 @@ tags: ["astro", "公開学習", "コミュニティ"]
 呼吸を殺し、指先に意識を移し、暗闇の中で輝く文字だけを見つめる。  
 Enterに小指をかけた直前、あの日々を思い出した。
 
-### UEFI or BIOS
+## Contents
+## UEFI or BIOS
 ```bash title='UEFI or BIOS'
 cat /sys/firmware/efi/fw_platform_size
 ```
@@ -41,7 +40,7 @@ BIOSとUEIFだ。
 
 このコマンドを含め、明示されるまでは暗黙のうちにインストールメディアのlinuxのコマンドを入力していることに注意する。
 
-### Can you use your network ?
+## Can you use your network ?
 ```bash title='can you use network?'
 ip link
 ping archlinux.jp
@@ -58,13 +57,13 @@ ping archlinux.jp
 
 `ping`コマンドはICMP(Internet Control Message Protocol: インターネット制御通知プロトコル)というプロトコルのECHO_REQUESTを使用する。これはネットワークの通知のテストに使われる。
 
-### timedate check
+## timedate check
 ```bash title='timedatectl'
 timedatectl status
 ```
 時間をチェックする。
 
-### separete partition
+## separete partition
 ```bash title='lsblk'
 lsblk
 ```
@@ -81,8 +80,8 @@ gdisk /dev/sda
 > w
 ```
 
-### add LVM
-#### 物理ボリューム: Physical Volume
+## add LVM
+### 物理ボリューム: Physical Volume
 ```bash title='pvcreate'
 pvcreate /dev/sda3
 ```
@@ -90,7 +89,7 @@ pvcreate /dev/sda3
 pvs
 pvdisplay
 ```
-#### ボリュームグループ: Volume Group
+### ボリュームグループ: Volume Group
 ```bash title='vgcreate'
 vgcreate ArchVolGroup /dev/sda3
 ```
@@ -98,7 +97,7 @@ vgcreate ArchVolGroup /dev/sda3
 vgs
 vgdisplay
 ```
-#### 論理ボリューム: Logical Volume
+### 論理ボリューム: Logical Volume
 ```bash title='lvcreate'
 lvcreate -L 100G ArchVolGroup -n lvol
 lvcreate -l 100%FREE ArchVolGroup -n lvolhome
@@ -110,7 +109,7 @@ lvremove
 lvresize
 ```
 
-### add file system
+## add file system
 ```bash title='mkfs'
 mkfs.fat -F 32 /dev/sda1
 mkswap /dev/sda2
@@ -121,7 +120,7 @@ mk.ext4 /dev/ArchVolGroup/lvolhome
 lsblk --fs
 ```
 
-### mount block device
+## mount block device
 ```bash title='mount'
 mount /dev/ArchVolGroup/lvol /mnt
 mkdir /mnt/boot
@@ -131,22 +130,22 @@ mount /dev/ArchVolGroup/lvolhome /mnt/home
 swapon /dev/sda2
 ```
 
-### chose pacman mirrorlist
+## chose pacman mirrorlist
 ```bash title='mount'
 reflector --sort rate --country jp --latest 10 --save /etc/pacman.d/mirrorlist
 ```
 
-### download pacages
+## download pacages
 ```bash title='mount'
 pacstrap -K /mnt base linux linux-firmware vim sudo man-db man-pages lvm2
 ```
 
-### fstab
+## fstab
 ```bash title='mount'
 genfstab -U /mnt >> /mnt/etc/fstab
 ```
 
-### setting XDG
+## setting XDG
 ```bash title='zsh'
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
@@ -154,12 +153,12 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 ```
 
-### change root
+## change root
 ```bash title='mount'
 arch-chroot /mnt
 ```
 
-### setting locale
+## setting locale
 ```bash title='mount'
 ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 ```
@@ -180,7 +179,7 @@ LANG=en_US.UTF-8
 organon
 ```
 
-### setting network
+## setting network
 ```bash title='systemd-networkd'
 systemctl enable systemd-networkd systemd-resolved
 ```
@@ -191,19 +190,19 @@ Name = enp03
 DHCP = yes
 ```
 
-### setting for LVM
+## setting for LVM
 ```bash title='vim /etc/mkinitcpio.conf'
 HOOKS=(base ... block lvm2 filesystem)
 ```
 
-### initcpio
+## initcpio
 ```bash title='mkinitcpio'
 mkinitcpio -P
 ```
 
-### user add
+## user add
 
-### setting grub and microcode
+## setting grub and microcode
 ```bash title='grub'
 pacman -S amd-ucode grub efibootmgr
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
@@ -223,7 +222,7 @@ GRUB_PRELOAD_MODULES="... lvm"
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
-### Arch linux
+## Arch linux
 ```bash title='reboot'
 exit
 umount -R /mnt
