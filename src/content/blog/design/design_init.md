@@ -2,9 +2,7 @@
 title: "デザインを設計する"
 author: "sakakibara"
 description: "デザインはセンスか、技術か"
-image:
-    url: "https://docs.astro.build/assets/rays.webp"
-    alt: "Astroの光線のサムネイル。"
+heroImage: '/blog-placeholder-3.jpg'
 pubDate: 2024-03-04
 tags: ["デザイン", "設計", "レイアウト"]
 ---
@@ -28,6 +26,7 @@ tags: ["デザイン", "設計", "レイアウト"]
 
 次回からはそれぞれのデザイン作成手順を見ていく。
 
+## Contents
 ## 1. 情報の整理
 ## 2. 版面・マージンの決定
 ## 3. グリッドの決定

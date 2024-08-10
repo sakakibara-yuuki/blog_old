@@ -2,15 +2,14 @@
 title: "cloudflareでのCDN管理"
 author: "sakakibara"
 description: "上手くいかないことがありましたが、コミュニティに質問して助けてもらいました！"
-image:
-    url: "https://docs.astro.build/assets/rays.webp"
-    alt: "Astroの光線のサムネイル。"
+heroImage: "https://docs.astro.build/assets/rays.webp"
 pubDate: 2024-03-05
 tags: ["astro", "公開学習", "後退", "コミュニティ"]
 ---
 
-## 個人サイトが遅い？
-
+# 個人サイトが遅い？
+## Contents
+## light houseでの測定
 個人サイトがどうも遅い気がするので 
 lighthouseで測定してみる。
 <!-- ![lighthouse](./lighthouse.png) -->

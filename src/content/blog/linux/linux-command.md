@@ -15,7 +15,8 @@ manを読めば良くない？
 そういう意見もあるだろう。
 だが、基礎的の中でも以外と見落としがちなオプションもあると思う。
 そういった以外なオプションも併せて紹介していこうと思う。
-
+## Contents
+## command
 #### cd    : change directory
 **ディレクトリを移動する。**
 ``` zsh title="cd" 
@@ -493,7 +494,8 @@ kill [-signal] pid|name
 ジョブはシェルによって管理されるプロセスの集まりである。
 コマンドによって生じる複数のプロセス群をまとめて管理するために使用される。これによって単一のコマンド(だが、複数のプロセスを生成する)ものを一つのものとして(ジョブとして)管理することができる。
 
-### [番外編] 知っておいたほうがよいコマンド
+## [番外編]
+### 知っておいたほうがよいコマンド
 #### zgrep
 **圧縮ファイルに対するgrep**
 ```zsh title='zgrep'
@@ -501,14 +503,14 @@ zgrep [option] [-e] pattern filename
 ```
 オプションは`grep`で使用されているものを引き継ぎます。
 
-### [番外編] コマンド・メタ
+### コマンド・メタ
 #### man & whatis & apropose
 **このコマンドって何？**
 ```zsh title='whatis & apropose'
 whatis -w "*ls*"
 apropos user
 ```
-### [番外編] おもしろコマンド
+### おもしろコマンド
 #### pv
 **パイプ先の処理時間を表示する**
 
@@ -534,7 +536,7 @@ apropos user
 #### strings
 
 
-### 参考
+## 参考
 - [［改訂第3版］Linuxコマンドポケットリファレンス](https://www.amazon.co.jp/%EF%BC%BB%E6%94%B9%E8%A8%82%E7%AC%AC3%E7%89%88%EF%BC%BDLinux%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E3%83%9D%E3%82%B1%E3%83%83%E3%83%88%E3%83%AA%E3%83%95%E3%82%A1%E3%83%AC%E3%83%B3%E3%82%B9-%E6%B2%93%E5%90%8D-%E4%BA%AE%E5%85%B8/dp/4774174041/ref=pd_bxgy_img_d_sccl_2/357-3659538-7720555?pd_rd_w=89tMa&content-id=amzn1.sym.a6ef8710-f9e8-4ae9-bcba-322dc294eed3&pf_rd_p=a6ef8710-f9e8-4ae9-bcba-322dc294eed3&pf_rd_r=57BBVJE6CARFCW585QWQ&pd_rd_wg=0eC5L&pd_rd_r=fcbf9584-b63d-4c65-9191-c4b49cf52306&pd_rd_i=4774174041&psc=1)
 - [POSIX準拠とは本当はどういうことなのか？「POSIXで規定されたものだけを使う」ではありません](https://qiita.com/ko1nksm/items/08228276ce9335592989)
 - [POSIX C言語API一覧とコマンド一覧の調べ方](https://qiita.com/ko1nksm/items/18787925a7821e1d5d74)
