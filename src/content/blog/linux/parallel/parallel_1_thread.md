@@ -29,7 +29,7 @@ pthreadでよく使われる関数は以下の通りである。
 
 なお、`pthread_create`の第一引数はスレッドIDを格納する変数であり、int型(`pthread_t`)である。
 
-```first_thread.c
+``` c title="first_thread.c"
 #include <pthread.h>
 #include <stdio.h>
 
@@ -71,7 +71,7 @@ int main() {
 また、`pthread_exit`を使うことでその関数をよびだしたスレッドのみを終了させることができる。
 これはいわゆる`break`のようなものであり、入れ子になった呼び出しでも終了させることができる。
 
-```first_thread2.c
+``` c title="first_thread2.c"
 #include <pthread.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -127,7 +127,7 @@ OSはスレッドの実行が終了した後もスレッドのコンテキスト
 そのため、`pthread_join`で待った後に再度`pthread_join`で待ってはいけない。
 通常、このような二重待ちを避けるために`pthread_join`で一度待った後にはスレッドIDに`NULL`を代入することが推奨されている。
 
-```first_thread3.c
+``` c title="first_thread3.c"
 #include <pthread.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -175,7 +175,7 @@ int main(int argc, char *argv[]) {
 }
 ```
 二重joinを避ける改良
-```first_thread3.c
+``` c title="first_thread3.c"
 if(thread != NULL){
     if(pthread_join(thread, NULL)!=0){
         printf("Error: failed to wait thread termination\n");

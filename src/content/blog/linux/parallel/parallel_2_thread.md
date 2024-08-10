@@ -158,7 +158,7 @@ killなどはプロセスに対してシグナルを送信する。
 これいがいもマナーが悪いがグローバル変数を使用する場合もある。
 
 次はグローバル変数を使用する例である。
-```global.c
+``` c title="global.c"
 #include <pthread.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -204,7 +204,7 @@ int main(void){
 }
 ```
 次はヒープ領域に入れてグローバルで渡す例である。
-```heap.c
+``` c title="heap.c"
 #include <pthread.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -247,7 +247,7 @@ int main(void){
 ```
 
 次はデータをポインタとして渡す方法である。
-```
+``` c title="pointer.c"
 #include <pthread.h>
 #include <unistd.h>
 #include <stdlib.h>
