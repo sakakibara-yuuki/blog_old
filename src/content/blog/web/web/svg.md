@@ -9,6 +9,28 @@ tags: ["astro", "math"]
 
 # Introduction
 svg animation や intaractiveについてのリンク集。
+## Contents
+## Animation SVG
+svg でanimationを作成するためにいくつか方法がある.
+
+- SMILという技術を使う(非推奨)
+- CSS animationを使う
+- JavaScriptを使う
+
+
+SMILを使用してSVGアニメーションを作成する際に役に立つツールとして
+- SVGエディタ
+  - [Inkscape](https://inkscape.org/learn/animation/)
+  - SVG-Edit
+- アニメーションのプレビュー
+  - SVGOMG
+  - CodePen
+- アニメーションテンプレートとライブラリ
+  - [SVG Circus](https://svgcircus.com/)
+  - [SVGator](https://www.svgator.com/)
+- リファレンスとチュートリアル
+  - HDN Web Docs
+  - SVG Animation with SMIL
 
 ## Interactive SVG
 - [From static to interactive: turn SVG diagrams into exciting experiences on your website | The Flourish blog | Flourish | Data Visualization & Storytelling](https://flourish.studio/blog/interactive-svg-template/)

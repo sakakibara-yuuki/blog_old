@@ -65,7 +65,7 @@ tags: ["astro", "math"]
 
 - **本っぽいやつその2**: [3D Book Image CSS Generator · Sebastien Castiel](https://scastiel.dev/3dbook)
 
-- ** 3js ** : [3js](https://threejs.org/)
+- **3js** : [3js](https://threejs.org/)
 
 - **インディーズな感じ**: [Indie UI](https://ui.indie-starter.dev/)
 
@@ -73,3 +73,4 @@ tags: ["astro", "math"]
 
 ## メディア
 - **子リス**: [Coliss](https://coliss.com/)
+- **CSS-Tricks**: [CSS-Tricks](https://css-tricks.com/)
