@@ -1,10 +1,10 @@
 ---
-title: "ストリーム処理"
+title: "嫌いなものでも好きと言わせてやる。"
 author: "sakakibara"
 description: "上手くいかないことがありましたが、コミュニティに質問して助けてもらいました！"
-heroImage: '/blog-placeholder-3.jpg'
-pubDate: 2024-05-28
-tags: ["astro", "公開学習", "後退", "コミュニティ"]
+heroImage: "/science/science.jpg"
+pubDate: 2024-03-05
+tags: ["経済学", "メカニズムデザイン"]
 ---
 
 

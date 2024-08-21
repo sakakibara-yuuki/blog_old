@@ -1,0 +1,120 @@
+---
+title: "位相空間"
+author: "sakakibara"
+description: "位相空間"
+heroImage: "/science/math/topology/ch1.png"
+pubDate: 2024-03-19
+tags: ["位相空間", "トポロジー"]
+---
+
+## 位相
+<div style="padding: 0.5rem 1rem; background-color: #e8e8e8; border-radius: 13px;">
+<h5 style="color: gray">def: 位相空間</h5>
+
+ 空でない集合$X$について、$X$の部分集合の族$\mathcal{O}$が以下を充たすとき、$\mathcal{O}$を**位相**という。
+ $$
+ \begin{aligned}
+ \mathbf{O}_ 1 : &\ X \in \mathcal{O}, \phi \in \mathcal{O} \\
+ \mathbf{O}_ 2 : &\ O_1, O_2 \in \mathcal{O} \implies O_1\cap O_2 \in \mathcal{O}\\
+ \mathbf{O}_ 3 : &\ \{O_{\lambda}\}_ {\lambda \in \Lambda} \in \mathcal{O} \implies \bigcup_{\lambda \in \Lambda} O_\lambda \in \mathcal{O}
+ \end{aligned}
+ $$
+ 位相$\mathcal{O}$が備わった空でない集合$X$を, 集合と位相の組$(X, \mathcal{O})$で表し**位相空間**とよぶ。$\mathcal{O}$の元$O$を **$\mathcal{O}$-開集合**と呼ぶ。
+</div>
+
+初見で見ると何の役に立つのかわからず、定義も意味不明だし、具体例もわからず面喰らうだろう。
+だが、よくこの定義を見てみるととても素朴なことを要請していることに気づく。
+ラフに言ってしまえば、位相$\mathcal{O}$は全体集合$X$と空集合$\phi$を元に持ち、可算個の元の積と非可算個の元の和で閉じているような集合族のことを指すのである。
+
+集合族を考えるとき, 要素一つ一つをイメージする外苑的な方法では組み合わせの数が爆発的に増大した場合にイメージがつかみにくいことがある.
+そのような場合, 考える集合が内包的な性質を充たすかどうかで集合族に属しているかを判断するとよい.
+
+なぜ共通部分については高々可算個の集合に対して定義し, 和集合に関しては非可算個の集合に対して定義しているのかという疑問についてはハウスドルフ空間の節で話す.
+
+そもそもなぜ位相を定義したのかが疑問があるかもしれない.
+位相というものはそもそも連続や極限といった概念を適切に定義するために誕生した.
+連続や極限を定義するために考えている集合にどのような条件が必要かを考えた末に編み出された概念が位相である.
+そのため, 連続や極限を考える必要がある集合には前提として位相が必要とされる.
+位相は解析における基礎土台となる概念である.
+
+まず, 連続や極限に対して慣れている空間, ユークリッド空間上の自然な位相について考える.
+ユークリッド空間とは実ベクトル空間に内積($2$-normのユークリッド距離)が導入された空間である.
+
+### 自然な位相
+<div style="padding: 0.5rem 1rem; background-color: #e8e8e8; border-radius: 13px;">
+<h5 style="color: gray">def: 開集合</h5>
+
+$(X, d)$を距離空間とする. 以下の性質を充たす部分集合$U\subset X$を **$(X, d)$の開集合**と呼ぶ.
+$$
+\forall x\in U, \exist \epsilon > 0,  B_\epsilon(x) \subset U
+$$
+ただし,
+$$
+B_\epsilon(x) = \{y\in X | d(x, y) < \epsilon\}
+$$
+また, $B_\epsilon(x)$を**開球**もしくは **点$x$の$\epsilon$-近傍**と呼ぶ.
+</div>
+
+つまり, $(X, d)$の開集合とはユークリッド空間上で開集合を持つ部分集合のことである.
+$2$次元空間では適当な円をかいたとき, 境界を除く内部が開集合となる.
+<div style="display: flex; justify-content: center;">
+  <svg style="width: 200px; hight: 200px" viewBox="30 30 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M56,58.5Q40,67,37,45Q34,23,53,36.5Q72,50,56,58.5Z" stroke="none" stroke-width="0" fill="#4F46E5"/></svg>
+</div>
+
+<div style="padding: 0.5rem 1rem; background-color: #e8e8e8; border-radius: 13px;">
+<h5 style="color: gray">def: 閉集合</h5>
+
+$(X, d)$を距離空間とする. 以下の性質を充たす部分集合$F\subset X$を **$(X, d)$の閉集合**と呼ぶ.
+$$
+F=\bar{F}
+$$
+ただし,
+$$
+\bar{F} = \{y\in X | B_\epsilon(y)\cap F \neq \emptyset\}
+$$
+また, $B_\epsilon(x)$を**閉球**と呼ぶ.
+</div>
+
+閉球は開球を含む. つまり, $U\subset \bar{F}$, 左が開集合, 右(黒い部分と青い部分も含む)が閉集合である.
+<div style="display: flex; justify-content: center;">
+  <svg style="width: 200px; hight: 200px" viewBox="30 30 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M56,58.5Q40,67,37,45Q34,23,53,36.5Q72,50,56,58.5Z" stroke="#000" stroke-width="1" fill="#4F46E5"/></svg>
+</div>
+
+集合$F$が閉集合であるための条件は, 上のような定義を以外にもシンプルなものがある.
+<div style="padding: 0.5rem 1rem; background-color: #e8e8e8; border-radius: 13px;">
+<h5 style="color: gray">def: 閉集合 2</h5>
+
+$(X, d)$を距離空間とする. 以下の性質を充たす部分集合$F\subset X$を **$(X, d)$の閉集合**と呼ぶ.
+
+$F^c= X \setminus F$が開集合になる.
+</div>
+
+閉集合$F$は任意の$x \in F^c$に対して, $B_\epsilon(x) \cap F = \emptyset$が成り立つ. つまり$B_\epsilon(x)\subset F^c$が成り立つ.
+
+
+### 離散位相
+空でない集合$X$の冪集合$2^{X}$を位相とする位相空間を離散位相と呼ぶ。  
+よりイメージしなくくなったかもしれない.
+これは開集合が小粒であり、バラバラであることから離散位相と呼ばれている。
+
+同じユークリッド空間上の位相でも, 自然な位相と離散位相は全く異なる性質を持つ.
+<!-- たとえば, 離散位相では任意の部分集合が開集合となるため, 連続関数は定数関数しか存在しない. -->
+
+### 密着位相
+空でない集合$X$について$\set{O| O=X \lor O=\phi}$を位相とする位相空間を密着位相と呼ぶ。  
+反省も後悔もしてない。
+これは開集合が塊になっていることから密着位相と呼ばれる。
+
+これらの例を通して知ってほしいのは位相の定義は$\mathbf{O}_ 1 \sim \mathbf{O}_ 3$を充たす集合族のことだが、実際に位相を定義する際には内包的な定義をするということである。
+開集合を一つ一つ述べる外延的な定義のほうがイメージしやすいのはわかるが基本的にはその性質を述べる内包的な定義を述べ、$\mathbf{O}_ 1 \sim \mathbf{O}_ 3$によりそれが位相と呼べるかどうかを確かめるという流れが多い。(というか記号遊び以上でも以下でもないから特別な期待しないで)
+
+以下では位相により作り出された位相について説明する。
+### 相対位相
+### 積位相
+### 商位相
+特別に使われる位相について説明する。
+### 自然な位相
+
+### 距離空間
+### ハウスドルフ空間
+### 完備距離空間
