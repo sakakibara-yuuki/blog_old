@@ -2,7 +2,7 @@
 title: "Information Geometry and Its Applications : 情報幾何学"
 author: "sakakibara"
 description: "情報幾何学"
-heroImage: "/science/math/manifold/manifold.webp"
+heroImage: "/science/math/manifold/manifold2.jpg"
 pubDate: 2024-03-19
 tags: ["情報幾何学", "多様体", "統計"]
 ---

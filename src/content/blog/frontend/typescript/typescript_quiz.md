@@ -1,5 +1,5 @@
 ---
-title: 'typescript_quiz'
+title: 'Typescript Quiz'
 author: "sakakibara"
 description: 'Lorem ipsum dolor sit amet'
 heroImage: '/blog-placeholder-3.jpg'

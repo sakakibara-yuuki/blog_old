@@ -1,5 +1,5 @@
 ---
-title: 'First post'
+title: 'CSSで作るアニメーション'
 author: "sakakibara"
 description: 'Lorem ipsum dolor sit amet'
 heroImage: '/blog-placeholder-3.jpg'

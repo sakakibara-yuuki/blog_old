@@ -2,7 +2,7 @@
 title: '接ベクトル・接空間'
 author: "sakakibara"
 description: 'Lorem ipsum dolor sit amet'
-heroImage: "/science/math/manifold/manifold.webp"
+heroImage: "/science/math/manifold/manifold2.jpg"
 pubDate: 2024-07-25
 tags: ["astro", "math"]
 ---

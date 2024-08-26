@@ -23,6 +23,13 @@ tags: ["astro", "math"]
 - [MongoDB Crash Course](https://www.youtube.com/watch?v=ofme2o29ngU)
 
 ## 書きたいもの
+- 計画について
+- Grid Layout
+- TypeScript について
+- JavaScript について
+- HTML について
+- 現代統計学
+
 - eBPF
 - systemd
 - SSL/TLS
