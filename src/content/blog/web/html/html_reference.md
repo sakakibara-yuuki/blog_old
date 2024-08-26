@@ -8,9 +8,13 @@ tags: ["astro", "math"]
 ---
 
 # Introduction
+## ブログとして参考になる
+- blog1: [blog1](https://azukiazusa.dev/)
+
 ## いい感じのデザイン
 - [Stripe Press — Ideas for progress](https://press.stripe.com/)
 - [Mridul2820/3d-html-css-js: 3D Projects made with HTML CSS & JS](https://github.com/Mridul2820/3d-html-css-js?tab=readme-ov-file)
+- [CSS Grid Layout](https://www.joshwcomeau.com/css/full-bleed/)
 
 ## ダミー
 - **ダミー画像生成**: [placehold.jp | ダミー画像生成 モック用画像作成](https://placehold.jp/)
@@ -29,6 +33,12 @@ tags: ["astro", "math"]
 - 写真AC: [写真素材なら「写真AC」無料（フリー）ダウンロードOK](https://www.photo-ac.com/)
 - イラストAC: [無料イラスト・フリー素材なら「イラストAC」](https://www.ac-illust.com/)
 - Pixabay: [4.500万点以上の高品質なフリー画像素材 - Pixabay - Pixabay](https://pixabay.com/ja/)
+
+### SVG
+- Font Awsome: [Font Awesome](https://fontawesome.com/)
+- Material Symbols: [Material Symbolse](https://fonts.google.com/icons)
+- Heroicons(v1): [Heroicons](https://heroicons.com/)
+- Ionicons: [Ionicons](https://ionic.io/ionicons)
 
 ### スタイル & アニメーション
 - **ローディングアニメーション**: [Epic Spinners](https://epic-spinners.epicmax.co/)

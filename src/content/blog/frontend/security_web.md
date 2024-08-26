@@ -1,5 +1,5 @@
 ---
-title: 'security_web'
+title: 'Web Security'
 author: "sakakibara"
 description: 'Lorem ipsum dolor sit amet'
 heroImage: '/blog-placeholder-3.jpg'

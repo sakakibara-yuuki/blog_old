@@ -1,5 +1,5 @@
 ---
-title: 'First post'
+title: 'React Routing'
 author: "sakakibara"
 description: 'Lorem ipsum dolor sit amet'
 heroImage: '/blog-placeholder-3.jpg'

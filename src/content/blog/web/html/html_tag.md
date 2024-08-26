@@ -75,18 +75,23 @@ google analyticsなどのトラッキングを防ぐために使われる。
 
 ```html
 <table>
-    <tr>
-        <th>商品名</th>
-        <th>価格</th>
-    </tr>
-    <tr>
-        <td>りんご</td>
-        <td>100円</td>
-    </tr>
-    <tr>
-        <td>みかん</td>
-        <td>100円</td>
-    </tr>
+    <caption> お買い物 </caption>
+    <thead>
+        <tr>
+            <th>商品名</th>
+            <th>価格</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>りんご</td>
+            <td>100円</td>
+        </tr>
+        <tr>
+            <td>みかん</td>
+            <td>100円</td>
+        </tr>
+    </tbody>
 </table>
 ```
 

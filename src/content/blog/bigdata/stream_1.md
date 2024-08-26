@@ -2,9 +2,7 @@
 title: "ストリーム処理"
 author: "sakakibara"
 description: "上手くいかないことがありましたが、コミュニティに質問して助けてもらいました！"
-image:
-    url: "https://docs.astro.build/assets/rays.webp"
-    alt: "Astroの光線のサムネイル。"
+heroImage: '/blog-placeholder-3.jpg'
 pubDate: 2024-05-28
 tags: ["astro", "公開学習", "後退", "コミュニティ"]
 ---

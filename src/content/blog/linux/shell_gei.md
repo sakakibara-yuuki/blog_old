@@ -2,9 +2,7 @@
 title: "シェル芸"
 author: "sakakibara"
 description: "シェル芸"
-image:
-    url: "https://do-zan.com/wp-content/uploads/2016/01/3da5b3c3e6b5dd7d078bbc5705b88b9f.png"
-    alt: "terminalの画像"
+heroImage: '/blog-placeholder-3.jpg'
 pubDate: 2024-03-04
 tags: ["linux", "コマンド"]
 ---

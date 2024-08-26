@@ -2,9 +2,7 @@
 title: "Astroで画像が読み込まれない"
 author: "sakakibara"
 description: ""
-image:
-    url: "https://docs.astro.build/assets/rays.webp"
-    alt: "Astroの光線のサムネイル。"
+heroImage: '/blog-placeholder-3.jpg'
 pubDate: 2024-04-11
 tags: ["astro", "画像"]
 ---
