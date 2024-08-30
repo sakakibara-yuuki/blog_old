@@ -62,6 +62,8 @@ import React from "react";
 TypeScript4.1 以降では jsx から`_jsx`への変換に対応している.
 そのため, React17.0 を使用している場合の TypeScript では`tsconfig`に jsx をどのように変換するかを指定する必要がある.
 
+[公式はここ](https://www.typescriptlang.org/docs/handbook/jsx.html)
+
 ```json
 {
   "compilerOptions": {
