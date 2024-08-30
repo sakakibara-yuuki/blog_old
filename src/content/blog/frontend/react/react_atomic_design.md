@@ -1,5 +1,5 @@
 ---
-title: 'Reactの使い方'
+title: 'React x Atomic Design'
 author: "sakakibara"
 description: 'Lorem ipsum dolor sit amet'
 heroImage: '/blog-placeholder-3.jpg'
@@ -8,7 +8,9 @@ tags: ["astro", "math"]
 ---
 
 # Introduction
-使い方、慣習についてまとめる。
+~使い方、慣習についてまとめる~
+ディレクトリレイアウトとAtomic Desginについてまとめる.
+
 ## Contents
 
 ## File Structure
@@ -80,5 +82,5 @@ Atomic DesignとはBrad Frostが考案したデザインシステムである。
 1. Template: ページのレイアウトのみを表現する要素。Organismを配置するだけ。実際のデータを持たない。
 1. Page: 最終的に表示される1画面
 
-## Global State Management( Recoil )
-## Json Place Holder
+<!-- ## Global State Management( Recoil ) -->
+<!-- ## Json Place Holder -->
