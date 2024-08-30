@@ -1,65 +1,661 @@
 ---
-title: 'Typescriptの基本'
+title: "Typescriptの基本"
 author: "sakakibara"
-description: 'Lorem ipsum dolor sit amet'
-heroImage: '/blog-placeholder-2.jpg'
+description: "Lorem ipsum dolor sit amet"
+heroImage: "/blog-placeholder-2.jpg"
 pubDate: 2024-08-22
 tags: ["astro", "math"]
 ---
 
-# Introduction
-## Typescriptの導入
-typescriptのモジュールが無いとjavascriptに変換できない.
-そのため, typescriptのモジュールをインストールする必要がある.
-
-`npm`でどのversionのtypescriptがinstallできるのかを確認してみる.
-
-```bash
-npm info typescript
-```
-色々な情報が表示されるが, typescriptのモジュールは`typescript@5.5.4`という名前であることがわかる.(一番上)
-
-```bash
-typescript@5.5.4 | Apache-2.0 | deps: none | versions: 3169
-TypeScript is a language for application scale JavaScript development
-https://www.typescriptlang.org/
-...
-```
-それではinstallしてみる.  
-この場合, typescriptはランタイム時には必要ないので開発環境オプション(`-D` | `--save-dev`)を指定してinstallする.
-
-```bash
-npm i -D typescript@5.5.4
-```
-
-それでは適当なファイルを作成して, typescriptをjavascriptに変換してみる.
-まず, 適当なファイルを作成する.
-```bash
-let message: string = "Hello, World!";
-console.log(message);
-```
-次に, `tsc`コマンドを使ってtypescriptをjavascriptに変換する.
-なお, tscはtypsscript compilerの略である.
-```bash
-npx tsc filename.ts
-```
-`npx`はローカルにインストールされたモジュールを実行するためのコマンドである.
-nodemodules配下にあるモジュールを探索して実行することができる.
-出来きたものを確認してみると, 
-`filename.ts`以外にも`filename.js`が作成されていることがわかる.
-そして中身はjavascriptに変換されていることがわかる.
-
-```bash
-var message = "Hello, World!";
-console.log(message);
-```
-当然, 実行できる.
-
-```bash
-node filename.js
-> Hello, World!
-```
+# TypeScript の基本
 
 ## Contents
-## Section1
 
+## 型の定義
+
+### 変数
+
+変数に型を指定する. これが TypeScript の基本である.
+
+```typescript
+var a: T = value;
+let b: T = value;
+const c: T = value;
+```
+
+### プリミティブ
+
+```typescript
+let arg: number = 2;
+let isDone: bool = false;
+let color: string = "blue";
+```
+
+以下ではエラーが発生する.
+
+```typescript
+let number: string = "2";
+number = "3"; // Ok
+number = 3; // Error
+```
+
+### 配列
+
+```typescript
+const array: number[] = [];
+array.push(1); // Ok
+array.push("Takuya"); // Error
+```
+
+もしくは
+
+```typescript
+const array: Array<number> = [];
+array.push(1); // Ok
+array.push("Takuya"); // Error
+```
+
+である. また, 複数の型を持つ配列は以下のように定義することができる.
+
+```typescript
+const array: (number | string)[] = [1, "Takuya"]; // Union Ok
+const array: [number, string] = [1, "Takuya"]; // Ok
+const array: Array<number, string> = [1, "Takuya"]; // Ok
+```
+
+### object
+
+オブジェクト型自体は次のように定義する.
+
+```typescript
+{
+  name: string;
+  age: number;
+}
+```
+
+```typescript
+const 変数: {キー名: value, キー名: value, ...} = オブジェクト;
+let 変数: {キー名: value, キー名: value, ...} = オブジェクト;
+var 変数: {キー名: value, キー名: value, ...} = オブジェクト;
+```
+
+これは結局プリミティブ型と同じである.
+下は具体例であり, プリミティブ型と同じであるが, "{"と"}"で括られているので,
+プリミティブ型と同じであると気づきにくい.
+
+```typescript
+const user: { name: string; age: number } = {
+  name: "Takuya",
+  age: 22,
+};
+```
+
+### any
+
+any 型はどんな型でも代入できる.
+
+```typescript
+let user: any = { firstName: "Takuya" };
+user = 3;
+```
+
+### 関数
+
+関数を"第一級オブジェクト"とした場合の型
+
+```typescript
+(name: string) => string;
+```
+
+仮引数を関数に適用する場合
+
+```typescript
+function someFunc(引数: 型, 引数: 型, ...): 戻り値の型 {
+  return 戻り値;
+}
+```
+
+より具体的な例
+
+```typescript
+function sayHello(
+  firstName: string,
+  formatter: (name: string) => string
+): string {
+  ...
+  return 'Hello';
+}
+```
+
+アロー関数の仮引数に型を指定する場合
+**微妙に第一級オブジェクトとしての関数の型と異なるので注意.**
+
+```typescript
+let sayHello = (name: string): string => {
+  return `Hello, ${name}`;
+};
+```
+
+## 型の機能
+
+### 型推論
+
+TypeScript は型推論, つまり型を指定しなくてもその変数がどのような型であるのかを推論する機能がある.
+
+```typescript
+const age = 10;
+console.log(age.length); // Error !
+```
+
+また, return も同じである.
+
+```typescript
+function createUser() {
+  return { age: 10 };
+}
+const user = createUser();
+console.log(user.length); // Error !
+```
+
+なお！！！
+forEach は string 型として推測される.
+
+```typescript
+const names = ["Takuya", "Yamada"];
+names.forEach((name) => {
+  console.log(name.length); // Ok
+});
+```
+
+### 型アサーション
+
+型注釈と呼ばれる機能がある.
+TypeScript が具体的な型を推論できない場合に, ユーザーが型を指定することができる.
+たとえば, Web API の戻り値などは型を推論できないため, この機能が必要になる.
+`document.getElementById`は`HTMLElement | null`を返す.
+つまり, それが具体的に`div`なのか`input`なのかはわからない.
+
+以下は javascript では通用するが, Typescript ではエラーが発生する.
+
+```typescript
+const myCanvas = document.getElementById("main_canvas");
+console.log(myCanvas.width); // Error !
+```
+
+これは typescript が`myCanvas`の型を推論できないためである.
+(というより, typescript は HTMLElement か null であると推測しているが, HTMLElement には width プロパティが存在しないためエラーが発生する.)
+
+このような場合に開発者が TypeScript に型を指定する必要がある.
+
+```typescript
+const myCanvas = document.getElementById("main_canvas") as HTMLCanvasElement;
+```
+
+### 型エイリアス
+
+これまでは型といえば変数宣言や関数宣言の仮引数に型を指定していた.
+しかし, これらの型を再利用し, コードの可読性を向上させるために, 型エイリアスを使用することができる.
+型エイリアスは`type`という何らかのオブジェクトを生成するようなものではなく, 単に, 型に別名をつけることができる機能である.
+
+以下はプリミティブ型の型エイリアス
+
+```typescript
+type Age = number;
+const age: Age = 10;
+```
+
+以下はオブジェクト型の型エイリアス
+
+```typescript
+type Point = {
+  x: number;
+  y: number;
+};
+
+function printPoint(p: Point) {
+  console.log(`x: ${p.x}, y: ${p.y}`);
+}
+
+printPoint({ x: 10, y: 20 });
+printPoint({ x: 10, t: 20 }); // Error !
+```
+
+型が合っていたとしてもプロパティ名が異なる場合はエラーが発生する.
+
+以下は関数型の型エイリアス
+
+```typescript
+type Formatter = (a: string) => string;
+
+function formatString(name: string, formatter: Formatter) {
+  return formatter(name);
+}
+```
+
+オブジェクトのキー名を明記せずに型エイリアスを使用することもできる.
+
+```typescript
+// つまり,
+type Label = {
+  label: string;
+};
+// となるところを
+// 以下で定義する.
+type Label = {
+  [key: string]: string;
+};
+
+const label: Label = {
+  topTitle: "title of top page",
+  topSubTitle: "title of subtitle",
+  topFeature1: "title of feature 1",
+  topFeature2: "title of feature 2",
+};
+
+// 以下はエラー
+const hoge: Label = {
+  message: 100, // stringが期待されているが,
+  // numberが代入されている.
+};
+```
+
+これはインデックスシグネチャと呼ばれる機能である.
+
+### インターフェース
+
+インターフェースは型エイリアスと似ている機能だが, type とは異なりより豊富な機能を持っている.
+多くはクラスと組み合わせて使用することが多い.
+
+```typescript
+interface 型 {
+  キー名: 型;
+  キー名: 型;
+  ...
+}
+```
+
+以下はインターフェースの具体例である.
+
+```typescript
+interface Point {
+  x: number;
+  y: number;
+}
+
+function printPoint(p: Point) {
+  console.log(`x: ${p.x}, y: ${p.y}`);
+}
+
+interface Point {
+  z: number;
+}
+
+// この時点でPointが更新されている.
+
+printPoint({ x: 10, y: 20 }); // Error ! zがないため
+printPoint({ x: 10, y: 20, z: 30 }); // Ok
+```
+
+このようにインターフェースは拡張が容易に可能である.
+型エイリアスを利用した際には, 後から同名の型定義はできない.
+
+```typescript
+interface Point {
+  x: number;
+  y: number;
+}
+
+type Point = {
+  x: number;
+  y: number;
+}; // Error !
+```
+
+#### interface とクラス
+
+インターフェースはクラスの振る舞いを定義し, implements を使用してクラスに実装を強制することができる.
+
+```typescript
+interface Point {
+  x: number;
+  y: number;
+  z: number;
+}
+
+class MyPoint implements Point {
+  x: number;
+  y: number;
+} // Error ! zが実装されていないため
+```
+
+なお, オプショナルなプロパティを設定することで, オプショナルなプロパティを設定することができる.
+
+```typescript
+interface Point {
+  x: number;
+  y: number;
+  z?: number;
+}
+
+class MyPoint implements Point {
+  x: number;
+  y: number;
+} // Ok
+```
+
+#### interface の継承
+
+また, インターフェースはインターフェースを継承することできる.
+
+```typescript
+interface Colorful {
+  color: string;
+}
+
+interface Circle {
+  radius: number;
+}
+
+interface ColorfulCircle extends Colorful, Circle {}
+const cc: ColorfulCircle = { color: "red", radius: 42 };
+```
+
+#### interface vs type
+
+オブジェクトの型を定義する場合, インターフェースと型エイリアスのどちらも利用することができる.
+継承に関する細かな機能が違うが, どちらもだいたい同じような機能を持っている.
+
+TypeScript の設計思想としては２つの機能は異なる.
+
+- インターフェースはクラスやオブジェクトの**一側面を定義した型**, つまり, インターフェースにマッチする型の他に, それ以外のプロパティを持っていてることが前提.
+- 型エイリアスはオブジェクトの型そのものを定義する.
+
+クラスやオブジェクトの一部のプロパティを定義する場合はインターフェースを使用するのが適切.
+
+### クラス
+
+```typescript
+class クラス名 {
+  プロパティ: 型;
+  メソッド() {
+    ...
+  }
+}
+
+class Point {
+  x: number;
+  y: number;
+
+  constructor(x: number = 0, y: number = 0) {
+    this.x = x;
+    this.y = y;
+  }
+
+  moveX(n: number): void {
+    this.x += n;
+  }
+
+  moveY(n: number): void {
+    this.y += n;
+  }
+}
+
+const point = newPoint(1, 2);
+point.moveX(10);
+```
+
+#### クラスの継承
+
+クラスは extends を使用して, 他のクラスを継承することができる.
+
+```typescript
+class Point3D extends Point {
+  z: number;
+  constructor(x: number = 0, y: number = 0, z: number = 0) {
+    super(x, y);
+    this.z = z;
+  }
+
+  moveZ(n: number): void {
+    this.z += n;
+  }
+}
+
+const point3d = new Point3D();
+point3d.moveX(10);
+point3d.moveZ(20);
+```
+
+#### クラスと interface
+
+```typescript
+interface IUser {
+  name: string;
+  age: number;
+  sayHello(): () => string;
+}
+
+class User implements IUser {
+  name: string;
+  age: number;
+
+  constructor() {
+    this.name = "";
+    this.age = 0;
+  }
+
+  sayHello(): string {
+    return () => `Hello, ${this.name} my age is ${this.age}`;
+  }
+}
+
+const user = new User();
+user.name = "Takuya";
+user.age = 22;
+```
+
+#### クラスのアクセス修飾子
+
+アクセス修飾子として以下の 3 つがある.
+`public`, `private`, `protected`である.
+これによって, メンバやメッソッドのアクセス範囲を制限することができる.
+なお, 無指定の場合は`public`となる.
+
+```typescript
+class BasePoint3D {
+  public x: number;
+  private y: number;
+  protected z: number;
+}
+
+const basePoint = new BasePoint3D();
+basePoint.x = 1; // Ok
+basePoint.y = 2; // Error !
+basePoint.z = 3; // Error !
+
+class ChildPoint extends BasePoint3D {
+  constructor() {
+    super();
+    this.x = 1; // Ok
+    this.y = 2; // Error !
+    this.z = 3; // Ok
+  }
+}
+```
+
+## 頻繁に使われる型
+
+<!--### Enum-->
+<!---->
+<!--### Generics-->
+<!---->
+<!--### Union-->
+<!---->
+<!--### Intersection-->
+<!---->
+
+### リテラル
+
+`|`でデータ(文字列や数値)を列挙すると, そのデータのみを許可する型を定義することができる.  
+これをリテラル型と呼ぶ.
+
+```typescript
+変数: 許可するデータ | 許可するデータ | ...
+```
+
+具体的には以下のようになる.
+
+```typescript
+let postStatus: "draft" | "published" | "deleted";
+postStatus = "draft"; // Ok
+postStatus = "drafts"; // 型宣言に無い文字のためエラー
+```
+
+リテラル型は数値にも適用できる.
+以下は関数の返り値が数値のリテラル型である例である.
+
+```typescript
+function compare(a: string, b: string): -1 | 0 | 1 {
+  return a === b ? 0 : a > b ? 1 : -1;
+}
+```
+
+<!--### never-->
+
+## Tips
+
+TypeScript でよく使われる高度な機能について説明する.
+
+### Optional Chaining
+
+プロパティに`?`をつけることで,
+プロパティが存在するかどうかの条件分岐を簡単に行うことができる.
+
+`null`または`undefined`の場合, 実行時エラーは発生しない.
+
+```typescript
+interface User {
+  name: string;
+  social?: {
+    twitter: boolean;
+    facebook: boolean;
+  };
+}
+
+let user: User;
+
+user = { name: "Takuya", social: { twitter: true, facebook: true } };
+
+console.log(user.social?.twitter); // true
+
+user = { name: "Takuya" };
+console.log(user.social?.twitter); // undefined だが実行時エラーは発生しない.
+```
+
+### Non-Null Assertion Operator
+
+`--strictNullChecks`を指定してコンパイルする場合,
+TypeScript は通常`null`の可能性がある変数にアクセスする際にエラーを発生させる.
+`null`でないことを知らせる(注釈する)ために`!`を使用する.
+
+```typescript
+function processUser(user?: User) {
+  let s = user!.name;
+}
+```
+
+### 型ガード
+
+TypeScript では if や switch 文を使って型を絞り込むことができる.
+その条件分岐で型を絞り込むことを型ガードと呼ぶ.
+
+```typescript
+function addOne(value: number | string) {
+  if (typeof value === "number") {
+    return value + 1;
+  }
+  return value + "1";
+}
+```
+
+型ガードを用いることで, as を使用する型アサーションよりも安全に型を絞りこむことができる.  
+optional のプロパティも型ガードで null チェックを行うことができる.
+
+```typescript
+// infoがプロパティ
+type User = {
+  info?: {
+    name: string;
+    age: number;
+  };
+};
+
+let response = {};
+
+const user = response as any as User;
+// user.infoが存在すればnameを取得するという型ガード
+if (user.info) {
+  console.log(user.info.name);
+}
+```
+
+### keyof
+
+型に対して`keyof`を使用することで, その型のプロパティ名のリテラル型の Union 型を取得することができる.
+
+これは, オブジェクトのプロパティ名を key としてその value を取得する際に使用される.
+
+```typescript
+interface User {
+  name: string;
+  age: number;
+  email: string;
+}
+
+type UserKey = keyof User; // 実質 "name" | "age" | "email" のリテラル型
+const key1: UserKey = "name"; // Ok
+const key2: UserKey = "phone"; // Error !
+
+function getProperty<T, K extends keyof T>(obj: T, key: K): T[K] {
+  return obj[key];
+}
+
+const user: User = {
+  name: "Takuya",
+  age: 22,
+  email: "test@gmail.com",
+};
+
+const userName = getProperty(user, "name"); // Ok
+const userGender = getProperty(user, "gender"); // Error ! genderはUserに存在しない.
+```
+
+過去, ここで[躓いた](./typescript_react/#typeof-obj-%E3%82%92%E4%BD%BF%E3%81%86)ことがある.
+
+### Index Signature
+
+Index Signature を用いることで, オブジェクトのプロパティが可変な場合,　プロパティの型をまとめて定義することができる.
+
+```typescript
+type SupportVersions = {
+  [env: string]: boolean;
+};
+
+let versions: SupportVersions = {
+  102: true,
+  102: true,
+  103: false,
+  "104": false, // Error !
+};
+```
+
+<!--
+### readonly
+
+### unknown
+
+### Async/Await
+
+### 型定義ファイル
+-->
