@@ -25,7 +25,7 @@ createRoot(document.getElementById("root")!).render(
 
 とすると以下のエラーが出る.
 
-```tyepscript
+```text
 'React' refers to a UMD global, but the current file is a module. Consider adding an import instead.
 ```
 
