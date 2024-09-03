@@ -4,6 +4,7 @@ author: "sakakibara"
 description: "Lorem ipsum dolor sit amet"
 heroImage: "/blog-placeholder-3.jpg"
 pubDate: 2024-08-31
+updatedDate: 2024-09-01
 tags: ["astro", "math"]
 ---
 

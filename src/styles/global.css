@@ -54,7 +54,7 @@ h3,
 h4,
 h5,
 h6 {
-	margin: 0.5rem 0 0.5rem 0;
+	margin: 2rem 0 0.5rem 0;
 	color: rgb(var(--black));
 	line-height: 1.2;
 }
@@ -86,9 +86,9 @@ a:hover {
 p {
 	margin-bottom: 1em;
 }
-/* .prose p { */
-/* 	margin-bottom: 2em; */
-/* } */
+/*.prose { */
+/*  overflow: scroll;*/
+/*} */
 textarea {
 	width: 100%;
 	font-size: 16px;
@@ -98,14 +98,21 @@ input {
 }
 
 table {
-  width: 100%;
+  display: block;
+  max-width: max-content;
+  overflow: auto;
   margin-bottom: 2rem;
   padding: 1rem;
   box-shadow: var(--box-shadow);
   border-spacing: 1rem;
 }
 
+th {
+  min-width: max-content;
+}
+
 td {
+  min-width: max-content;
   border-top: 3px dashed rgb(var(--gray-light));
 }
 
@@ -122,6 +129,7 @@ code {
 pre {
 	padding: 1.5em;
 	border-radius: 8px;
+    margin-bottom: 3rem;
 }
 pre > code {
 	all: unset;
