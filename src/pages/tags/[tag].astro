@@ -4,20 +4,19 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
 import { type CollectionEntry, getCollection } from 'astro:content';
-import BlogPost from '../../layouts/BlogPost.astro';
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog');
-    const tags = [...new Set((posts).map((post) => post.data.tags).flat())];
+    const posts = await getCollection('blog');
+    const tags: Array<string> = [...new Set((posts).map((post) => post.data.tags!).flat())];
 	return tags.map((tag) => ({
 		params: { tag: tag },
-        props: { posts: posts.filter((post) => post.data.tags?.includes(tag)) },
+        props: { posts: posts.filter((post) => post.data.tags!.includes(tag)) },
 	}));
 }
 type Props = CollectionEntry<'blog'>;
 
 const { tag } = Astro.params;
-const { posts }: Props = Astro.props;
+const { posts }: Array<Props> = Astro.props;
 ---
 
 <!doctype html>
@@ -35,9 +34,9 @@ const { posts }: Props = Astro.props;
         and the contents may be inadequate. Please understand.
         </p>
         <ul>
-          {posts.map((post) => (
+          {posts.map((post: Props) => (
             <li>
-              <a href={post.slug} >{post.data.title}</a>
+              <a href={`/blog/${post.slug}`}>{post.data.title}</a>
             </li>
             ))}
         </ul>
