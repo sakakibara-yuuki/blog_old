@@ -94,14 +94,18 @@ const tags = [...new Set((await getCollection('blog')).map((post) => post.data.t
         display: grid;
         grid-template-columns: repeat(4, 1fr);
       }
-      .tags a {
+      .tag {
         text-align: center;
         padding: 0.3em;
-        border: 1px solid #ccc;
+        border: 1px solid rgba(var(--gray), 20%);
         border-radius: 8px;
         margin: 0.25em;
         text-decoration: none;
-        color: black;
+        color: rgb(var(--black));
+        box-shadow: 0 2px 8px rgba(var(--gray), 20%);
+      }
+      .tag:hover {
+        box-shadow: 0 2px 8px rgba(var(--gray), 45%);
       }
     </style>
   </head>
@@ -111,7 +115,7 @@ const tags = [...new Set((await getCollection('blog')).map((post) => post.data.t
       <section>
         <div class="tags">
           {tags.map((tag) => (
-            <a href={`/tags/${tag}/`}>
+            <a href={`/tags/${tag}/`} class="tag">
               <span>{tag}</span>
             </a>
           ))}
@@ -142,6 +146,6 @@ const tags = [...new Set((await getCollection('blog')).map((post) => post.data.t
         <!--</ul>-->
       </section>
     </main>
+    <Footer />
   </body>
-  <Footer />
 </html>

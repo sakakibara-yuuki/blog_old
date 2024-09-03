@@ -54,11 +54,15 @@ const { title, description, pubDate, updatedDate, heroImage, tags } = Astro.prop
       }
       .tag {
         margin-right: 0.5em;
-        border: 1px solid #ccc;
+        border: 1px solid rgba(var(--gray), 20%);
         padding: 0.25em 0.5em;
         border-radius: 5px;
-        color: gray;
+        color: rgb(var(--gray));
         text-decoration: none;
+        box-shadow: 0 2px 8px rgba(var(--gray), 20%);
+      }
+      .tag:hover {
+        box-shadow: 0 2px 8px rgba(var(--gray), 35%);
       }
       .date {
         display: flex;
