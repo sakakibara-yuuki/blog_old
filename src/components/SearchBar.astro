@@ -5,16 +5,17 @@ import { type CollectionEntry, getCollection } from 'astro:content';
 type Props = CollectionEntry<'blog'>;
 const posts: Array<Props> = await getCollection('blog');
 
-console.log(posts[0]);
-console.log(posts[0].slug);
-console.log(posts[0].body);
-console.log(posts[0].data.title);
+const fuseOptions = {
+  keys: ['body', 'data.title'],
+};
+const fuse = new Fuse(posts, fuseOptions);
+const searchPattern = "年金";
+console.log(fuse.search(searchPattern));
 ---
 <style>
   form {
     display: grid;
     grid-template-columns: auto 1fr;
-    /*gap: 8px;*/
     justify-content: center;
     align-items: center;
   }
@@ -28,10 +29,12 @@ console.log(posts[0].data.title);
   input {
     grid-column: 1 / -1;
     grid-row: 1;
-    padding-left: 28px;
+    padding: 6px 0 6px 32px;
+    border: 1px solid rgb(var(--gray-light));
+    border-radius: 5px;
   }
 </style>
 <form>
-  <input type="search" id="search" placeholder="Search ..." />
+  <input type="search" id="search" placeholder="  blog or title ..." />
   <button><Icon name="ph:magnifying-glass"></button>
 </form>
