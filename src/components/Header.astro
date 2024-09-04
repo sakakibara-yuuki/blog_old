@@ -116,7 +116,8 @@ import { SITE_TITLE } from '../consts';
       }
       nav .internal-links,
       nav .theme-icon {
-        max-width: max-content;
+        /*max-width: max-content;*/
+        min-width: 30%;
         height: 100vh;
         position: fixed;
         top: 0;
@@ -130,10 +131,10 @@ import { SITE_TITLE } from '../consts';
         display: grid;
         grid-template-rows: repeat(4, min-content);
         top: 56px;
-        text-align: left;
+        text-align: center;
       }
       nav .internal-links > * {
-        padding: 1em 1em 0 2em;
+        padding: 1em 2em 0 2em;
       }
       #nav-input:checked ~ nav .internal-links {
         right: 0;
