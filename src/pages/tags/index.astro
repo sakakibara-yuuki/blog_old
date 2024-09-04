@@ -97,15 +97,15 @@ const tags = [...new Set((await getCollection('blog')).map((post) => post.data.t
       .tag {
         text-align: center;
         padding: 0.3em;
-        border: 1px solid rgba(var(--gray), 20%);
+        border: 1px solid rgb(var(--gray) / 20%);
         border-radius: 8px;
         margin: 0.25em;
         text-decoration: none;
         color: rgb(var(--black));
-        box-shadow: 0 2px 8px rgba(var(--gray), 20%);
+        box-shadow: 0 2px 8px rgb(var(--gray) / 20%);
       }
       .tag:hover {
-        box-shadow: 0 2px 8px rgba(var(--gray), 45%);
+        box-shadow: 0 2px 8px rgb(var(--gray) / 45%);
       }
     </style>
   </head>
