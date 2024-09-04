@@ -25,10 +25,10 @@ import { SITE_TITLE } from '../consts';
       display: none;
     }
 	nav {
-		display: grid;
-        grid-template-columns: repeat(3, 1fr);
-		align-items: center;
-        justify-content: center;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      align-items: center;
+      justify-content: center;
 	}
 
     nav > * {
@@ -117,28 +117,27 @@ import { SITE_TITLE } from '../consts';
       }
       nav .internal-links,
       nav .theme-icon {
-        /*max-width: max-content;*/
-        min-width: 30%;
-        height: 100vh;
-        position: absolute;
-        top: 0;
-        right: -100%;
-        z-index: 2;
-        background: #fff;
-        transition: 0.5s;
-        box-shadow: -0.25em 0.25em 3px rgba(0, 0, 0, 0.1);
-      }
-      nav .internal-links {
-        display: grid;
-        grid-template-rows: repeat(4, min-content);
-        top: 56px;
-        text-align: center;
+        display: none;
       }
       nav .internal-links > * {
         padding: 1em 2em 0 2em;
       }
       #nav-input:checked ~ nav .internal-links {
+        display: grid;
+        top: 56px;
         right: 0;
+        z-index: 2;
+        grid-template-rows: repeat(4, min-content);
+        text-align: center;
+        transition: 0.5s;
+
+        min-width: 30%;
+        height: 50vh;
+        position: absolute;
+
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 4px;
+        box-shadow: -0.25em 0.25em 3px rgba(0, 0, 0, 0.1);
       }
     }
 </style>
