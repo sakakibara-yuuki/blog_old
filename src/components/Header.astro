@@ -7,20 +7,18 @@ import { SITE_TITLE } from '../consts';
 
 <style>
 	header {
-		margin: 0;
-		padding: 0 1em;
-		background: white;
-		box-shadow: 0 2px 8px rgb(var(--black) / 5%);
-	}
-	h2 {
-		margin: 0;
-		font-size: 1em;
-	}
-
-	h2 a,
-	h2 a.active {
-		text-decoration: none;
-	}
+      margin: 0;
+      padding: 0 1em;
+      box-shadow: 0 2px 8px rgb(var(--black) / 5%);
+    }
+    h2 {
+      margin: 0;
+      font-size: 1em;
+    }
+    h2 a,
+    h2 a.active {
+        text-decoration: none;
+    }
     #nav-input,
     .menu-btn {
       display: none;
@@ -115,7 +113,7 @@ import { SITE_TITLE } from '../consts';
         display: flex;
         flex-direction: column;
 
-        position: absolute;
+        position: fixed;
         top: 56px;
         right: -100%;
         z-index: 2;
