@@ -7,11 +7,13 @@ import remarkToc from "remark-toc";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 
+import icon from "astro-icon";
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://sakakibara-yuuki.github.io',
   output: 'static',
-  integrations: [mdx(), sitemap(), d2()],
+  integrations: [mdx(), sitemap(), d2(), icon()],
   markdown: {
     remarkPlugins: [ remarkMath, [remarkToc, { heading: "Contents" }] ],
     rehypePlugins: [ rehypeKatex ],
