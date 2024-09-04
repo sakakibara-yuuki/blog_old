@@ -25,12 +25,15 @@ import { SITE_TITLE } from '../consts';
     .menu-btn {
       display: none;
     }
+
 	nav {
       display: grid;
-      grid-template-columns: 1fr 1fr auto auto;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1.5em;
       align-items: center;
       justify-content: center;
 	}
+
     nav > * {
       display: flex;
       align-items: center;
@@ -40,9 +43,6 @@ import { SITE_TITLE } from '../consts';
       justify-content: flex-start;
     }
 
-    nav > :nth-last-child(2) {
-      justify-content: flex-end;
-    }
     nav > :nth-last-child(1) {
       justify-content: flex-end;
     }
@@ -52,15 +52,23 @@ import { SITE_TITLE } from '../consts';
     }
 
 	nav a {
-		padding: 1em 0.5em;
-		color: rgb(var(--black));
-		border-bottom: 4px solid transparent;
-		text-decoration: none;
+      display: inline-block;
+      padding: 1em 0.5em;
+      color: rgb(var(--black));
+      border-bottom: 4px solid transparent;
+      text-decoration: none;
 	}
 	nav a.active {
 		text-decoration: none;
 		border-bottom-color: rgb(var(--accent));
 	}
+
+    .header-side {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5em;
+    }
+
     @media (max-width: 720px) {
       .menu-btn {
         display: block;
@@ -78,7 +86,7 @@ import { SITE_TITLE } from '../consts';
         height: 2px;
         width: 100%;
         border-radius: 3px;
-        background: #36556a;
+        background: rgb(var(--gray));
         position: absolute;
         transition: 0.2s;
         cursor: pointer;
@@ -133,20 +141,39 @@ import { SITE_TITLE } from '../consts';
       #nav-input:checked ~ nav .internal-links {
         right: 0;
       }
+      nav {
+        display: grid;
+        grid-template-columns: 5fr 5fr 1fr;
+      }
+      .blog-title {
+        grid-column: 1;
+      }
+      .header-side {
+        grid-column: 2;
+      }
+      .theme-icon {
+        display: none;
+      }
     }
 </style>
 <header>
   <input id="nav-input" type="checkbox"/>
   <label class="menu-btn" for="nav-input"><span></span></label>
   <nav>
-    <h2><a href="/">{SITE_TITLE}</a></h2>
+    <div class="blog-title">
+      <h2><a href="/">{SITE_TITLE}</a></h2>
+    </div>
     <div class="internal-links">
       <HeaderLink href="/">Home</HeaderLink>
       <HeaderLink href="/blog">Blog</HeaderLink>
       <HeaderLink href="/tags">Tags</HeaderLink>
       <HeaderLink href="/about">About</HeaderLink>
     </div>
-    <SearchBar class="search-bar"/>
-    <ThemeIcon />
+    <div class="header-side">
+      <SearchBar/>
+      <div class="theme-icon">
+        <ThemeIcon/>
+      </div>
+    </div>
   </nav>
 </header>
