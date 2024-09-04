@@ -14,6 +14,7 @@
 	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
 	--box-shadow: 0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
 		0 16px 32px rgba(var(--gray), 33%);
+    scroll-behavior: smooth;
 }
 @font-face {
 	font-family: 'Atkinson';
@@ -41,6 +42,7 @@ body {
 	color: rgb(var(--gray-dark));
 	font-size: 20px;
 	line-height: 1.7;
+    overflow-x: scroll;
 }
 main {
 	width: 720px;
@@ -99,8 +101,9 @@ input {
 
 table {
   display: block;
-  max-width: max-content;
   overflow: auto;
+  scrollbar-color: var(--accent) rgba(var(--gray-light), 70%);
+  max-width: max-content;
   margin-bottom: 2rem;
   padding: 1rem;
   box-shadow: var(--box-shadow);
@@ -145,12 +148,12 @@ hr {
 	border-top: 1px solid rgb(var(--gray-light));
 }
 @media (max-width: 720px) {
-	body {
-		font-size: 18px;
-	}
-	main {
-		padding: 1em;
-	}
+  body {
+    font-size: 18px;
+  }
+  main {
+    padding: 1em;
+  }
 }
 
 .sr-only {

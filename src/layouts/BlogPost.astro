@@ -40,38 +40,64 @@ const { title, description, pubDate, updatedDate, heroImage, tags } = Astro.prop
         grid-template-areas:
           "title title"
           "date tags";
-        padding: 1em 0;
+        gap: 0.5em;
+        /*padding: 1em 0;*/
+        padding: 1em 0 0.5em 0;
         text-align: center;
+        align-items: center;
         line-height: 1;
       }
       .title h1 {
         margin: 0 0 0.25em 0;
         grid-area: title;
       }
+      .date {
+        display: flex;
+        justify-content: start;
+        /*margin-bottom: 0.5em;*/
+        color: rgb(var(--gray));
+        padding: 0 0 0 2em;
+      }
+      .last-updated-on {
+        font-style: italic;
+      }
       .tags {
         grid-area: tags;
-        text-align: end;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: end;
+        gap: 0.25em;
+        padding: 0 2em 0 0;
       }
       .tag {
         margin-right: 0.5em;
-        border: 1px solid rgba(var(--gray), 20%);
         padding: 0.25em 0.5em;
+        border: 1px solid rgba(var(--gray), 20%);
         border-radius: 5px;
+        box-shadow: 0 2px 8px rgba(var(--gray), 20%);
+      }
+      .tag a {
         color: rgb(var(--gray));
         text-decoration: none;
-        box-shadow: 0 2px 8px rgba(var(--gray), 20%);
       }
       .tag:hover {
         box-shadow: 0 2px 8px rgba(var(--gray), 35%);
       }
-      .date {
-        display: flex;
-        padding: 0 0 0 2em;
-        margin-bottom: 0.5em;
-        color: rgb(var(--gray));
-      }
-      .last-updated-on {
-        font-style: italic;
+      @media (max-width: 720px) {
+        .title {
+          grid-template-areas:
+            "title"
+            "date"
+            "tags";
+        }
+        .date {
+          padding: 0;
+          justify-content: center;
+        }
+        .tags {
+          padding: 0;
+          justify-content: center;
+        }
       }
       hr {
         margin: 0 0 2em 0;
@@ -101,7 +127,9 @@ const { title, description, pubDate, updatedDate, heroImage, tags } = Astro.prop
               </div>
               <div class="tags">
                 {tags && tags.map(tag => (
-                  <a href={`/tags/${tag}`} class="tag">{tag}</a>
+                  <div class="tag">
+                    <a href={`/tags/${tag}`}>{tag}</a>
+                  </div>
                 ))}
               </div>
             </div>
