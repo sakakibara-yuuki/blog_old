@@ -8,6 +8,7 @@
 	--accent: 35 55 255;
 	--accent-dark: 0 13 138;
 	--black: 15 18 25;
+	--white: 229 229 229;
 	--gray: 96 115 159;
 	--gray-light: 229 233 240;
 	--gray-dark: 34 41 57;
@@ -18,6 +19,15 @@
     scroll-behavior: smooth;
     overflow-x: hidden;
 }
+
+/*dark mode*/
+html.dark {
+  /*background: linear-gradient(rgb(var(--gray-dark) / 50%), rgb(var(--black) / 50%)) no-repeat;*/
+  background: rgb(var(--black));
+  color: rgb(var(--white));
+}
+/*dark mode*/
+
 @font-face {
 	font-family: 'Atkinson';
 	src: url('/fonts/atkinson-regular.woff') format('woff');
@@ -90,7 +100,7 @@ p {
 	margin-bottom: 1em;
 }
 /*.prose { */
-/*  overflow: scroll;*/
+/*  color: rgb(var(--white));*/
 /*} */
 textarea {
 	width: 100%;
