@@ -8,9 +8,9 @@ const posts: Array<Props> = await getCollection('blog');
 const fuseOptions = {
   keys: ['body', 'data.title'],
 };
-const fuse = new Fuse(posts, fuseOptions);
-const searchPattern = "年金";
-console.log(fuse.search(searchPattern));
+// const fuse = new Fuse(posts, fuseOptions);
+// const searchPattern = "年金";
+// result = fuse.search(searchPattern);
 ---
 <style>
   form {
@@ -34,7 +34,9 @@ console.log(fuse.search(searchPattern));
     border-radius: 5px;
   }
 </style>
-<form>
-  <input type="search" id="search" placeholder="  blog or title ..." />
-  <button><Icon name="ph:magnifying-glass"></button>
-</form>
+<search>
+  <form>
+    <input type="search" id="search" placeholder="  blog or title ..." />
+    <button><Icon name="ph:magnifying-glass"></button>
+  </form>
+</search>
