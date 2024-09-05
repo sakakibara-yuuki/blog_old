@@ -22,11 +22,6 @@
     width: 100vw;
     overflow-x: hidden;
 }
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
 
 /*dark mode*/
 html.dark {
