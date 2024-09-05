@@ -8,7 +8,7 @@
 	--accent: 35 55 255;
 	--accent-dark: 0 13 138;
 	--black: 15 18 25;
-	--white: 229 229 229;
+	--white: 242 244 248;
 	--gray: 96 115 159;
 	--gray-light: 229 233 240;
 	--gray-dark: 34 41 57;
@@ -17,7 +17,15 @@
 	--box-shadow: 0 2px 6px rgb(var(--gray) / 25%), 0 8px 24px rgb(var(--gray) / 33%),
 		0 16px 32px rgb(var(--gray) / 33%);
     scroll-behavior: smooth;
+    /*なぜ?*/
+    position: absolute;
+    width: 100vw;
     overflow-x: hidden;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 /*dark mode*/
@@ -54,10 +62,14 @@ body {
 	color: rgb(var(--gray-dark));
 	font-size: 20px;
 	line-height: 1.7;
+    /*なぜ?*/
+    position: absolute;
+    width: 100vw;
+    overflow: hidden;
 }
 main {
-	width: 720px;
-	max-width: calc(100% - 2em);
+	/*max-width: calc(100% - 2em);*/
+    max-width: min(720px, calc(100% - 2em));
 	margin: auto;
 	padding: 3em 1em;
 }
@@ -99,9 +111,6 @@ a:hover {
 p {
 	margin-bottom: 1em;
 }
-/*.prose { */
-/*  color: rgb(var(--white));*/
-/*} */
 textarea {
 	width: 100%;
 	font-size: 16px;

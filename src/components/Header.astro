@@ -161,15 +161,19 @@ import { Icon } from 'astro-icon/components';
   header {
     padding: 0 1em;
     box-shadow: 0 0.2em 0.2em rgb(var(--black) / 5%);
-    height: 3em;
+    /*height: 2em;*/
 
-    position: fiexd;
-    overflow: hidden;
+    position: sticky;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 1em;
+  }
+  @media (max-width: 720px) {
+    header {
+      padding: 1em;
+    }
   }
 
   .blog-title  h2 {
@@ -229,17 +233,15 @@ import { Icon } from 'astro-icon/components';
 
     nav {
       position: absolute;
-      top: 3em;
+      top: 4em;
       right: -100%;
-      height: 100svh;
+      height: 100vh;
       width: 40%;
-      z-index: 10;
 
       padding-top: 4em;
 
+      background: rgb(var(--white));
       box-shadow: -0.2em 0.2em 0.2em rgb(var(--black) / 10%);
-
-      background: rgb(255 255 255);
 
       transition: 0.5s;
     }
@@ -261,8 +263,8 @@ import { Icon } from 'astro-icon/components';
 
   }
 </style>
-<header>
 
+<header>
   <div class="blog-title">
     <h2>
       <a href="/">
