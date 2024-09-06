@@ -13,6 +13,12 @@
 	--gray-light: 229 233 240;
 	--gray-dark: 34 41 57;
 
+    --primary-color: var(--white);
+    --secondary-color: var(--black);
+    --tertiary-color: var(--gray);
+    --neutral-color: var(--gray-light);
+    --neutral-variant-color: var(--gray-dark);
+
 	--gray-gradient: rgb(var(--gray-light) / 50%), #fff;
 	--box-shadow: 0 2px 6px rgb(var(--gray) / 25%), 0 8px 24px rgb(var(--gray) / 33%),
 		0 16px 32px rgb(var(--gray) / 33%);
