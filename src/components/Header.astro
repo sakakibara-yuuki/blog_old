@@ -161,9 +161,8 @@ import { Icon } from 'astro-icon/components';
   header {
     padding: 0 1em;
     box-shadow: 0 0.2em 0.2em rgb(var(--black) / 5%);
-    /*height: 2em;*/
 
-    position: sticky;
+    position: relative;
 
     display: flex;
     justify-content: space-between;
@@ -239,6 +238,7 @@ import { Icon } from 'astro-icon/components';
       width: 40%;
 
       padding-top: 4em;
+      overflow-y: hidden;
 
       background: rgb(var(--white));
       box-shadow: -0.2em 0.2em 0.2em rgb(var(--black) / 10%);
