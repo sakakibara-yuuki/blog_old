@@ -4,7 +4,7 @@ author: "sakakibara"
 description: "上手くいかないことがありましたが、コミュニティに質問して助けてもらいました！"
 heroImage: "/web/css/css_technique.png"
 pubDate: 2024-06-15
-tags: ["astro", "math"]
+tags: ["css", "tips"]
 ---
 
 # CSSのテクニックTips
