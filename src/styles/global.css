@@ -17,9 +17,6 @@
 	--box-shadow: 0 2px 6px rgb(var(--gray) / 25%), 0 8px 24px rgb(var(--gray) / 33%),
 		0 16px 32px rgb(var(--gray) / 33%);
     scroll-behavior: smooth;
-    /*なぜ?*/
-    position: absolute;
-    width: 100vw;
     overflow-x: hidden;
 }
 
@@ -57,10 +54,7 @@ body {
 	color: rgb(var(--gray-dark));
 	font-size: 20px;
 	line-height: 1.7;
-    /*なぜ?*/
-    position: absolute;
-    width: 100vw;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 main {
 	/*max-width: calc(100% - 2em);*/
