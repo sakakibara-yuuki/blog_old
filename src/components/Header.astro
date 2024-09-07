@@ -10,7 +10,8 @@ import { Icon } from 'astro-icon/components';
 <style>
 
   header {
-    height: 3em;
+    --header-height: 4em;
+    height: var(--header-height);
     padding: 0 1em;
     box-shadow: var(--box-shadow);
 
@@ -45,7 +46,6 @@ import { Icon } from 'astro-icon/components';
   }
 
   .blog-title__block div {
-    font-family: 'Courier New', Courier, monospace;
     font-size: 0.2em;
     font-weight: 400;
   }
@@ -59,24 +59,20 @@ import { Icon } from 'astro-icon/components';
     grid-row: 1 / -1;
   }
 
-  nav {
-    height: 100%;
-  }
-
-  nav ul {
+  ul {
     display: flex;
+    align-items: center;
     list-style: none;
-    height: 100%;
     margin: 0;
 
     li {
-      padding: 0.6em;
+      padding: 0 0.6em 0 0.6em;
     }
 
     a {
       text-decoration: none;
-      height: 100%;
       color: var(--md-sys-color-primary);
+      line-height: var(--header-height);
     }
 
     li:hover {
@@ -108,12 +104,12 @@ import { Icon } from 'astro-icon/components';
 
     nav {
       position: absolute;
-      top: 3em;
+      top: var(--header-height);
       right: -100%;
       height: 100vh;
       width: 40%;
 
-      padding-top: 4em;
+      padding-top: var(--header-height);
       overflow-y: hidden;
 
       background: var(--md-sys-color-surface-container-low);
@@ -129,7 +125,6 @@ import { Icon } from 'astro-icon/components';
       padding: 0;
     }
     nav ul li {
-      height: 3em;
       box-sizing: border-box;
       width: 100%;
       text-align: center;
