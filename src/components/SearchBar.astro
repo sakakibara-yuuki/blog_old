@@ -28,7 +28,13 @@ const fuseOptions = {
     align-items: center;
     gap: 0.25em;
   }
+  form:hover {
+    border: 1px solid var(--md-sys-color-outline);
+    outline: none;
+    border-radius: 5px;
+  }
   .search-icon {
+    color: var(--md-sys-color-primary);
     grid-column: 1;
     grid-row: 1;
     background: none;
@@ -38,14 +44,17 @@ const fuseOptions = {
     grid-column: 1 / -1;
     grid-row: 1;
     padding: 0.25em 0.25em 0.25em 1.6em;
-    border: 1px solid var(--md-sys-color-outline);
+    border: none;
+    background: var(--md-sys-color-primary-container);
     border-radius: 5px;
     font-size: 1em;
+    color: var(--md-sys-color-on-primary-container);
   }
 </style>
 <search>
   <form>
-    <input type="search" id="search" placeholder="  blog or title ..." />
-    <Icon class="search-icon" name="ph:magnifying-glass">
+    <input type="search" id="search" placeholder="search ..." />
+    <!--<Icon class="search-icon" name="ph:magnifying-glass">-->
+    <Icon class="search-icon" name="mdi:search" />
   </form>
 </search>
