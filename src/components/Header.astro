@@ -7,159 +7,10 @@ import { SITE_TITLE } from '../consts';
 import { Icon } from 'astro-icon/components';
 ---
 
-<!--<style>-->
-<!--	header {-->
-<!--      margin: 0;-->
-<!--      padding: 0 1em;-->
-<!--      box-shadow: 0 2px 8px rgb(var(--black) / 5%);-->
-<!--      position: sticky;-->
-<!--    }-->
-<!--    h2 {-->
-<!--      margin: 0;-->
-<!--      font-size: 1em;-->
-<!--    }-->
-<!--    h2 a,-->
-<!--    h2 a.active {-->
-<!--        text-decoration: none;-->
-<!--    }-->
-<!--    #nav-input,-->
-<!--    .menu-btn {-->
-<!--      display: none;-->
-<!--    }-->
-<!---->
-<!--	nav {-->
-<!--      display: grid;-->
-<!--      grid-template-columns: 1fr 1fr 1fr;-->
-<!--      gap: 1.5em;-->
-<!--      align-items: center;-->
-<!--      justify-content: center;-->
-<!--	}-->
-<!---->
-<!--    nav > * {-->
-<!--      display: flex;-->
-<!--      align-items: center;-->
-<!--    }-->
-<!---->
-<!--    nav > :nth-child(1) {-->
-<!--      justify-content: flex-start;-->
-<!--    }-->
-<!---->
-<!--    nav > :nth-last-child(1) {-->
-<!--      justify-content: flex-end;-->
-<!--    }-->
-<!---->
-<!--    .internal-links {-->
-<!--      justify-content: center;-->
-<!--    }-->
-<!---->
-<!--	nav a {-->
-<!--      display: inline-block;-->
-<!--      padding: 1em 0.5em;-->
-<!--      color: rgb(var(--black));-->
-<!--      border-bottom: 4px solid transparent;-->
-<!--      text-decoration: none;-->
-<!--	}-->
-<!--	nav a.active {-->
-<!--		text-decoration: none;-->
-<!--		border-bottom-color: rgb(var(--accent));-->
-<!--	}-->
-<!---->
-<!--    .header-side {-->
-<!--      display: grid;-->
-<!--      grid-template-columns: 1fr 1fr;-->
-<!--      gap: 0.5em;-->
-<!--    }-->
-<!---->
-<!--    @media (max-width: 720px) {-->
-<!--      .menu-btn {-->
-<!--        display: block;-->
-<!--        width: 30px;-->
-<!--        height: 20px;-->
-<!--        position: absolute;-->
-<!--        right: 1em;-->
-<!--        top: 1em;-->
-<!--        z-index: 3;-->
-<!--      }-->
-<!--      .menu-btn span,-->
-<!--      .menu-btn span::before,-->
-<!--      .menu-btn span::after {-->
-<!--        content: "";-->
-<!--        height: 2px;-->
-<!--        width: 100%;-->
-<!--        border-radius: 3px;-->
-<!--        background: rgb(var(--gray));-->
-<!--        position: absolute;-->
-<!--        transition: 0.2s;-->
-<!--        cursor: pointer;-->
-<!--      }-->
-<!--      .menu-btn span {-->
-<!--        top: 0;-->
-<!--      }-->
-<!--      .menu-btn span::before {-->
-<!--        top: 8px;-->
-<!--      }-->
-<!--      .menu-btn span::after {-->
-<!--        top: 16px;-->
-<!--      }-->
-<!--      #nav-input:checked ~ .menu-btn span {-->
-<!--        top: 8px;-->
-<!--        transform: rotate(45deg);-->
-<!--      }-->
-<!--      #nav-input:checked ~ .menu-btn span::before {-->
-<!--        opacity: 0;-->
-<!--      }-->
-<!--      #nav-input:checked ~ .menu-btn span::after {-->
-<!--        top: 0;-->
-<!--        transform: rotate(-90deg);-->
-<!--      }-->
-<!--      .internal-links {-->
-<!--        display: flex;-->
-<!--        flex-direction: column;-->
-<!---->
-<!--        position: absolute;-->
-<!--        top: 56px;-->
-<!--        right: -100%;-->
-<!--        text-align: center;-->
-<!--        transition: 0.5s;-->
-<!---->
-<!--        max-width: min-content;-->
-<!--        height: 100vh;-->
-<!---->
-<!--        background: rgb(255, 255, 255, 0.95);-->
-<!--        border-radius: 4px;-->
-<!--        box-shadow: -0.25em 0.25em 3px rgb(var(--black) / 10%);-->
-<!--      }-->
-<!--      .internal-links > * {-->
-<!--        padding: 1em 2em 0 2em;-->
-<!--      }-->
-<!--      .internal-links a.active {-->
-<!--        border-bottom-color: rgb(var(--accent) / 45%);-->
-<!--      }-->
-<!--      .internal-links > *:hover {-->
-<!--		border-bottom-color: rgb(var(--accent));-->
-<!--      }-->
-<!--      #nav-input:checked ~ nav .internal-links {-->
-<!--        right: 0;-->
-<!--      }-->
-<!--      nav {-->
-<!--        display: grid;-->
-<!--        grid-template-columns: 5fr 5fr 1fr;-->
-<!--      }-->
-<!--      .blog-title {-->
-<!--        grid-column: 1;-->
-<!--      }-->
-<!--      .header-side {-->
-<!--        grid-column: 2;-->
-<!--      }-->
-<!--      .theme-icon {-->
-<!--        display: none;-->
-<!--      }-->
-<!--    }-->
-<!--</style>-->
-
 <style>
 
   header {
+    height: 3em;
     padding: 0 1em;
     box-shadow: var(--box-shadow);
 
@@ -171,12 +22,6 @@ import { Icon } from 'astro-icon/components';
     gap: 1em;
 
     background: var(--md-sys-color-surface-container-low);
-  }
-
-  @media (max-width: 720px) {
-    header {
-      padding: 1em;
-    }
   }
 
   .blog-title  h2 {
@@ -192,11 +37,17 @@ import { Icon } from 'astro-icon/components';
     display: grid;
     grid-template-columns: repeat(4, 0.2em);
     grid-template-rows: repeat(4, 0.2em);
+    border: 1px solid var(--md-sys-color-outline);
+    padding: 0.1em;
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
   }
 
   .blog-title__block div {
     font-family: 'Courier New', Courier, monospace;
     font-size: 0.2em;
+    font-weight: 400;
   }
 
   #hamburger-button {
@@ -208,11 +59,30 @@ import { Icon } from 'astro-icon/components';
     grid-row: 1 / -1;
   }
 
+  nav {
+    height: 100%;
+  }
+
   nav ul {
-    display: block flex;
+    display: flex;
     list-style: none;
-    padding: 0;
-    gap: 1rem;
+    height: 100%;
+    margin: 0;
+
+    li {
+      padding: 0.6em;
+    }
+
+    a {
+      text-decoration: none;
+      height: 100%;
+      color: var(--md-sys-color-primary);
+    }
+
+    li:hover {
+      background: var(--md-sys-color-primary-container);
+      border-bottom: 5px solid var(--md-sys-color-primary);
+    }
   }
 
   @media (max-width: 720px) {
@@ -225,6 +95,8 @@ import { Icon } from 'astro-icon/components';
       align-items: center;
       background: none;
       border: none;
+      color: var(--md-sys-color-on-surface);
+      font-size: 2em;
     }
 
     .icon-menue {
@@ -236,7 +108,7 @@ import { Icon } from 'astro-icon/components';
 
     nav {
       position: absolute;
-      top: 4em;
+      top: 3em;
       right: -100%;
       height: 100vh;
       width: 40%;
@@ -254,15 +126,13 @@ import { Icon } from 'astro-icon/components';
       display: flex;
       flex-direction: column;
       align-items: center;
+      padding: 0;
     }
-
-    .theme-toggle {
-      display: none;
-    }
-
-    .theme-icon {
-      line-height: 0;
-      display: none;
+    nav ul li {
+      height: 3em;
+      box-sizing: border-box;
+      width: 100%;
+      text-align: center;
     }
 
   }
@@ -284,7 +154,7 @@ import { Icon } from 'astro-icon/components';
           <div>R</div>
           <div>A</div>
           <div>S</div>
-          <div>'</div>
+          <div> </div>
           <div>B</div>
           <div>L</div>
           <div>O</div>
@@ -311,9 +181,7 @@ import { Icon } from 'astro-icon/components';
     </ul>
   </nav>
 
-  <div class="theme-icon">
-    <ThemeIcon />
-  </div>
+  <ThemeIcon/>
 
 </header>
 
