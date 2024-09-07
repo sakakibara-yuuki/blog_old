@@ -22,20 +22,21 @@
 }
 
 body {
-  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-wrap: break-word;
+  overflow-x: hidden;
+
+  /*font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;*/
+  font-family: "Lato", "Noto Sans JP", sans-serif;
   font-size: 24px;
   line-height: 1.7;
   color: var(--md-sys-color-on-surface);
   text-align: left;
 
-  margin: 0;
-  padding: 0;
-  overflow-wrap: break-word;
-  overflow-x: hidden;
 }
 main {
-  /*max-width: calc(100% - 2em);*/
-  max-width: min(720px, calc(100% - 2em));
+  max-width: min(55ch, calc(100% - 2em));
   margin: auto;
   padding: 3em 1em;
 }
