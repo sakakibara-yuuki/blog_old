@@ -29,14 +29,15 @@ body {
 
   /*font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;*/
   font-family: "Lato", "Noto Sans JP", sans-serif;
-  font-size: 24px;
+  font-size: 16px;
   line-height: 1.7;
   color: var(--md-sys-color-on-surface);
   text-align: left;
 
 }
 main {
-  max-width: min(55ch, calc(100% - 2em));
+  /*max-width: min(55ch, calc(100% - 2em));*/
+  max-width: min(80ch, calc(100% - 2em));
   margin: auto;
   padding: 3em 1em;
 }
@@ -132,14 +133,6 @@ blockquote {
 	padding: 0 0 0 20px;
 	margin: 0px;
 	font-size: 1.333em;
-}
-@media (max-width: 720px) {
-  body {
-    font-size: 24px;
-  }
-  main {
-    padding: 1em;
-  }
 }
 
 .sr-only {
