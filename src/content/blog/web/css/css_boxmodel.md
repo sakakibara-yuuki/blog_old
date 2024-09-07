@@ -4,7 +4,7 @@ author: "sakakibara"
 description: "Lorem ipsum dolor sit amet"
 heroImage: "/web/css/css_boxmodel.png"
 pubDate: 2024-07-13
-tags: ["astro", "math"]
+tags: ["css", "box model"]
 ---
 
 # box model

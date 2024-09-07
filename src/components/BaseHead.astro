@@ -2,6 +2,12 @@
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
 import '../styles/global.css';
+import '../styles/css/dark-hc.css';
+import '../styles/css/dark-mc.css';
+import '../styles/css/dark.css';
+import '../styles/css/light.css';
+import '../styles/css/light-mc.css';
+import '../styles/css/light-hc.css';
 
 interface Props {
 	title: string;
@@ -21,8 +27,9 @@ const { title, description, image = '/blog-placeholder-1.jpg' } = Astro.props;
 <meta name="generator" content={Astro.generator} />
 
 <!-- Font preloads -->
-<link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin />
-<link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />

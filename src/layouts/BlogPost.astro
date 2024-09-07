@@ -14,26 +14,21 @@ const { title, description, pubDate, updatedDate, heroImage, tags } = Astro.prop
   <head>
     <BaseHead title={title} description={description} />
     <style>
-      main {
-        width: calc(100% - 2em);
-        max-width: 100%;
-        margin: 0;
-      }
+
       .hero-image {
         width: 100%;
-      }
-      .hero-image img {
-        display: block;
-        margin: 0 auto;
-        border-radius: 12px;
-        box-shadow: var(--box-shadow);
+
+        img {
+          display: block;
+          margin: 0 auto;
+          border-radius: 12px;
+          box-shadow: var(--box-shadow);
+        }
       }
       .prose {
-        width: 720px;
-        max-width: calc(100% - 2em);
+        max-width: min(55ch, calc(100% - 2em));
         margin: auto;
         padding: 1em;
-        /*color: rgb(var(--gray-dark));*/
       }
       .title {
         display: grid;
@@ -41,21 +36,21 @@ const { title, description, pubDate, updatedDate, heroImage, tags } = Astro.prop
           "title title"
           "date tags";
         gap: 0.5em;
-        /*padding: 1em 0;*/
-        padding: 1em 0 0.5em 0;
+        padding: 1em 0 1em 0;
         text-align: center;
         align-items: center;
         line-height: 1;
-      }
-      .title h1 {
-        margin: 0 0 0.25em 0;
-        grid-area: title;
+        border-bottom: 4px solid var(--md-sys-color-outline);
+
+        h1 {
+          margin: 0 0 0.25em 0;
+          grid-area: title;
+        }
       }
       .date {
         display: flex;
         justify-content: start;
-        /*margin-bottom: 0.5em;*/
-        color: rgb(var(--gray));
+        color: var(--md-sys-color-on-surface-variant);
         padding: 0 0 0 2em;
       }
       .last-updated-on {
@@ -72,16 +67,14 @@ const { title, description, pubDate, updatedDate, heroImage, tags } = Astro.prop
       .tag {
         margin-right: 0.5em;
         padding: 0.25em 0.5em;
-        border: 1px solid rgb(var(--gray) / 20%);
+        border: 1px solid var(--md-sys-color-outline);
         border-radius: 5px;
-        box-shadow: 0 2px 8px rgb(var(--gray) / 20%);
-      }
-      .tag a {
-        color: rgb(var(--gray));
-        text-decoration: none;
       }
       .tag:hover {
-        box-shadow: 0 2px 8px rgb(var(--gray) / 35%);
+        background: var(--md-sys-color-secondary-container);
+        a:hover {
+          color: var(--md-sys-color-primary);
+        }
       }
       @media (max-width: 720px) {
         .title {
@@ -98,9 +91,6 @@ const { title, description, pubDate, updatedDate, heroImage, tags } = Astro.prop
           padding: 0;
           justify-content: center;
         }
-      }
-      hr {
-        margin: 0 0 2em 0;
       }
     </style>
   </head>
@@ -133,7 +123,6 @@ const { title, description, pubDate, updatedDate, heroImage, tags } = Astro.prop
                 ))}
               </div>
             </div>
-            <hr />
             <slot />
           </div>
         </article>

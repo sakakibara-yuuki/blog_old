@@ -1,10 +1,10 @@
 ---
-title: "グリッドレイアウト"
+title: "CSS グリッドレイアウト"
 author: "sakakibara"
 description: "上手くいかないことがありましたが、コミュニティに質問して助けてもらいました！"
 heroImage: "/blog-placeholder-2.jpg"
 pubDate: 2024-08-22
-tags: ["astro", "公開学習", "後退", "コミュニティ"]
+tags: ["css", "grid layout"]
 ---
 
 # グリッドレイアウト

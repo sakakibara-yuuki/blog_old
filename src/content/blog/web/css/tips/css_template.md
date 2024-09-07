@@ -1,13 +1,14 @@
 ---
-title: 'CSS テンプレート'
+title: "CSS テンプレート"
 author: "sakakibara"
-description: 'Lorem ipsum dolor sit amet'
-heroImage: '/web/css/css_template.png'
+description: "Lorem ipsum dolor sit amet"
+heroImage: "/web/css/css_template.png"
 pubDate: 2024-07-12
-tags: ["astro", "math"]
+tags: ["css", "template"]
 ---
 
 # CSS template
+
 以下に自分がよく使うCSSのテンプレートをまとめていく。
 
 ## box
@@ -20,21 +21,26 @@ tags: ["astro", "math"]
 
 ## default layout
 
-
 ## CSS animation
+
 ## @ルール
+
 アットルールはCSSの動作を規定するためのルールです。
 `@`で始まり、`;`で終わります。
+
 ```css
-@identifier(rule);
+@identifier (rule);
 ```
+
 のような構文です。
 
 例えば、以下のように
+
 ```css
 @import "style.css";
 @charset "UTF-8";
 ```
+
 記述されます。
 `@`ルールには以下のような種類があります。
 
