@@ -5,68 +5,39 @@
  */
 
 :root {
-	--accent: 35 55 255;
-	--accent-dark: 0 13 138;
-	--black: 15 18 25;
-	--white: 242 244 248;
-	--gray: 96 115 159;
-	--gray-light: 229 233 240;
-	--gray-dark: 34 41 57;
+  --accent: 35 55 255;
+  --accent-dark: 0 13 138;
+  --black: 15 18 25;
+  --white: 242 244 248;
+  --gray: 96 115 159;
+  --gray-light: 229 233 240;
+  --gray-dark: 34 41 57;
 
-    --primary-color: var(--white);
-    --secondary-color: var(--black);
-    --tertiary-color: var(--gray);
-    --neutral-color: var(--gray-light);
-    --neutral-variant-color: var(--gray-dark);
-
-	--gray-gradient: rgb(var(--gray-light) / 50%), #fff;
-	--box-shadow: 0 2px 6px rgb(var(--gray) / 25%), 0 8px 24px rgb(var(--gray) / 33%),
-		0 16px 32px rgb(var(--gray) / 33%);
-    scroll-behavior: smooth;
-    overflow-x: hidden;
+  --gray-gradient: rgb(var(--md-sys-color-error) / 50%), #fff;
+  --box-shadow: 0 2px 6px rgb(var(--gray) / 25%), 0 8px 24px rgb(var(--gray) / 33%),
+      0 16px 32px rgb(var(--gray) / 33%);
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  background: var(--md-sys-color-surface);
 }
 
-/*dark mode*/
-html.dark {
-  /*background: linear-gradient(rgb(var(--gray-dark) / 50%), rgb(var(--black) / 50%)) no-repeat;*/
-  background: rgb(var(--black));
-  color: rgb(var(--white));
-}
-/*dark mode*/
-
-@font-face {
-	font-family: 'Atkinson';
-	src: url('/fonts/atkinson-regular.woff') format('woff');
-	font-weight: 400;
-	font-style: normal;
-	font-display: swap;
-}
-@font-face {
-	font-family: 'Atkinson';
-	src: url('/fonts/atkinson-bold.woff') format('woff');
-	font-weight: 700;
-	font-style: normal;
-	font-display: swap;
-}
 body {
-	font-family: 'Atkinson', sans-serif;
-	margin: 0;
-	padding: 0;
-	text-align: left;
-	background: linear-gradient(var(--gray-gradient)) no-repeat;
-	background-size: 100% 600px;
-	word-wrap: break-word;
-	overflow-wrap: break-word;
-	color: rgb(var(--gray-dark));
-	font-size: 20px;
-	line-height: 1.7;
-    overflow-x: hidden;
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  font-size: 24px;
+  line-height: 1.7;
+  color: var(--md-sys-color-on-surface);
+  text-align: left;
+
+  margin: 0;
+  padding: 0;
+  overflow-wrap: break-word;
+  overflow-x: hidden;
 }
 main {
-	/*max-width: calc(100% - 2em);*/
-    max-width: min(720px, calc(100% - 2em));
-	margin: auto;
-	padding: 3em 1em;
+  /*max-width: calc(100% - 2em);*/
+  max-width: min(720px, calc(100% - 2em));
+  margin: auto;
+  padding: 3em 1em;
 }
 h1,
 h2,
@@ -75,7 +46,6 @@ h4,
 h5,
 h6 {
 	margin: 2rem 0 0.5rem 0;
-	color: rgb(var(--black));
 	line-height: 1.2;
 }
 h1 {
@@ -98,20 +68,15 @@ b {
 	font-weight: 700;
 }
 a {
-	color: rgb(var(--accent));
+  color: var(--md-sys-color-primary);
+  text-decoration: none;
+  cursor: pointer;
 }
 a:hover {
-	color: rgb(var(--accent));
+  color: var(--md-sys-color-inverse-primary);
 }
 p {
 	margin-bottom: 1em;
-}
-textarea {
-	width: 100%;
-	font-size: 16px;
-}
-input {
-	font-size: 16px;
 }
 
 table {
@@ -140,9 +105,18 @@ img {
 	border-radius: 8px;
 }
 code {
-	padding: 2px 5px;
-	background-color: rgb(var(--gray-light));
-	border-radius: 2px;
+	padding: 0 0.5em 0 0.5em;
+    margin: 0 0.3em;
+	border-radius: 4px;
+    vertical-align: bottom;
+	background: var(--md-sys-color-surface-variant);
+	color: var(--md-sys-color-on-surface-variant);
+    font-family: "Fira Code", monospace;
+    font-style: normal;
+}
+.astro-code {
+  font-family: "Fira Code", monospace;
+  font-style: normal;
 }
 pre {
 	padding: 1.5em;
@@ -158,13 +132,9 @@ blockquote {
 	margin: 0px;
 	font-size: 1.333em;
 }
-hr {
-	border: none;
-	border-top: 1px solid rgb(var(--gray-light));
-}
 @media (max-width: 720px) {
   body {
-    font-size: 18px;
+    font-size: 24px;
   }
   main {
     padding: 1em;

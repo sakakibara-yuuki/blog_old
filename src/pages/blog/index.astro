@@ -16,9 +16,6 @@ const posts = (await getCollection('blog')).sort(
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <style>
-      main {
-        width: 960px;
-      }
       ul {
         display: flex;
         flex-wrap: wrap;
@@ -55,12 +52,12 @@ const posts = (await getCollection('blog')).sort(
       }
       .title {
         margin: 0;
-        color: rgb(var(--black));
+        color: var(--md-sys-color-on-surface);
         line-height: 1;
       }
       .date {
         margin: 0;
-        color: rgb(var(--gray));
+        color: var(--md-sys-color-on-surface-variant);
       }
       div.date {
         display: flex;
@@ -69,7 +66,7 @@ const posts = (await getCollection('blog')).sort(
       }
       ul li a:hover h4,
       ul li a:hover .date {
-        color: rgb(var(--accent));
+        color: var(--md-sys-color-primary);
       }
       ul a:hover img {
         box-shadow: var(--box-shadow);

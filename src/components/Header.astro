@@ -156,11 +156,12 @@ import { Icon } from 'astro-icon/components';
 <!--      }-->
 <!--    }-->
 <!--</style>-->
+
 <style>
 
   header {
     padding: 0 1em;
-    box-shadow: 0 0.2em 0.2em rgb(var(--black) / 5%);
+    box-shadow: var(--box-shadow);
 
     position: relative;
 
@@ -168,7 +169,10 @@ import { Icon } from 'astro-icon/components';
     justify-content: space-between;
     align-items: center;
     gap: 1em;
+
+    background: var(--md-sys-color-surface-container-low);
   }
+
   @media (max-width: 720px) {
     header {
       padding: 1em;
@@ -240,8 +244,8 @@ import { Icon } from 'astro-icon/components';
       padding-top: 4em;
       overflow-y: hidden;
 
-      background: rgb(var(--white));
-      box-shadow: -0.2em 0.2em 0.2em rgb(var(--black) / 10%);
+      background: var(--md-sys-color-surface-container-low);
+      box-shadow: var(--box-shadow);
 
       transition: 0.5s;
     }
