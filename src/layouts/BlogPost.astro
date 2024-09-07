@@ -25,17 +25,13 @@ const { title, description, pubDate, updatedDate, heroImage, tags } = Astro.prop
           box-shadow: var(--box-shadow);
         }
       }
-      .prose {
-        max-width: min(55ch, calc(100% - 2em));
-        margin: auto;
-        padding: 1em;
-      }
       .title {
         display: grid;
         grid-template-areas:
           "title title"
           "date tags";
         gap: 0.5em;
+        margin-top: 1em;
         padding: 1em 0 1em 0;
         text-align: center;
         align-items: center;
