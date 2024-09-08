@@ -17,15 +17,18 @@
   --box-shadow: 0 2px 6px rgb(var(--gray) / 25%), 0 8px 24px rgb(var(--gray) / 33%),
       0 16px 32px rgb(var(--gray) / 33%);
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  scrollbar-color: var(--md-sys-color-on-primary) var(--md-sys-color-primary);
   background: var(--md-sys-color-surface);
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
   padding: 0;
   overflow-wrap: break-word;
-  overflow-x: hidden;
 
   /*font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;*/
   font-family: "Lato", "Noto Sans JP", sans-serif;
@@ -33,8 +36,8 @@ body {
   line-height: 1.7;
   color: var(--md-sys-color-on-surface);
   text-align: left;
-
 }
+
 main {
   max-width: min(55ch, calc(100% - 2em));
   margin: auto;
@@ -83,7 +86,6 @@ p {
 table {
   display: block;
   overflow: auto;
-  scrollbar-color: rgb(var(--accent)) rgb(var(--gray-light) / 70%);
   max-width: max-content;
   margin-bottom: 2rem;
   padding: 1rem;
@@ -93,61 +95,65 @@ table {
 
 th {
   min-width: max-content;
+  border-bottom: 2px solid var(--md-sys-color-primary);
 }
 
 td {
   min-width: max-content;
-  border-top: 3px dashed rgb(var(--gray-light));
+  border-bottom: 1px solid var(--md-sys-color-outline);
 }
 
 img {
-	max-width: 100%;
-	height: auto;
-	border-radius: 8px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
 }
 code {
-	padding: 0 0.5em 0 0.5em;
-    margin: 0 0.3em;
-	border-radius: 4px;
-    vertical-align: bottom;
-	background: var(--md-sys-color-surface-variant);
-	color: var(--md-sys-color-on-surface-variant);
-    font-family: "Fira Code", monospace;
-    font-style: normal;
+  padding: 0 0.5em 0 0.5em;
+  margin: 0 0.3em;
+  border-radius: 4px;
+  vertical-align: bottom;
+  background: var(--md-sys-color-surface-variant);
+  color: var(--md-sys-color-on-surface-variant);
+  font-family: "Fira Code", monospace;
+  font-style: normal;
 }
 .astro-code {
   font-family: "Fira Code", monospace;
   font-style: normal;
 }
 pre {
-	padding: 1.5em;
-	border-radius: 8px;
-    margin-bottom: 3rem;
+  padding: 1.5em;
+  border-radius: 8px;
+  margin-bottom: 3rem;
 }
 pre > code {
-	all: unset;
+  all: unset;
+}
+pre > code > span {
+  margin-right: 1.5em;
 }
 blockquote {
-	border-left: 4px solid rgb(var(--accent));
-	padding: 0 0 0 20px;
-	margin: 0px;
-	font-size: 1.333em;
+  border-left: 4px solid rgb(var(--accent));
+  padding: 0 0 0 20px;
+  margin: 0px;
+  font-size: 1.333em;
 }
 
 .sr-only {
-	border: 0;
-	padding: 0;
-	margin: 0;
-	position: absolute !important;
-	height: 1px;
-	width: 1px;
-	overflow: hidden;
-	/* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
-	clip: rect(1px 1px 1px 1px);
-	/* maybe deprecated but we need to support legacy browsers */
-	clip: rect(1px, 1px, 1px, 1px);
-	/* modern browsers, clip-path works inwards from each corner */
-	clip-path: inset(50%);
-	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
-	white-space: nowrap;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  /* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
+  clip: rect(1px 1px 1px 1px);
+  /* maybe deprecated but we need to support legacy browsers */
+  clip: rect(1px, 1px, 1px, 1px);
+  /* modern browsers, clip-path works inwards from each corner */
+  clip-path: inset(50%);
+  /* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
+  white-space: nowrap;
 }

@@ -26,29 +26,29 @@ const fuseOptions = {
     grid-template-columns: auto 1fr;
     justify-content: center;
     align-items: center;
-    gap: 0.25em;
+    border: 1px solid var(--md-sys-color-primary-container);
+    border-radius: 5px;
   }
   form:hover {
-    border: 1px solid var(--md-sys-color-outline);
+    border: 1px solid var(--md-sys-color-on-primary-container);
     outline: none;
-    border-radius: 5px;
   }
   .search-icon {
     color: var(--md-sys-color-primary);
     grid-column: 1;
     grid-row: 1;
     background: none;
-    padding: 0.25em;
+    margin-left: 0.25em;
   }
   input {
     grid-column: 1 / -1;
     grid-row: 1;
     padding: 0.25em 0.25em 0.25em 1.6em;
     border: none;
-    background: var(--md-sys-color-primary-container);
+    background: var(--md-sys-color-secondary-container);
     border-radius: 5px;
     font-size: 1em;
-    color: var(--md-sys-color-on-primary-container);
+    color: var(--md-sys-color-on-secondary-container);
   }
 </style>
 <search>

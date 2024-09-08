@@ -15,6 +15,8 @@ HTML, CSS, JavaScriptのリファレンスとして有名なページとして
 
 今回はそのMDNのCSSのリファレンスの読み方につてまとめる.
 また, MDNの記事とその内容について自分が解釈した記事のリンクをまとめる.
+- [HTML要素リファレンス](https://developer.mozilla.org/ja/docs/Web/HTML/Element)
+などもあるが, これは今度まとめる.
 
 ## Contents
 
