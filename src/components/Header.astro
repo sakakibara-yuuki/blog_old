@@ -8,14 +8,15 @@ import { Icon } from 'astro-icon/components';
 ---
 
 <style>
-
   header {
     --header-height: 4em;
     height: var(--header-height);
     padding: 0 1em;
     box-shadow: var(--box-shadow);
 
-    position: relative;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 
     display: flex;
     justify-content: space-between;
@@ -52,6 +53,7 @@ import { Icon } from 'astro-icon/components';
 
   #hamburger-button {
     display: none;
+    cursor: pointer;
   }
 
   #hamburger-button > * {
@@ -106,7 +108,7 @@ import { Icon } from 'astro-icon/components';
     }
 
     nav {
-      position: absolute;
+      position: fixed;
       top: var(--header-height);
       right: -100%;
       height: 100vh;
@@ -128,8 +130,13 @@ import { Icon } from 'astro-icon/components';
       padding: 0;
     }
     ul li {
-      width: 100%;
       text-align: center;
+      box-sizing: border-box;
+      width: 100%;
+      border-bottom: 1px solid var(--md-sys-color-primary-container);
+    }
+    ul li:hover {
+      border-bottom: 5px solid var(--md-sys-color-primary);
     }
   }
 </style>
@@ -161,11 +168,10 @@ import { Icon } from 'astro-icon/components';
   </div>
 
   <SearchBar/>
-
-  <!--hamberger menu-->
+<!--hamberger menu-->
   <button id="hamburger-button">
-    <Icon class="icon-close" name="line-md:close" />
-    <Icon class="icon-menue" name="line-md:close-to-menu-alt-transition" />
+    <Icon class="icon-close" name="line-md:menu-to-close-transition" />
+    <Icon class="icon-menue" name="line-md:close-to-menu-transition" />
   </button>
 
   <nav>
@@ -182,7 +188,7 @@ import { Icon } from 'astro-icon/components';
 </header>
 
 <script is:inline>
-  const handleSideBar = () => {
+  const toggleSideBar = () => {
 
     const hambergerButton = document.querySelector('#hamburger-button');
     hambergerButton.classList.toggle('open');
@@ -202,6 +208,17 @@ import { Icon } from 'astro-icon/components';
     }
   }
 
-  const iconbutton = document.getElementById("hamburger-button");
-  iconbutton.addEventListener('click', handleSideBar);
+  const iconButton = document.getElementById("hamburger-button");
+  iconButton.addEventListener('click', toggleSideBar);
+
+  const handleSideBarOutSide = (event) => {
+    const isOpend = document.querySelector('#hamburger-button').classList.contains('open');
+    if (!isOpend) return;
+    if(event.target.closest('nav') === null && event.target.closest('#hamburger-button') === null) {
+      toggleSideBar();
+    }
+  }
+
+  const body = document.querySelector('body');
+  body.addEventListener('click', handleSideBarOutSide);
 </script>
