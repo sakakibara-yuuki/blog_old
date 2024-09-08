@@ -7,9 +7,9 @@ type Props = CollectionEntry<'blog'>;
 export async function getStaticPaths() {
   const posts: Array<Props> = await getCollection('blog');
 	return posts.map((post) => ({
-		params: { slug: post.slug },
-		props: post,
-	}));
+      params: { slug: post.slug },
+      props: post,
+  }));
 }
 
 const post = Astro.props;

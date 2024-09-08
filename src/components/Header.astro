@@ -188,7 +188,8 @@ import { Icon } from 'astro-icon/components';
 </header>
 
 <script is:inline>
-  const toggleSideBar = () => {
+  // Side bar toggle
+  function toggleSideBar() {
 
     const hambergerButton = document.querySelector('#hamburger-button');
     hambergerButton.classList.toggle('open');
@@ -211,7 +212,8 @@ import { Icon } from 'astro-icon/components';
   const iconButton = document.getElementById("hamburger-button");
   iconButton.addEventListener('click', toggleSideBar);
 
-  const handleSideBarOutSide = (event) => {
+  // Side bar close when click outside
+  function handleSideBarOutSide(event) {
     const isOpend = document.querySelector('#hamburger-button').classList.contains('open');
     if (!isOpend) return;
     if(event.target.closest('nav') === null && event.target.closest('#hamburger-button') === null) {
