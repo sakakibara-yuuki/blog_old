@@ -36,34 +36,16 @@ import { Icon } from 'astro-icon/components';
   <form>
     <input id="search" placeholder="search ..." />
     <Icon class="search-icon" name="mdi:search" />
-    <!--<Icon class="search-icon" name="ph:magnifying-glass">-->
   </form>
 </search>
 
 <script>
-  import { type CollectionEntry, getCollection } from 'astro:content';
-  type Props = CollectionEntry<'blog'>;
-  const posts: Array<Props> = await getCollection('blog');
-  import Fuse from 'fuse.js';
-
-  const fuseOptions = {
-    includeScore: true,
-    minMatchCharLength: 2,
-    keys: ['body', 'data.title'],
-    threshold: 0.9,
-    ignoreLocation: true,
-    useExtendedSearch: true,
-  };
-
-  const fuse = new Fuse(posts, fuseOptions);
   const searchBar = document.getElementById('search');
-
   searchBar.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
       event.preventDefault();
       const searchPattern = event.target.value;
-      const result = fuse.search(searchPattern);
-      console.log(result);
+      window.location.href = `search?q=${searchPattern}`;
     }
   });
 </script>
