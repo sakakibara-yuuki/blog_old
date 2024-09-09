@@ -4,7 +4,7 @@ author: "sakakibara"
 description: 'Lorem ipsum dolor sit amet'
 heroImage: '/database/sql.webp'
 pubDate: 2024-08-05
-tags: ["SQL", "sql"]
+tags: ["database", "sql"]
 ---
 
 # Introduction
@@ -1564,7 +1564,7 @@ INSERT INTO 家計簿集計(費目, 合計)
 そこで, 分けたテーブルを適切に結合するために**外部キー**(forigne key)が使われる.
 そして, 外部キーこそがリレーションの中心的な役割を果たす.
 
-<div style="display: flex; justify-content: space-evenly; gap: 3rem;">
+<div style="display: flex; justify-content: space-evenly; gap: 3rem; flex-wrap: wrap;">
 <div style="flex: 1 1rem;">
 <table style="border: 1px solid black;
               text-align: center;
@@ -1656,7 +1656,7 @@ $$
 
 外部キーにある値が参照先に複数存在する場合,
 結合では左の表の行を必要な分だけ複製して結合する.
-<div style="display: flex; justify-content: space-evenly; gap: 3rem;">
+<div style="display: flex; justify-content: space-evenly; gap: 3rem; flex-wrap: wrap;">
 <div style="flex: 1 1rem;">
 <table style="border: 1px solid black;
               text-align: center;
@@ -1715,7 +1715,7 @@ $$
 
 この例では, 費目IDが$1$の行が右のテーブルに2つ存在する.
 この場合, 結合では左の表の行を必要な分だけ複製する.
-<div style="display: flex; justify-content: space-evenly; gap: 3rem;">
+<div style="display: flex; justify-content: space-evenly; gap: 3rem; flex-wrap: wrap;">
 <div style="flex: 1 1rem;">
 <table style="border: 1px solid black;
               text-align: center;
@@ -1821,7 +1821,7 @@ $$
 外部キーにある値が参照先に存在しない場合,
 結合では左の表の行を取り出すが, 右の表の行が存在しないため, その行の結合を諦める.
 
-<div style="display: flex; justify-content: space-evenly; gap: 3rem;">
+<div style="display: flex; justify-content: space-evenly; gap: 3rem; flex-wrap: wrap;">
 <div style="flex: 1 1rem;">
 <table style="border: 1px solid black;
               text-align: center;
@@ -1876,7 +1876,7 @@ $$
 
 ここでは, 費目IDが$4$の行が右のテーブルに存在しない.
 のでその結合は諦める.
-<div style="display: flex; justify-content: space-evenly; gap: 3rem;">
+<div style="display: flex; justify-content: space-evenly; gap: 3rem; flex-wrap: wrap;">
 <table style="border: 1px solid black;
               text-align: center;
               border-spacing: 0;
