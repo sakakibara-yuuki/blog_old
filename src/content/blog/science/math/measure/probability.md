@@ -4,40 +4,34 @@ author: "sakakibara"
 description: 'Lorem ipsum dolor sit amet'
 heroImage: '/science/science.jpg'
 pubDate: 2024-07-23
-tags: ["astro", "math"]
+tags: ["math", "measure"]
 ---
 
 # Introduction
 ## Contents
 ## 確率空間
-<div style="padding: 0.5rem 1rem; background-color: #e8e8e8; border-radius: 13px;">
-<h5 style="color: gray">def: 確率空間</h5>
 
+:::math[確率空間]{.def}
 空でない集合$\Omega$とそのσ加法族$\mathcal{F}$, 確率測度$P$の組$(\Omega, \mathcal{F}, P)$を**確率空間**という.
-</div>
+:::
 
 ## 確率変数
 また,
-<div style="padding: 0.5rem 1rem; background-color: #e8e8e8; border-radius: 13px;">
-<h5 style="color: gray">def: 確率変数</h5>
-
+:::math[確率変数]{.def}
 確率空間$(\Omega, \mathcal{F}, P)$と可測空間$(E, \mathcal{E})$の間の$\mathcal{F}$-可測な写像を**確率変数**という.
 
 $$
 X: \Omega \to E
 $$
-</div>
+:::
 
 特に, $E=\mathbb{R}$, $\mathcal{E}=\mathcal{B}$のとき, $\mathcal{F}$-可測であるという条件$\{\omega \mid E'\in \mathcal{E},\ X(\omega)\in E'\}\in \mathcal{F}$は$\{\omega \mid \forall \lambda,\  X(\omega)\le \lambda\}\in \mathcal{F}$のように書き表される.
 
 <details>
 <summary>引き戻し</summary>
-<div style="padding: 0.5rem 0.5rem; background-color: #e8e8e8; border-radius: 13px;">
 
   <!-- 命題 -->
-  <div style="border: solid 1px black; border-radius: 13px; padding: 0.5rem;">
-    <h5 style="color: gray">lemma: 引き戻しは加法族になる </h5>
-
+  :::math[引き戻しは加法族になる]{.lemma}
   可測空間$(X, \mathcal{B}_ X)$, $(Y, \mathcal{B}_ Y)$間の写像$f: X \to Y$に対して,
   以下の集合族を **$\mathcal{B}_ Y$の$f$による引き戻し** という.
 
@@ -46,7 +40,7 @@ $$
   $$
 
   $\mathcal{B}_ Y$の$f$による引き戻しは$X$の$\sigma$-加法族となる.
-  </div>
+  :::
 
   引き戻しも逆像も同じ意味で使われるが, 集合族の値域を対象としている場合, 引き戻しということにする.
 
@@ -88,16 +82,12 @@ $$
   以上より, $f^{-1}(\mathcal{B}_ Y)$は$\sigma$-加法族である.
   Q.E.D.
   </details>
-</div>
 </details>
 
 <details>
 <summary>押出し</summary>
-<div style="padding: 0.5rem 0.5rem; background-color: #e8e8e8; border-radius: 13px;">
 
-  <div style="border: solid 1px black; border-radius: 13px; padding: 0.5rem;">
-    <h5 style="color: gray">lemma: 押出しは加法族になる </h5>
-
+  :::math[押出しは加法族になる]{.lemma}
   可測空間$(X, \mathcal{B}_ X)$, $(Y, \mathcal{B}_ Y)$間の写像$f: X \to Y$に対して,
   以下の集合族を **$\mathcal{B}_ X$の$f$による押出し** という.
   $$
@@ -106,7 +96,7 @@ $$
 
   $f(\mathcal{B}_ X) = \{f(E) \mid E \in \mathcal{B}_ X)$ではない. こっちのほうがそれっぽいけど.
   引き戻しが$\mathcal{B}_ X$に属するような$Y$の部分集合全体の集合族が押し出しである.
-  </div>
+  :::
 
   <details>
   <summary>証明</summary>
@@ -124,42 +114,31 @@ $$
   以上より, $f(\mathcal{B}_ X)$は$\sigma$-加法族である.
   Q.E.D.
   </details>
-
-</div>
 </details>
 
 <details>
 <summary>ボレル集合と確率変数</summary>
-<div style="padding: 0.5rem 0.5rem; background-color: #e8e8e8; border-radius: 13px;">
 
 <!-- 命題 -->
-  <div style="border: solid 1px black; border-radius: 13px; padding: 0.5rem;">
-  <h5 style="color: gray">lemma: 押出しは加法族になる </h5>
-
+:::math[押し出しは加法族になる]{.lemma}
   $\{\omega \mid \forall \lambda,\  X(\omega)\le \lambda\}$がボレル集合族の引き戻しであり, 任意のボレル集合を表現できることを示す.
+:::
 
-  </div>
-
-</div>
 </details>
 
 ## 期待値
 期待値とは確率変数の確率測度による積分である.
-<div style="padding: 0.5rem 1rem; background-color: #e8e8e8; border-radius: 13px;">
-<h5 style="color: gray">def: 確率空間</h5>
-
+:::math[期待値]{.def}
 確率空間$(\Omega, \mathcal{F}, P)$上の確率変数$X$が$P$-可積分であるとき,
 $$
 E[X] = \int_\Omega X(\omega)P(d\omega)
 $$
-</div>
+:::
 
 ## 条件つき期待値
 条件付き期待値は初等的な条件付き確率の期待値である.
 
-<div style="padding: 0.5rem 1rem; background-color: #e8e8e8; border-radius: 13px;">
-<h5 style="color: gray">def: 初等的な条件付確率と条件付期待値</h5>
-
+:::math[初等的な条件付確率と条件付期待値]{.def}
 確率空間$(\Omega, \mathcal{F}, P)$において, 事象$B$を条件付けた場合の事象$A$の確率は$P(A | B)$で定義される. これを$B$で条件づけた$A$の確率という.
 $$
 P(A | B) = \frac{P(A \cap B)}{P(B)}
@@ -169,7 +148,7 @@ $$
 $$
 E[X|B] = \sum_{\omega \in \Omega}X(\omega)P(X^{-1}(\omega)|B)
 $$
-</div>
+:::
 
 たとえば, サイコロを投げる例を考える.
 確率変数$X: \Omega \to \{1, 2, \ldots, 6\}$を次のように定義する.
@@ -250,9 +229,7 @@ $$
 となり, これは実質確率変数$X$と同じである. また, このようにして考えると条件付き期待値(確率変数)の$\sigma$-加法族をどのように選ぶかというのは, 事象をどのような粒度・目の粗さで見るかということに該当する.
 
 では, 一般の条件付き期待値の定義を述べる.
-<div style="padding: 0.5rem 1rem; background-color: #e8e8e8; border-radius: 13px;">
-<h5 style="color: gray">def: 条件付期待値</h5>
-
+:::math[条件付期待値]{.def}
 確率空間$(\Omega, \mathcal{F}, P)$上の確率変数$X$に対して, $\mathcal{G} \subset \mathcal{F}$を$\sigma$-加法族とする.  
 $X$の$\mathcal{G}$に関する条件付期待値$Y=E[X | \mathcal{G}]$は次のように定義される.
 
@@ -261,7 +238,7 @@ $$
 $$
 
 を充たす$\mathcal{G}$-可測な確率変数$Y$を **$\sigma$-加法族$\mathcal{G}$に関する$X$の条件付期待値** という.
-</div>
+:::
 
 たとえば, $B = A_2 \sqcup A_4 \sqcup A_6$を上の$G$として考える.
 $$
@@ -279,14 +256,12 @@ $$
 これは$Y = E[X | B]$と同じである.
 
 ## 条件つき確率
-<div style="padding: 0.5rem 1rem; background-color: #e8e8e8; border-radius: 13px;">
-<h5 style="color: gray">def: 条件付確率</h5>
-
+:::math[条件付確率]{.def}
 確率空間$(\Omega, \mathcal{F}, P)$と部分$\sigma$-加法族$\mathcal{G} \in \mathcal{F}$に対し, 以下で定義される確率変数$P(A | \mathcal{G})$が以下を充たすとき, **$P(A | \mathcal{G})$を$\mathcal{G}$に関する条件付き確率** という.
 $$
 A\in \mathcal{F},\ P(A | \mathcal{G}) = E[\bm{1}_ A | \mathcal{G}]
 $$
-</div>
+:::
 
 条件付き期待値にはいくつか重要な性質がある.
 
