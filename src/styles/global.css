@@ -140,6 +140,10 @@ blockquote {
   font-size: 1.333em;
 }
 
+.katex-display{
+  overflow: auto;
+}
+
 .note{
   padding: 0.5em 1em 0.5em 1em;
   border-left: 4px solid #1f6feb;
