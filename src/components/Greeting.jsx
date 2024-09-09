@@ -4,7 +4,7 @@
  *
  * Distributed under terms of the MIT license.
  */
-import { useState } from 'preact/hooks';
+import { useState } from 'react';
 
 
 export default function Greeting({messages}) {

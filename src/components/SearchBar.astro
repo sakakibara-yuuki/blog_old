@@ -45,7 +45,7 @@ import { Icon } from 'astro-icon/components';
     if (event.key === 'Enter') {
       event.preventDefault();
       const searchPattern = event.target.value;
-      window.location.href = `search?q=${searchPattern}`;
+      window.location.href = '/' + `blog?q=${searchPattern}`;
     }
   });
 </script>
