@@ -106,13 +106,11 @@ export default function SearchList({posts}) {
     <ul>
       {
         searchedPost.map((post) => (
-          <li>
+          <li key={post.id}>
             <a href={`/blog/${post.slug}/`}>
-            <img width={720} height={360} src={post.data.heroImage} alt="" />
-            <h4 class="title">{post.data.title}</h4>
-
-            <p class="date">
-              <div class="date">
+              <img width={720} height={360} src={post.data.heroImage} alt="" />
+              <h4 className="title">{post.data.title}</h4>
+              <div className="date">
               {
                 post.data.updatedDate && (
                   <div>
@@ -122,8 +120,6 @@ export default function SearchList({posts}) {
               }
               <FormattedDate date={post.data.pubDate} />
               </div>
-            </p>
-
             </a>
           </li>
         ))

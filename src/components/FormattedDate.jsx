@@ -8,7 +8,7 @@
 
 export default function FormattedDate({date}) {
   return (
-    <time datetime={date.toISOString()}>
+    <time dateTime={date.toISOString()}>
       {
         date.toLocaleDateString('ja-JP', {
           year: 'numeric',
