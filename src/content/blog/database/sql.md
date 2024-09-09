@@ -4,7 +4,7 @@ author: "sakakibara"
 description: 'Lorem ipsum dolor sit amet'
 heroImage: '/database/sql.webp'
 pubDate: 2024-08-05
-tags: ["SQL", "sql"]
+tags: ["database", "sql"]
 ---
 
 # Introduction
