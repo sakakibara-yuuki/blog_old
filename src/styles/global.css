@@ -28,7 +28,7 @@
 body {
   margin: 0;
   padding: 0;
-  overflow-wrap: break-word;
+  overflow-wrap: anywhere;
 
   /*font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;*/
   font-family: "Lato", "Noto Sans JP", sans-serif;
@@ -138,6 +138,84 @@ blockquote {
   padding: 0 0 0 20px;
   margin: 0px;
   font-size: 1.333em;
+}
+
+.note{
+  padding: 0.5em 1em 0.5em 1em;
+  border-left: 4px solid #1f6feb;
+}
+.note:before{
+  content: "Note";
+  font-weight: bold;
+  color: #1f6feb;
+}
+
+.tip{
+  padding: 0.5em 1em 0.5em 1em;
+  border-left: 4px solid #238636;
+}
+.tip:before{
+  content: "Tip";
+  font-weight: bold;
+  color: #238636;
+}
+
+.important{
+  padding: 0.5em 1em 0.5em 1em;
+  border-left: 4px solid #8957e5;
+}
+.important:before{
+  content: "Important";
+  font-weight: bold;
+  color: #8957e5;
+}
+
+.warning{
+  padding: 0.5em 1em 0.5em 1em;
+  border-left: 4px solid #9e6a03;
+}
+.warning:before{
+  content: "Warning";
+  font-weight: bold;
+  color: #9e6a03;
+}
+
+.caution{
+  padding: 0.5em 1em 0.5em 1em;
+  border-left: 4px solid #da3633;
+}
+.caution:before{
+  content: "Caution";
+  font-weight: bold;
+  color: #da3633;
+}
+
+.def{
+  padding: 0.5rem 1rem;
+  background-color: var(--md-sys-color-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
+  border-radius: 13px
+}
+.def p:first-child{
+  font-size: 1.2em;
+  color: var(--md-sys-color-secondary);
+}
+.def p:first-child:before{
+  content: "def: ";
+}
+
+.lemma{
+  border-radius: 13px;
+  padding: 0.5rem 1rem;
+  background-color: var(--md-sys-color-tertiary-container);
+  color: var(--md-sys-color-on-tertiary-container);
+}
+.lemma p:first-child{
+  font-size: 1.2em;
+  color: var(--md-sys-color-tertiary);
+}
+.lemma p:first-child:before{
+  content: "lemma: ";
 }
 
 .sr-only {
