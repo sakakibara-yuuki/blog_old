@@ -1,20 +1,18 @@
 ---
-title: 'some'
+title: 'ディレクティブの一覧'
 author: "sakakibara"
 description: 'Lorem ipsum dolor sit amet'
 heroImage: '/blog-placeholder-3.jpg'
 pubDate: 2024-09-09
-updatedDate: 2024-09-09
-tags: ["astro", "math"]
+updatedDate: 2024-09-10
+tags: ["directive", "astro"]
 ---
 
 # Introduction
 ## Contents
 ## Section1
 
-## How to use xxx
-
-You can use xxx.
+## ディレクティブ
 
 :::note{.note}
 if you chose xxx, you should also use yyy somewhere…

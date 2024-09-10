@@ -1,0 +1,55 @@
+/*
+ * MyComponent.jsx
+ * Copyright (C) 2024 sakakibara <sakakibara@organon>
+ *
+ * Distributed under terms of the MIT license.
+ */
+
+import {styled} from 'styled-components';
+import { Icon } from 'astro-icon/components'
+
+const Label = styled.label`
+  input[type="checkbox"] {
+  }
+  input[type="checkbox"]:checked + p{
+    color: red;
+  }
+`;
+
+function CheckBox() {
+  return (
+    <Label>
+      <Icon name="line-md:confirm-square" />
+      <input type="checkbox" />
+    </Label>
+  )
+}
+
+export function GuideLineTable({data}) {
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>チェック</th>
+          <th>優先順位</th>
+          <th>内容</th>
+          <th>理由</th>
+          <th>出典</th>
+        </tr>
+      </thead>
+      <tbody>
+        {data.map((item, index) => (
+          <tr key={index}>
+            <td>{index}</td>
+            <td><CheckBox /></td>
+            <td>{item.priority}</td>
+            <td>{item.content}</td>
+            <td>{item.reason}</td>
+            <td>{item.reference}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  )
+}
