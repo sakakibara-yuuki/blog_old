@@ -87,7 +87,7 @@ export default function SearchList({posts}) {
   const fuseOptions = {
     includeScore: true,
     minMatchCharLength: 2,
-    keys: ['body', 'data.title'],
+    keys: ['body', 'data.title', 'data.tags'],
     threshold: 0.9,
     ignoreLocation: true,
     useExtendedSearch: true,

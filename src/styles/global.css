@@ -86,7 +86,7 @@ p {
 table {
   display: block;
   overflow: auto;
-  max-width: max-content;
+  /*max-width: max-content;*/
   margin-bottom: 2rem;
   padding: 1rem;
   box-shadow: var(--box-shadow);
@@ -95,10 +95,12 @@ table {
 
 th {
   min-width: max-content;
+  word-break: keep-all;
   border-bottom: 2px solid var(--md-sys-color-primary);
 }
 
 td {
+  word-break: keep-all;
   min-width: max-content;
   border-bottom: 1px solid var(--md-sys-color-outline);
 }

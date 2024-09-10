@@ -1,0 +1,116 @@
+---
+import { Icon } from 'astro-icon/components'
+const { data } = Astro.props
+
+const priorityStyle = {
+"A": {
+border: '2px solid rgb(186 26 26)',
+color: 'var(255 255 255)'},
+"B": {
+border: '2px solid rgb(186 26 26 / 60%)',
+color: 'var(255 255 255)'},
+"C": {
+border: '2px solid rgb(186 26 26 / 20%)',
+color: 'var(255 255 255)'},
+}
+
+const levelStyle = {
+"A": {
+border: '2px solid rgb(65 95 145)',
+color: 'var(255 255 255)'},
+"B": {
+border: '2px solid rgb(65 95 145 / 60%)',
+color: 'var(255 255 255)'},
+"C": {
+border: '2px solid rgb(65 95 145 / 20%)',
+color: 'var(255 255 255)'},
+}
+---
+
+<style>
+  .td-id{
+    text-align: left;
+  }
+  .td-rank,
+  .td-checkbox {
+    text-align: center;
+  }
+  /*.td-checkbox {*/
+  /*  display: block;*/
+  /*}*/
+  .tr-checkable {
+    position: relative;
+  }
+  label {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+
+    input[type="checkbox"] {
+      appearance: none;
+      grid-column: 1 / -1;
+      grid-row: 1;
+    }
+
+    .check {
+      grid-column: 1 / -1;
+      grid-row: 1;
+      opacity: 0;
+      width: 100%;
+    }
+
+    .check--no {
+      grid-column: 1 / -1;
+      grid-row: 1;
+      opacity: 1;
+      width: 100%;
+    }
+
+    input[type="checkbox"]:checked ~ .check {
+      opacity: 1;
+    }
+
+    input[type="checkbox"]:checked ~ .check--no {
+      opacity: 0;
+    }
+
+    input[type="checkbox"]:checked::after {
+      content: "";
+      position: absolute;
+      top: 45%;
+      width: 100%;
+      border: 1px solid var(--md-sys-color-outline);
+    }
+
+  }
+</style>
+
+<table>
+  <thead>
+    <tr>
+      <th>チェック</th>
+      <th>優先順位</th>
+      <th>level</th>
+      <th>内容</th>
+      <th>理由</th>
+      <th>出典</th>
+    </tr>
+  </thead>
+  <tbody>
+    {data.map((item) => (
+      <tr class="tr-checkable">
+        <td class="td-checkbox">
+          <label>
+            <input type="checkbox" />
+            <Icon class="check" name="line-md:confirm-square" />
+            <Icon class="check--no"name="line-md:confirm-square-to-square-transition" />
+          </label>
+        </td>
+        <td class="td-rank" style={priorityStyle[item.priority]}>{item.priority}</td>
+        <td class="td-rank" style={levelStyle[item.level]}>{item.level}</td>
+        <td>{item.content}</td>
+        <td>{item.reason}</td>
+        <td>{item.reference}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>
