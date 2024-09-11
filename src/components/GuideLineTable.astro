@@ -28,22 +28,51 @@ color: 'var(255 255 255)'},
 ---
 
 <style>
-  .td-id{
-    text-align: left;
+
+  table {
+    position: sticky;
   }
-  .td-rank,
-  .td-checkbox {
+  th[data-id] > div {
+    display: grid;
+    grid-template-areas:
+      "label asc"
+      "label desc";
+    justify-content: center;
+    align-items: center;
+    column-gap: 0.25em;
+    font-size: 0.8em;
+  }
+  th[data-id] label {
+    grid-area: label;
+  }
+  th[data-id="check"] label,
+  th[data-id="priority"] label,
+  th[data-id="level"] label {
+    cursor: pointer;
+  }
+  th[data-id="check"] span,
+  th[data-id="priority"] span,
+  th[data-id="level"] span {
+    cursor: pointer;
+  }
+  th[data-id] span[data-sort="asc"] {
+    grid-area: asc;
+    font-size: 0.5em;
+  }
+  th[data-id] span[data-sort="desc"] {
+    grid-area: desc;
+    font-size: 0.5em;
+  }
+
+  .checkable-row {
+    position: relative;
     text-align: center;
   }
-  /*.td-checkbox {*/
-  /*  display: block;*/
-  /*}*/
-  .tr-checkable {
-    position: relative;
-  }
-  label {
+  .checkable-row label {
     display: grid;
     grid-template-columns: repeat(3, auto);
+  }
+  .checkable-row {
 
     input[type="checkbox"] {
       appearance: none;
@@ -87,30 +116,137 @@ color: 'var(255 255 255)'},
 <table>
   <thead>
     <tr>
-      <th>チェック</th>
-      <th>優先順位</th>
-      <th>level</th>
-      <th>内容</th>
-      <th>理由</th>
-      <th>出典</th>
+      <th class="desc" data-id="check">
+        <div>
+          <label>チェック</label>
+          <span data-sort="asc">▲</span>
+          <span data-sort="desc">▼</span>
+        </div>
+      </th>
+      <th class="desc" data-id="priority">
+        <div>
+          <label>優先順位</label>
+          <span data-sort="asc">▲</span>
+          <span data-sort="desc">▼</span>
+        </div>
+      </th>
+      <th class="desc" data-id="level">
+        <div>
+          <label>level</label>
+          <span data-sort="asc">▲</span>
+          <span data-sort="desc">▼</span>
+        </div>
+      </th>
+      <th class="desc" data-id="content">
+        <div>
+          <label>内容</label>
+          <span></span>
+          <span></span>
+        </div>
+      </th>
+      <th class="desc" data-id="reason">
+        <div>
+          <label>理由</label>
+          <span></span>
+          <span></span>
+        </div>
+      </th>
+      <th class="desc" data-id="reference">
+        <div>
+          <label>出典</label>
+          <span></span>
+          <span></span>
+        </div>
+      </th>
     </tr>
   </thead>
   <tbody>
-    {data.map((item) => (
-      <tr class="tr-checkable">
-        <td class="td-checkbox">
+    {data.map((item, index) => (
+      <tr id=`row-${index}` class="checkable-row">
+        <td data-id="check">
           <label>
             <input type="checkbox" />
             <Icon class="check" name="line-md:confirm-square" />
             <Icon class="check--no"name="line-md:confirm-square-to-square-transition" />
           </label>
         </td>
-        <td class="td-rank" style={priorityStyle[item.priority]}>{item.priority}</td>
-        <td class="td-rank" style={levelStyle[item.level]}>{item.level}</td>
-        <td>{item.content}</td>
-        <td>{item.reason}</td>
-        <td>{item.reference}</td>
+        <td class="td-rank" data-id="priority" style={priorityStyle[item.priority]}>{item.priority}</td>
+        <td class="td-rank" data-id="level" style={levelStyle[item.level]}>{item.level}</td>
+        <td data-id="content">{item.content}</td>
+        <td data-id="reason">{item.reason}</td>
+        <td data-id="reference">{item.reference}</td>
       </tr>
     ))}
   </tbody>
 </table>
+
+<script>
+  function resetTableHeadColor(ths, th) {
+    for (const _th of ths) {
+      if (_th === th) {
+        continue;
+      }
+      _th.classList.remove('asc');
+      _th.classList.remove('desc');
+      if (_th.querySelector('span[data-sort="desc"]')) {
+        _th.querySelector('span[data-sort="desc"]').style.color = 'revert';
+      }
+      if (_th.querySelector('span[data-sort="asc"]')) {
+        _th.querySelector('span[data-sort="asc"]').style.color = 'revert';
+      }
+    }
+  }
+
+  function toggleSortStyle(th) {
+    if (th.classList.contains('asc')) {
+      th.classList.remove('asc');
+      th.querySelector('span[data-sort="asc"]').style.color = 'revert';
+      th.classList.add('desc');
+      th.querySelector('span[data-sort="desc"]').style.color = 'var(--md-sys-color-tertiary)';
+    } else {
+      th.classList.remove('desc');
+      th.querySelector('span[data-sort="desc"]').style.color = 'revert';
+      th.classList.add('asc');
+      th.querySelector('span[data-sort="asc"]').style.color = 'var(--md-sys-color-tertiary)';
+    }
+  }
+
+  function renderRows(id, isAsc) {
+
+    function sortRows(a_tr, b_tr) {
+      const aContent = a_tr.querySelector(`td[data-id="${id}"]`).textContent;
+      const bContent = b_tr.querySelector(`td[data-id="${id}"]`).textContent;
+      if (isAsc){
+        if (aContent < bContent) return -1;
+        if (aContent > bContent) return 1;
+        return 0;
+      }else{
+        if (aContent < bContent) return 1;
+        if (aContent > bContent) return -1;
+        return 0;
+      }
+    }
+
+    return sortRows;
+  }
+
+  const ths = document.querySelectorAll('th[data-id]');
+  const rows = Array.from(document.querySelectorAll('.checkable-row'));
+  const tbody = document.querySelector('tbody');
+
+  ths.forEach((th) => {
+    th.addEventListener('click', () => {
+
+      resetTableHeadColor(ths, th);
+      toggleSortStyle(th);
+
+      const id = th.dataset.id;
+      const isAsc = th.classList.contains('asc');
+      const sortRows = renderRows(id, isAsc);
+      const sortedRows = rows.sort(sortRows);
+      for (const row of sortedRows) {
+        tbody.appendChild(row);
+      }
+    });
+  });
+</script>
