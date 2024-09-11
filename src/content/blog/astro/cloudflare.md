@@ -4,7 +4,7 @@ author: "sakakibara"
 description: "上手くいかないことがありましたが、コミュニティに質問して助けてもらいました！"
 heroImage: "https://docs.astro.build/assets/rays.webp"
 pubDate: 2024-03-05
-tags: ["astro", "公開学習", "後退", "コミュニティ"]
+tags: ["astro", "cloudflare", "画像", "CMS"]
 ---
 
 # 個人サイトが遅い？

@@ -4,7 +4,7 @@ author: "sakakibara"
 description: "デザインパターン"
 heroImage: '/blog-placeholder-3.jpg'
 pubDate: 2024-03-04
-tags: ["デザインパターン", "公開学習", "ポエム"]
+tags: ["software", "デザインパターン", "ポエム"]
 ---
 
 # デザインパターン

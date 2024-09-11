@@ -4,7 +4,7 @@ author: "sakakibara"
 description: ""
 pubDate: 2024-03-08
 heroImage: "/virtualize/qemu.webp"
-tags: ["astro", "公開学習", "後退", "コミュニティ"]
+tags: ["仮想化", "qemu", "kvm", "arch linux", "linux"]
 ---
 
 ## 仮想化

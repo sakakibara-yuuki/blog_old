@@ -4,7 +4,7 @@ author: "sakakibara"
 description: "上手くいかないことがありましたが、コミュニティに質問して助けてもらいました！"
 heroImage: "/science/science.jpg"
 pubDate: 2024-03-24
-tags: ["有限要素法"]
+tags: ["math", "fem", "gmsh", "有限要素法"]
 ---
 
 ## gmsh

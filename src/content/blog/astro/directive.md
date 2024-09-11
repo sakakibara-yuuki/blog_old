@@ -5,7 +5,7 @@ description: 'Lorem ipsum dolor sit amet'
 heroImage: '/blog-placeholder-3.jpg'
 pubDate: 2024-09-09
 updatedDate: 2024-09-10
-tags: ["directive", "astro"]
+tags: ["astro"]
 ---
 
 # Introduction

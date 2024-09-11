@@ -4,7 +4,7 @@ author: "sakakibara"
 description: "Arch linux小説です。"
 heroImage: "https://cdn.icon-icons.com/icons2/2699/PNG/512/archlinux_logo_icon_167835.png"
 pubDate: 2024-03-04
-tags: ["astro", "公開学習", "コミュニティ"]
+tags: ["linux", "arch linux"]
 ---
 
 # 手術中

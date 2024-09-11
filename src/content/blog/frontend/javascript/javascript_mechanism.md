@@ -4,7 +4,7 @@ author: "sakakibara"
 description: 'Lorem ipsum dolor sit amet'
 heroImage: '/blog-placeholder-3.jpg'
 pubDate: 2024-07-01
-tags: ["astro", "math"]
+tags: ["javascript", "基礎", "基本"]
 ---
 
 # Introduction

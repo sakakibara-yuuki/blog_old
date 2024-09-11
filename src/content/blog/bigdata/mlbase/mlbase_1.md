@@ -1,10 +1,10 @@
 ---
 title: "機械学習基盤 #1"
 author: "sakakibara"
-description: "上手くいかないことがありましたが、コミュニティに質問して助けてもらいました！"
+description: "機械学習"
 heroImage: '/bigdata/mlbase/mlbase_1.png'
 pubDate: 2024-05-28
-tags: ["astro", "公開学習", "後退", "コミュニティ"]
+tags: ["機械学習", "機械学習基盤"]
 ---
 
 ## レイヤ

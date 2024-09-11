@@ -4,7 +4,7 @@ author: "sakakibara"
 description: "上手くいかないことがありましたが、コミュニティに質問して助けてもらいました！"
 heroImage: "/science/science.jpg"
 pubDate: 2024-05-15
-tags: ["astro", "公開学習", "後退", "コミュニティ"]
+tags: ["機械学習", "強化学習", "torchrl", "python"]
 ---
 
 

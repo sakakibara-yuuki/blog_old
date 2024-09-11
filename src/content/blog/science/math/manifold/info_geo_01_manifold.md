@@ -4,7 +4,7 @@ author: "sakakibara"
 description: "情報幾何学"
 heroImage: "/science/math/manifold/manifold2.jpg"
 pubDate: 2024-03-19
-tags: ["情報幾何学", "多様体", "統計"]
+tags: ["math", "manifold", "情報幾何学", "多様体", "統計"]
 ---
 
 

@@ -4,7 +4,7 @@ author: "sakakibara"
 description: "mfemによる有限要素法"
 heroImage: "/science/science.jpg"
 pubDate: 2024-04-27
-tags: ["astro", "公開学習", "後退", "コミュニティ"]
+tags: ["math", "fem", "mfem"]
 ---
 
 # mfem

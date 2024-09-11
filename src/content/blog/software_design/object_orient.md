@@ -4,7 +4,7 @@ author: "sakakibara"
 description: "オブジェクト指向について"
 heroImage: '/blog-placeholder-3.jpg'
 pubDate: 2024-03-04
-tags: ["オブジェクト指向"]
+tags: ["software", "オブジェクト指向"]
 ---
 
 ## ソフトウェア vs プログラマ

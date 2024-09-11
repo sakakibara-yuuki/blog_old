@@ -4,7 +4,7 @@ author: "sakakibara"
 description: "上手くいかないことがありましたが、コミュニティに質問して助けてもらいました！"
 heroImage: '/linux/elf.png'
 pubDate: 2024-05-31
-tags: ["astro", "公開学習", "後退", "コミュニティ"]
+tags: ["programming", "C", "Java", "Python"]
 ---
 
 ## C & Java & Python

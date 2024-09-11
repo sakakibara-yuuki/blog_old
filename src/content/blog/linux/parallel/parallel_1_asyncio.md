@@ -4,7 +4,7 @@ author: "sakakibara"
 description: "上手くいかないことがありましたが、コミュニティに質問して助けてもらいました！"
 heroImage: '/linux/parallel/parallel_1_asyncio.png'
 pubDate: 2024-05-30
-tags: ["astro", "公開学習", "後退", "コミュニティ"]
+tags: ["linux", "parallel", "並行処理", "asyncio"]
 ---
 
 ## 非同期処理と並行処理

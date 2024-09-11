@@ -4,7 +4,7 @@ author: "sakakibara"
 description: 'Lorem ipsum dolor sit amet'
 heroImage: '/science/science.jpg'
 pubDate: 2024-07-23
-tags: ["astro", "math"]
+tags: ["math", "probability", "stochastic process", "確率過程"]
 ---
 
 # Introduction

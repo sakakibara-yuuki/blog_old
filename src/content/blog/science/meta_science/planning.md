@@ -4,7 +4,7 @@ author: "sakakibara"
 description: 'Lorem ipsum dolor sit amet'
 heroImage: '/blog-placeholder-2.jpg'
 pubDate: 2028-08-22
-tags: ["astro", "math"]
+tags: ["プロジェクト"]
 ---
 
 # 計画を立てろ！

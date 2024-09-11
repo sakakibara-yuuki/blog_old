@@ -4,7 +4,7 @@ author: "sakakibara"
 description: "上手くいかないことがありましたが、コミュニティに質問して助けてもらいました！"
 heroImage: '/web/web/developper_tool.png'
 pubDate: 2024-06-16
-tags: ["astro", "公開学習", "後退", "コミュニティ"]
+tags: ["web", "developper tool"]
 ---
 
 ## Chrome DevTools

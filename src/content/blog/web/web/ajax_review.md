@@ -4,7 +4,7 @@ author: "sakakibara"
 description: 'Lorem ipsum dolor sit amet'
 heroImage: '/web/web/ajax_review.png'
 pubDate: 2024-07-01
-tags: ["astro", "math"]
+tags: ["web", "ajax"]
 ---
 
 # Introduction
