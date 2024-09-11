@@ -4,7 +4,7 @@ author: "sakakibara"
 description: "強化学習"
 heroImage: "/science/science.jpg"
 pubDate: 2024-05-09
-tags: ["強化学習", "torchrl"]
+tags: ["math", "深層学習", "機械学習", "強化学習", "torchrl"]
 ---
 
 ## 問題設定

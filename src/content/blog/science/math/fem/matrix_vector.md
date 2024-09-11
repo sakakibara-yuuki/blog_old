@@ -4,7 +4,7 @@ author: "sakakibara"
 description: "ベクトル解析で用いられることの多いこれらの概念は実は行列を用いて表現することができます。"
 heroImage: "/science/science.jpg"
 pubDate: 2024-03-18
-tags: ["有限要素法", "行列表現", "ベクトル解析"]
+tags: ["math", "fem", "有限要素法", "行列表現", "ベクトル解析"]
 ---
 
 # 勾配・発散・回転

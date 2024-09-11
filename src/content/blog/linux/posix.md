@@ -4,7 +4,7 @@ author: "sakakibara"
 description: "POSIX中心主義"
 heroImage: '/blog-placeholder-3.jpg'
 pubDate: 2024-03-06
-tags: ["astro", "公開学習", "後退", "コミュニティ"]
+tags: ["posix", "linux"]
 ---
 
 

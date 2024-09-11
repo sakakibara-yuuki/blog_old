@@ -4,7 +4,7 @@ author: "sakakibara"
 description: 'Lorem ipsum dolor sit amet'
 heroImage: '/web/html/html_tag.png'
 pubDate: 2024-07-14
-tags: ["astro", "math"]
+tags: ["html", "基本", "基礎"]
 ---
 
 # HTMLのタグ

@@ -4,7 +4,7 @@ author: "sakakibara"
 description: "ステートフル・ステートレス・リクエスト・レスポンス・クッキー・プロトコル・ポート番号"
 heroImage: '/web/web/web-basic.png'
 pubDate: 2024-03-04
-tags: ["web", "ステートフル", "ステートレス", "リクエスト", "レスポンス", "クッキー", "プロトコル", "ポート"]
+tags: ["web", "基本", "基礎"]
 ---
 
 

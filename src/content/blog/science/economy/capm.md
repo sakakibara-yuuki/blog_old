@@ -4,7 +4,7 @@ author: "sakakibara"
 description: "投資の最適化"
 heroImage: "/science/science.jpg"
 pubDate: 2024-03-05
-tags: ["capm", "経済"]
+tags: ["economy", "capm", "経済"]
 ---
 
 # 投資

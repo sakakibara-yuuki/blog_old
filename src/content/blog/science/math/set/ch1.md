@@ -4,7 +4,7 @@ author: "sakakibara"
 description: "集合"
 heroImage: '/science/math/set/ch1.png'
 pubDate: 2024-03-19
-tags: ["集合"]
+tags: ["math", "集合"]
 ---
 
 # 集合

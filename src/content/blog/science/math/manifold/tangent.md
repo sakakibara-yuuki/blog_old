@@ -4,7 +4,7 @@ author: "sakakibara"
 description: 'Lorem ipsum dolor sit amet'
 heroImage: "/science/math/manifold/manifold2.jpg"
 pubDate: 2024-07-25
-tags: ["astro", "math"]
+tags: ["math", "manifold"]
 ---
 
 # Introduction

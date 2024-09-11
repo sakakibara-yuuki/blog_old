@@ -4,7 +4,7 @@ author: "sakakibara"
 description: "うまくいかないことなんてねぇ"
 heroImage: "/science/science.jpg"
 pubDate: 2024-03-18
-tags: ["有限要素法", "電磁場解析", "数値解析"]
+tags: ["math", "fem", "有限要素法", "電磁場解析", "数値解析"]
 ---
 
 

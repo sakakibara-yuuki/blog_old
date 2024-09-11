@@ -4,7 +4,7 @@ author: "sakakibara"
 description: "vimの使い方"
 pubDate: 2024-03-04
 heroImage: '/vim/vim-basic-register.webp'
-tags: ["vim", "公開学習"]
+tags: ["vim"]
 ---
 
 ## Contents

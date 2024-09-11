@@ -4,7 +4,7 @@ author: "sakakibara"
 description: "ここはファイルシステムの森"
 heroImage: "/linux/file_system.webp"
 pubDate: 2024-03-05
-tags: ["ファイルシステム", "etx4", "btrfs", "linux"]
+tags: ["ファイルシステム", "linux"]
 ---
 
 

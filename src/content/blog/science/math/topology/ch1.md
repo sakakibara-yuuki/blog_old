@@ -4,12 +4,12 @@ author: "sakakibara"
 description: "位相空間"
 heroImage: "/science/math/topology/ch1.png"
 pubDate: 2024-03-19
-tags: ["位相空間", "トポロジー"]
+tags: ["math", "topology"]
 ---
 
 ## 位相
-<div style="padding: 0.5rem 1rem; background-color: #e8e8e8; border-radius: 13px;">
-<h5 style="color: gray">def: 位相空間</h5>
+
+:::math[位相]{.def}
 
  空でない集合$X$について、$X$の部分集合の族$\mathcal{O}$が以下を充たすとき、$\mathcal{O}$を**位相**という。
  $$
@@ -20,7 +20,7 @@ tags: ["位相空間", "トポロジー"]
  \end{aligned}
  $$
  位相$\mathcal{O}$が備わった空でない集合$X$を, 集合と位相の組$(X, \mathcal{O})$で表し**位相空間**とよぶ。$\mathcal{O}$の元$O$を **$\mathcal{O}$-開集合**と呼ぶ。
-</div>
+:::
 
 初見で見ると何の役に立つのかわからず、定義も意味不明だし、具体例もわからず面喰らうだろう。
 だが、よくこの定義を見てみるととても素朴なことを要請していることに気づく。
@@ -41,8 +41,7 @@ tags: ["位相空間", "トポロジー"]
 ユークリッド空間とは実ベクトル空間に内積($2$-normのユークリッド距離)が導入された空間である.
 
 ### 自然な位相
-<div style="padding: 0.5rem 1rem; background-color: #e8e8e8; border-radius: 13px;">
-<h5 style="color: gray">def: 開集合</h5>
+:::math[開集合]{.def}
 
 $(X, d)$を距離空間とする. 以下の性質を充たす部分集合$U\subset X$を **$(X, d)$の開集合**と呼ぶ.
 $$
@@ -53,7 +52,7 @@ $$
 B_\epsilon(x) = \{y\in X | d(x, y) < \epsilon\}
 $$
 また, $B_\epsilon(x)$を**開球**もしくは **点$x$の$\epsilon$-近傍**と呼ぶ.
-</div>
+:::
 
 つまり, $(X, d)$の開集合とはユークリッド空間上で開集合を持つ部分集合のことである.
 $2$次元空間では適当な円をかいたとき, 境界を除く内部が開集合となる.
@@ -61,9 +60,7 @@ $2$次元空間では適当な円をかいたとき, 境界を除く内部が開
   <svg style="width: 200px; hight: 200px" viewBox="30 30 40 40" xmlns="http://www.w3.org/2000/svg"><path d="M56,58.5Q40,67,37,45Q34,23,53,36.5Q72,50,56,58.5Z" stroke="none" stroke-width="0" fill="#4F46E5"/></svg>
 </div>
 
-<div style="padding: 0.5rem 1rem; background-color: #e8e8e8; border-radius: 13px;">
-<h5 style="color: gray">def: 閉集合</h5>
-
+:::math[閉集合]{.def}
 $(X, d)$を距離空間とする. 以下の性質を充たす部分集合$F\subset X$を **$(X, d)$の閉集合**と呼ぶ.
 $$
 F=\bar{F}
@@ -73,7 +70,7 @@ $$
 \bar{F} = \{y\in X | B_\epsilon(y)\cap F \neq \emptyset\}
 $$
 また, $B_\epsilon(x)$を**閉球**と呼ぶ.
-</div>
+:::
 
 閉球は開球を含む. つまり, $U\subset \bar{F}$, 左が開集合, 右(黒い部分と青い部分も含む)が閉集合である.
 <div style="display: flex; justify-content: center;">
@@ -81,13 +78,13 @@ $$
 </div>
 
 集合$F$が閉集合であるための条件は, 上のような定義を以外にもシンプルなものがある.
-<div style="padding: 0.5rem 1rem; background-color: #e8e8e8; border-radius: 13px;">
-<h5 style="color: gray">def: 閉集合 2</h5>
+
+:::math[閉集合]{.def}
 
 $(X, d)$を距離空間とする. 以下の性質を充たす部分集合$F\subset X$を **$(X, d)$の閉集合**と呼ぶ.
 
 $F^c= X \setminus F$が開集合になる.
-</div>
+:::
 
 閉集合$F$は任意の$x \in F^c$に対して, $B_\epsilon(x) \cap F = \emptyset$が成り立つ. つまり$B_\epsilon(x)\subset F^c$が成り立つ.
 

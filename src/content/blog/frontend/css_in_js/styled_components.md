@@ -5,7 +5,7 @@ description: "Lorem ipsum dolor sit amet"
 heroImage: "/blog-placeholder-3.jpg"
 pubDate: 2024-08-31
 updatedDate: 2024-08-31
-tags: ["astro", "math"]
+tags: ["web", "react", "styled-components"]
 ---
 
 # Introduction

@@ -4,7 +4,7 @@ author: "sakakibara"
 description: 'Lorem ipsum dolor sit amet'
 heroImage: '/web/html/html_reference.webp'
 pubDate: 2024-07-18
-tags: ["astro", "math"]
+tags: ["参考", "css", "design"]
 ---
 
 # Introduction

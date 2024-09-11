@@ -4,7 +4,7 @@ author: "sakakibara"
 description: "fenics is fuxx"
 heroImage: "/science/science.jpg"
 pubDate: 2024-03-24
-tags: ["有限要素法", "fenics", "dolfinx"]
+tags: ["fem", "math", "有限要素法", "fenics", "dolfinx"]
 ---
 
 

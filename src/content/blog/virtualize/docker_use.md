@@ -4,7 +4,7 @@ author: "sakakibara"
 description: "dockerの使い方"
 pubDate: 2024-06-25
 heroImage: "/virtualize/docker_use.webp"
-tags: ["仮想化", "docker"]
+tags: ["仮想化", "docker", "container"]
 ---
 
 dockerが何か、については死ぬほど記事があるのでそれはそちらに譲るとする。
