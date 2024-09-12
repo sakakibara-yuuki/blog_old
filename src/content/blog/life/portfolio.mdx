@@ -8,7 +8,8 @@ updatedDate: 2024-09-10
 tags: ["portfolio", "guideline"]
 ---
 
-import GuideLineTable from '../../../components/GuideLineTable.astro';
+import GuideLineTable from '/src/components/GuideLineTable.astro';
+import data from '/public/life/portfolioGuideline.json';
 
 # Introduction
 ## Contents
@@ -23,29 +24,4 @@ import GuideLineTable from '../../../components/GuideLineTable.astro';
 
 見た目がきれいな方がいい.
 
-<GuideLineTable data={[
-{
-  id: '1',
-  priority: 'A',
-  level: 'C',
-  content: '見た目をきれいにする',
-  reason: '人は見た目が9割',
-  reference: null,
-},
-{
-  id: '2',
-  priority: 'B',
-  level: 'A',
-  content: '早く寝る',
-  reason: 'やっぱり睡眠が最高',
-  reference: null,
-},
-{
-  id: '3',
-  priority: 'C',
-  level: 'B',
-  content: '水を飲む',
-  reason: '代謝が良くなる',
-  reference: null,
-},
-]}/>
+<GuideLineTable data={data}/>

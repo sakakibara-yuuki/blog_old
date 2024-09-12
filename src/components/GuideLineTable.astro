@@ -213,7 +213,17 @@ color: 'var(255 255 255)'},
 
   function renderRows(id, isAsc) {
 
-    function sortRows(a_tr, b_tr) {
+    function sortCheck(a_tr, b_tr) {
+      const aChecked = a_tr.querySelector(`td[data-id="${id}"] input`).checked;
+      const bChecked = b_tr.querySelector(`td[data-id="${id}"] input`).checked;
+      if (aChecked == true && bChecked == true) return 0;
+      if (aChecked == true && bChecked == false) return 1;
+      if (aChecked == false && bChecked == true) return 1;
+      if (aChecked == false && bChecked == false) return 0;
+    }
+
+    // check sort
+    function sortRank(a_tr, b_tr) {
       const aContent = a_tr.querySelector(`td[data-id="${id}"]`).textContent;
       const bContent = b_tr.querySelector(`td[data-id="${id}"]`).textContent;
       if (isAsc){
@@ -227,7 +237,10 @@ color: 'var(255 255 255)'},
       }
     }
 
-    return sortRows;
+    if ( id === 'priority' || id === 'level' ) {
+      return sortRank;
+    }
+    return sortCheck;
   }
 
   const ths = document.querySelectorAll('th[data-id]');
@@ -243,7 +256,11 @@ color: 'var(255 255 255)'},
       const id = th.dataset.id;
       const isAsc = th.classList.contains('asc');
       const sortRows = renderRows(id, isAsc);
+
+      console.log(rows);
       const sortedRows = rows.sort(sortRows);
+      console.log(sortedRows);
+
       for (const row of sortedRows) {
         tbody.appendChild(row);
       }
