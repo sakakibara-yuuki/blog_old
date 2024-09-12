@@ -11,7 +11,7 @@ import { Icon } from 'astro-icon/components';
   header {
     --header-height: 4em;
     height: var(--header-height);
-    padding: 0 1em;
+    padding: 0 0.5em;
     box-shadow: var(--box-shadow);
 
     position: sticky;
@@ -21,7 +21,7 @@ import { Icon } from 'astro-icon/components';
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 1em;
+    gap: 0.5em;
 
     background: var(--md-sys-color-surface-container-low);
   }
@@ -37,17 +37,18 @@ import { Icon } from 'astro-icon/components';
 
   .blog-title__block {
     display: grid;
-    grid-template-columns: repeat(4, 0.2em);
-    grid-template-rows: repeat(4, 0.2em);
+    grid-template-columns: repeat(4, var(--s-8));
+    grid-template-rows: repeat(4, var(--s-8));
     border: 1px solid var(--md-sys-color-outline);
-    padding: 0.1em;
     justify-content: center;
     text-align: center;
     vertical-align: middle;
+    font-size: var(--s-2);
+    padding: 0.125em;
   }
 
   .blog-title__block div {
-    font-size: 0.2em;
+    font-size: var(--s-8);
     font-weight: 400;
   }
 
@@ -71,7 +72,7 @@ import { Icon } from 'astro-icon/components';
     margin: 0;
 
     li {
-      padding: 0 0.6em 0 0.6em;
+      padding: 0 0.5em 0 0.5em;
     }
 
     a {
@@ -97,7 +98,7 @@ import { Icon } from 'astro-icon/components';
       background: none;
       border: none;
       color: var(--md-sys-color-on-surface);
-      font-size: 2em;
+      font-size: var(--s2);
     }
 
     .icon-menue {
