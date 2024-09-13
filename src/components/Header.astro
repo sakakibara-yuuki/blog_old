@@ -11,7 +11,7 @@ import { Icon } from 'astro-icon/components';
   header {
     --header-height: 4em;
     height: var(--header-height);
-    padding: 0 0.5em;
+    padding: 0 1em;
     box-shadow: var(--box-shadow);
 
     position: sticky;
@@ -21,14 +21,9 @@ import { Icon } from 'astro-icon/components';
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 0.5em;
+    gap: 1em;
 
     background: var(--md-sys-color-surface-container-low);
-  }
-
-  .blog-title  h2 {
-    margin: 0;
-    padding: 0;
   }
 
   .blog-title a {
@@ -37,19 +32,18 @@ import { Icon } from 'astro-icon/components';
 
   .blog-title__block {
     display: grid;
-    grid-template-columns: repeat(4, var(--s-8));
-    grid-template-rows: repeat(4, var(--s-8));
-    border: 1px solid var(--md-sys-color-outline);
+    grid-template-columns: repeat(4, var(--s-4));
+    grid-template-rows: repeat(4, var(--s-4));
+    border: 2px solid var(--md-sys-color-outline);
     justify-content: center;
+    align-items: center;
     text-align: center;
-    vertical-align: middle;
-    font-size: var(--s-2);
     padding: 0.125em;
   }
 
   .blog-title__block div {
-    font-size: var(--s-8);
-    font-weight: 400;
+    font-size: var(--s-4);
+    font-weight: 800;
   }
 
   #hamburger-button {
@@ -144,28 +138,26 @@ import { Icon } from 'astro-icon/components';
 
 <header>
   <div class="blog-title">
-    <h2>
-      <a href="/">
-        <div class="blog-title__block">
-          <div>S</div>
-          <div>A</div>
-          <div>K</div>
-          <div>A</div>
-          <div>K</div>
-          <div>I</div>
-          <div>B</div>
-          <div>A</div>
-          <div>R</div>
-          <div>A</div>
-          <div>S</div>
-          <div> </div>
-          <div>B</div>
-          <div>L</div>
-          <div>O</div>
-          <div>G</div>
-        </div>
-      </a>
-    </h2>
+    <a href="/">
+      <div class="blog-title__block">
+        <div>S</div>
+        <div>A</div>
+        <div>K</div>
+        <div>A</div>
+        <div>K</div>
+        <div>I</div>
+        <div>B</div>
+        <div>A</div>
+        <div>R</div>
+        <div>A</div>
+        <div>S</div>
+        <div> </div>
+        <div>B</div>
+        <div>L</div>
+        <div>O</div>
+        <div>G</div>
+      </div>
+    </a>
   </div>
 
   <SearchBar/>

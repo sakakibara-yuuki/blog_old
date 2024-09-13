@@ -4,12 +4,16 @@
  *
  * Distributed under terms of the MIT license.
  */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 
 export default function Greeting({messages}) {
-  const randomMessage = () => messages[(Math.floor(Math.random() * messages.length))];
-  const [greeting, setGreeting] = useState(randomMessage());
+  const [greeting, setGreeting] = useState();
+
+  useEffect(() => {
+    const randomMessage = () => messages[(Math.floor(Math.random() * messages.length))];
+    setGreeting(randomMessage());
+  }, [messages]);
 
   return (
     <div>
