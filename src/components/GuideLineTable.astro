@@ -64,6 +64,17 @@ color: 'var(255 255 255)'},
     font-size: 0.5em;
   }
 
+  td[data-id]{
+    font-size: var(--s-1);
+  }
+  td[data-id="content"],
+  td[data-id="reason"],
+  td[data-id="reference"] {
+    text-align: left;
+    word-break: break-all;
+    min-width: 35em;
+  }
+
   .checkable-row {
     position: relative;
     text-align: center;
@@ -118,21 +129,21 @@ color: 'var(255 255 255)'},
     <tr>
       <th class="desc" data-id="check">
         <div>
-          <label>チェック</label>
+          <label>済</label>
           <span data-sort="asc">▲</span>
           <span data-sort="desc">▼</span>
         </div>
       </th>
       <th class="desc" data-id="priority">
         <div>
-          <label>優先順位</label>
+          <label>優先</label>
           <span data-sort="asc">▲</span>
           <span data-sort="desc">▼</span>
         </div>
       </th>
       <th class="desc" data-id="level">
         <div>
-          <label>level</label>
+          <label>難度</label>
           <span data-sort="asc">▲</span>
           <span data-sort="desc">▼</span>
         </div>

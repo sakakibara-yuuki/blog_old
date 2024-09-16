@@ -504,10 +504,173 @@ class ChildPoint extends BasePoint3D {
 <!---->
 <!--### Generics-->
 <!---->
-<!--### Union-->
-<!---->
-<!--### Intersection-->
-<!---->
+
+### Union
+
+- [公式はここ](https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#union-types)
+- [TypeScriptのunion型はorです](https://qiita.com/uhyo/items/b1f806531895cb2e7d9a)
+
+Union型は指定した型のいずれかに当てはまれば良いという性質をもつ型である. それぞれの型をUnionのメンバと呼ぶ.
+
+```typescript
+function printId(id: number | string) {
+  console.log(id);
+}
+printId(101); // Ok
+printId("202"); // Ok
+printId({ myID: 22342 }); // Error !
+```
+
+TypeScriptはUnion型の全てのメンバに対して有効である場合にのみ,
+その操作を許可する.
+たとえば, `number`で受け取ったのに`string`で用意されているメソッドは使えない.
+
+```typescript
+function printId(id: number | string) {
+  console.log(id.toUpperCase()); // Error !
+}
+```
+
+このような場合には, 型ガードを使用することでエラーを回避することができる.
+
+```typescript
+function printId(id: number | string) {
+  if (typeof id === "string") {
+    // id は string 型であることが確定している
+    console.log(id.toUpperCase());
+  } else {
+    // id は number 型であることが確定している
+    console.log(id);
+  }
+}
+```
+
+この場合は, 単純なプリミティブ型であったからよかったものの, もう少し複雑になったら対応が難しくなる. 例えば,
+
+```typescript
+function welcomePeople(x: string[] | string) {
+  if (Array.isArray(x)) {
+    // x は string[] 型であることが確定している
+    console.log("Hello, " + x.join(" and "));
+  } else {
+    // x は string 型であることが確定している
+    console.log("Welcome lone traveler " + x);
+  }
+}
+```
+
+:::note{.note}
+"Union"という名前にも限らず, メンバのプロパティの共通部分を持っているように見える.(特に最後の例などは)
+これは非常に混乱する.
+しかし, この名付けは適切であり, 型理論から由来を取っている.
+`number | string`は"Union"という名前の通り, `number`の値か, `string`の値を持てる型である.
+そして, 両方の型の共通部分だけが, Union型で使用できる.
+:::
+
+#### 余剰プロパティチェック
+
+興味深いことに,以下ではエラーが発生しない.
+
+```typescript
+type A = {
+  a: number;
+};
+type B = {
+  b: string;
+  x: number;
+};
+type C = A | B;
+
+const c: C = { a: 1, x: 3 };
+```
+
+実はこれ, Union型の問題というより, TypeScriptが構造的部分型を採用していることによる問題であるのだが, ここで取り上げる.
+
+この例では"A"型でも"B"型でもないのにそのUnion型である"C"型に代入されていることに違和感を覚えるかもしれない.
+しかし, "C"型は
+**"A"型以外のプロパティを持つことを許容している。**
+つまり, "A"型のプロパティを持っているので"C"型に代入できるのである。
+
+しかし, 通常はこのようなことを行うとエラーが発生する.
+
+```typescript
+const a: A = { a: 1, x: 3 }; // Error !
+```
+
+これは先程の説明と矛盾しているように見える.
+しかし, 矛盾していないのである. この問題の核心は, このエラーはコンパイルエラーではないことにある.
+
+このエラーは**余剰プロパティチェック**と呼ばれるものである.
+先程の例のように定義した変数`a: A`には余剰のプロパティである`x`が含まれていた.
+しかし, "A"型として定義しているため, `a`は`x`にアクセスすることができない.
+このような場合, プログラマーのミスである可能性が高いため, TypeScriptは余剰プロパティチェックを発生させる.
+
+余剰プロパティチェックはオブジェクトリテラル, つまり,
+
+```typescript
+const a: A = { a: 1, x: 3 }; // Error !
+```
+
+のように変数宣言した場合に発生する.
+つまり,
+
+```typescript
+const obj = { a: 1, x: 3 };
+const a: A = obj; // OK
+```
+
+このようにすれば余剰プロパティチェックは発生しない.
+
+ここで, 最初の例について考えてみると, `c`にはオブジェクトリテラルが代入されているため, 余剰プロパティチェックが発生するはずである.
+
+しかし, **Union型について余剰プロパティチェックが行われる場合, Union型のメンバのどれかに存在するプロパティは全て許可される**という仕様になっている.[^unioncheck]
+
+[^unioncheck]: [typescript issue](https://github.com/microsoft/TypeScript/issues/38024)
+
+#### 判別可能なUnion型(discriminated unions)
+
+- [公式はここ](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#discriminated-unions)
+
+通常, Union型は型の絞り込みが複雑になりガチである.
+そこで, Unionを構成する型に各型を判別するためのプロパティ(ディスクリミネータと呼ぶ)を付与することにより, Union型の絞り込みを行うことができる.
+なお, ディスクリミネータとしてはリテラル型を使用することが多い.
+
+```typescript
+interface Circle {
+  kind: "circle";
+  radius: number;
+}
+
+interface Square {
+  kind: "square";
+  sideLength: number;
+}
+
+type Shape = Circle | Square;
+```
+
+そして, この絞り込みは以下のように行う.
+
+```typescript
+function getArea(shape: Shape) {
+  if (shape.kind === "circle") {
+    return Math.PI * shape.radius ** 2;
+  }
+}
+```
+
+もしくは`switch`文を使用して
+
+```typescript
+function getArea(shape: Shape) {
+  switch (shape.kind) {
+    case "circle":
+      return Math.PI * shape.radius ** 2;
+    case "square":
+      return shape.sideLength ** 2;
+  }
+}
+```
 
 ### リテラル
 
@@ -589,7 +752,10 @@ function processUser(user?: User) {
 - [型ガードの公式はここ](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#typeof-type-guards)
 
 typeof を使って型を絞り込むことができる.  
-typeof は keyof と似ているが機能は異なる.
+typeofはjavascriptの機能で, 値の型を返す.
+ただ, javascriptの機能であるので, 返せる型は`"string"`, `"number"`, `"boolean"`, `"symbol"`, `"undefined"`, `"object"`, `"function"`のみである.
+
+`typeof` は `keyof` と似ているが機能は異なる.
 TypeScript では if や switch 文を使って型を絞り込むことができる.
 その条件分岐で型を絞り込むことを型ガードと呼ぶ.
 
@@ -628,6 +794,10 @@ if (user.info) {
 - [公式はここ](https://www.typescriptlang.org/docs/handbook/2/keyof-types.html)
 
 型に対して`keyof`を使用することで, その型のプロパティ名のリテラル型の Union 型を取得することができる.
+
+:::note{.note}
+なお, 取得できるのは**文字列ではなく, リテラル型**であるので注意する.
+:::
 
 これは, オブジェクトのプロパティ名を key としてその value を取得する際に使用される.
 
