@@ -111,9 +111,15 @@
     line-height: 2;
     font-weight: bold;
   }
+  .work:has(> .title input[type="checkbox"]:checked) {
+    color: var(--md-sys-color-surface-container-high);
+  }
+  .work:has(> .title input[type="checkbox"]) {
+    color: var(--md-sys-color-on-surface);
+  }
   .title:has(input[type="checkbox"]:checked)::after {
     content: "";
-    background-color: var(--md-sys-color-tertiary);
+    background-color: var(--md-sys-color-surface-container-high);
     position: absolute;
     top: 0.75em;
     left: 0.125em;
