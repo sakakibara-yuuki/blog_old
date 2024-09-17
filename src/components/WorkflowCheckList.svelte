@@ -44,7 +44,7 @@
       {/await}
     </span>
     {#if work.workflow && work.workflow.length > 0}
-      <details>
+      <details open>
         <summary>break</summary>
         {#each work.workflow as _work, _index}
           <svelte:self work={_work} depth={depth + 1} index={_index} />
@@ -56,62 +56,71 @@
 
 <style>
   .size-0 {
-    font-size: var(--s0);
-    & label {
-      font-size: var(--s0);
+    & label,
+    .work::after,
+    .work::before {
+      font-size: var(--s2);
     }
     & .description {
-      font-size: var(--s-1);
+      font-size: var(--s0);
     }
   }
   .size-1 {
-    font-size: var(--s-1);
-    & label {
-      font-size: var(--s-1);
+    & label,
+    .work::after,
+    .work::before {
+      font-size: var(--s1);
     }
     & .description {
-      font-size: var(--s-2);
+      font-size: var(--s0);
     }
   }
   .size-2 {
-    font-size: var(--s-2);
-    & label {
-      font-size: var(--s-2);
+    & label,
+    .work::after,
+    .work::before {
+      font-size: var(--s1);
     }
     & .description {
-      font-size: var(--s-3);
+      font-size: var(--s0);
     }
   }
   .size-3 {
-    font-size: var(--s-3);
-    & label {
-      font-size: var(--s-3);
+    & label,
+    .work::after,
+    .work::before {
+      font-size: var(--s1);
     }
     & .description {
-      font-size: var(--s-4);
+      font-size: var(--s0);
     }
   }
   .size-4 {
-    font-size: var(--s-4);
-    & label {
-      font-size: var(--s-4);
+    & label,
+    .work::after,
+    .work::before {
+      font-size: var(--s1);
     }
     & .description {
-      font-size: var(--s-5);
+      font-size: var(--s0);
     }
   }
   .container {
     position: relative;
   }
   .work {
-    padding-left: 1em;
+    margin-left: 2em;
     padding-bottom: 2em;
+    display: grid;
+    grid-template-areas:
+      "title"
+      "description";
   }
   .work::before {
     content: "";
     background-color: var(--md-sys-color-primary);
     position: absolute;
-    top: calc(1.5em + 0.25em); /* radius + border-width */
+    top: calc(1.5em + 0.25em + 0.125em); /* radius + border-width */
     left: 0;
     width: 0.25em;
     height: calc(100% - 1.5em - 0.125em); /* radius + border-width-half */
@@ -125,20 +134,12 @@
     position: absolute;
     border-radius: 50%;
     border: 0.25em solid var(--md-sys-color-primary);
-    top: 0;
+    top: 0.125em;
     left: calc(-0.75em - 0.125em); /* radius-half + border-width-half */
     width: 1.5em;
     height: 1.5em;
     text-align: center;
     line-height: 1.5; /* height mach with box height*/
-  }
-  .title {
-    display: inline-block;
-    position: relative;
-    left: 1em;
-    line-height: 2;
-    font-weight: bold;
-    border: 0.125em solid var(--md-sys-color-primary-container);
   }
   .work:has(> .title input[type="checkbox"]:checked) {
     color: var(--md-sys-color-surface-container-high);
@@ -146,11 +147,22 @@
   .work:has(> .title input[type="checkbox"]) {
     color: var(--md-sys-color-on-surface);
   }
+  .title {
+    grid-area: title;
+    display: inline-block;
+    position: relative;
+    line-height: 2;
+    font-weight: bold;
+    border: 0.125em solid var(--md-sys-color-primary-container);
+    padding-left: 1em;
+    padding-right: 1em;
+    max-width: max-content;
+  }
   .title:has(input[type="checkbox"]:checked)::after {
     content: "";
     background-color: var(--md-sys-color-surface-container-high);
     position: absolute;
-    top: 0.75em;
+    top: calc(1.5em + 0.125em);
     left: 0.125em;
     width: 100%;
     height: 0.25em;
@@ -158,17 +170,18 @@
   input[type="checkbox"] {
     appearance: none;
     position: absolute;
+    top: 0;
+    left: 0;
   }
   label {
     cursor: pointer;
-    padding-left: 1em;
-    padding-right: 1em;
   }
   .description {
+    grid-area: description;
     display: block;
     padding: 0;
     margin: 0;
-    margin-left: 2em;
+    padding-left: 1em;
   }
   details {
     margin-left: 1.5em;

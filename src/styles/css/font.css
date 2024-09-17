@@ -7,19 +7,19 @@
 
 :root {
   --ratio: 1.25; /* 1.25 = 10/8 */
-  --s0: calc(1em * pow(var(--ratio), 0)); /* 1rem */
-  --s1: calc(1em * pow(var(--ratio), 1)); /* 1.25rem */
-  --s2: calc(1em * pow(var(--ratio), 2)); /* 1.5625rem */
-  --s3: calc(1em * pow(var(--ratio), 3)); /* 1.953125rem */
-  --s4: calc(1em * pow(var(--ratio), 4)); /* 2.44140625rem */
-  --s5: calc(1em * pow(var(--ratio), 5)); /* 3.0517578125rem */
-  --s-1: calc(1em * pow(var(--ratio), -1)); /* 0.8rem */
-  --s-2: calc(1em * pow(var(--ratio), -2)); /* 0.64rem */
-  --s-3: calc(1em * pow(var(--ratio), -3)); /* 0.512rem */
-  --s-4: calc(1em * pow(var(--ratio), -4)); /* 0.4096rem */
-  --s-5: calc(1em * pow(var(--ratio), -5)); /* 0.32768rem */
-  --s-6: calc(1em * pow(var(--ratio), -6)); /* 0.262144rem */
-  --s-7: calc(1em * pow(var(--ratio), -7)); /* 0.2097152rem */
-  --s-8: calc(1em * pow(var(--ratio), -8)); /* 0.16777216rem */
-  --s-9: calc(1em * pow(var(--ratio), -9)); /* 0.16777216rem */
+  --s0: calc(1rem * pow(var(--ratio), 0)); /* 1rem */
+  --s1: calc(1rem * pow(var(--ratio), 1)); /* 1.25rem */
+  --s2: calc(1rem * pow(var(--ratio), 2)); /* 1.5625rem */
+  --s3: calc(1rem * pow(var(--ratio), 3)); /* 1.953125rem */
+  --s4: calc(1rem * pow(var(--ratio), 4)); /* 2.44140625rem */
+  --s5: calc(1rem * pow(var(--ratio), 5)); /* 3.0517578125rem */
+  --s-1: calc(1rem * pow(var(--ratio), -1)); /* 0.8rem */
+  --s-2: calc(1rem * pow(var(--ratio), -2)); /* 0.64rem */
+  --s-3: calc(1rem * pow(var(--ratio), -3)); /* 0.512rem */
+  --s-4: calc(1rem * pow(var(--ratio), -4)); /* 0.4096rem */
+  --s-5: calc(1rem * pow(var(--ratio), -5)); /* 0.32768rem */
+  --s-6: calc(1rem * pow(var(--ratio), -6)); /* 0.262144rem */
+  --s-7: calc(1rem * pow(var(--ratio), -7)); /* 0.2097152rem */
+  --s-8: calc(1rem * pow(var(--ratio), -8)); /* 0.16777216rem */
+  --s-9: calc(1rem * pow(var(--ratio), -9)); /* 0.16777216rem */
 }
