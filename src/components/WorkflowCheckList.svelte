@@ -4,6 +4,28 @@
   export let depth;
   const size = "size-" + depth;
   const workId = `work-${index}-${depth}`;
+  import remarkParse from "remark-parse";
+  import remarkRehype from "remark-rehype";
+  import rehypeSanitize from "rehype-sanitize";
+  import rehypeStringify from "rehype-stringify";
+  import { unified } from "unified";
+
+  async function transformMarkdownToHtml(markdown) {
+    return await unified()
+      .use(remarkParse)
+      .use(remarkRehype)
+      .use(rehypeSanitize)
+      .use(rehypeStringify)
+      .process(markdown)
+      .then((contents) => {
+        return contents.value;
+      })
+      .catch((error) => {
+        return error;
+      });
+  }
+
+  let promise = transformMarkdownToHtml(work.description);
 </script>
 
 <div class="container {size}">
@@ -12,9 +34,15 @@
       <input type="checkbox" id={workId} />
       <label for={workId}>{work.title}</label>
     </span>
-    <p class="description">
-      {work.description}
-    </p>
+    <span class="description">
+      {#await promise}
+        <em>Loading...</em>
+      {:then description}
+        {@html description}
+      {:catch error}
+        <em>{error.message}</em>
+      {/await}
+    </span>
     {#if work.workflow && work.workflow.length > 0}
       <details>
         <summary>break</summary>
@@ -110,6 +138,7 @@
     left: 1em;
     line-height: 2;
     font-weight: bold;
+    border: 0.125em solid var(--md-sys-color-primary-container);
   }
   .work:has(> .title input[type="checkbox"]:checked) {
     color: var(--md-sys-color-surface-container-high);
@@ -132,10 +161,14 @@
   }
   label {
     cursor: pointer;
+    padding-left: 1em;
+    padding-right: 1em;
   }
   .description {
-    margin-top: 0.5em;
-    padding-left: 1em;
+    display: block;
+    padding: 0;
+    margin: 0;
+    margin-left: 2em;
   }
   details {
     margin-left: 1.5em;

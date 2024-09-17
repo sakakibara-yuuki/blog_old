@@ -8,8 +8,13 @@ interface Work {
   workflow: Work[];
 }
 ---
-<div>
+<style>
+  .workflow-container {
+    margin-top: 3rem;
+  }
+</style>
+<div class="workflow-container">
   {data.map((work: Work, index: number) => (
-  <WorkflowCheckList work={work} index={index} depth={0}/>
+  <WorkflowCheckList client:load work={work} index={index} depth={0}/>
   ))}
 </div>
