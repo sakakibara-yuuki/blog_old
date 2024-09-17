@@ -1,20 +1,40 @@
 [
   {
-    "title": "ユースケース",
-    "description": "ユースケースの詳しい説明",
+    "title": "ユースケース図を作る",
+    "description": "全体像を把握するため",
     "workflow": [
       {
-      "title": "ユースケース1-2",
-      "description": "ユースケース2の説明"
+        "title": "シーケンス図を作る",
+        "description": "ユースケースの流れを把握するため"
       },
       {
-      "title": "ユースケース1-3",
-      "description": "ユースケース2の説明"
+        "title": "環境開発",
+        "description": "ESLint, Prettier, Storybook, Jest, CiCD, etc"
       }
     ]
   },
   {
-    "title": "ユースケース2",
-    "description": "ユースケース2の説明"
+    "title": "デザインをもとにAtomic Designに沿ったコンポーネントに分割",
+    "description": "ユースケース2の説明",
+    "workflow": [
+      {
+        "title": "シーケンス図を作る",
+        "description": "ユースケースの流れを把握するため"
+      },
+      {
+        "title": "環境開発",
+        "description": "ESLint, Prettier, Storybook, Jest, CiCD, etc",
+        "workflow": [
+          {
+          "title": "シーケンス図を作る",
+          "description": "ユースケースの流れを把握するため"
+          },
+          {
+          "title": "環境開発",
+          "description": "ESLint, Prettier, Storybook, Jest, CiCD, etc"
+          }
+        ]
+      }
+    ]
   }
 ]

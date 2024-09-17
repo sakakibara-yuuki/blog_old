@@ -1,74 +1,15 @@
 ---
-
-import { Icon } from 'astro-icon/components'
 const { data } = Astro.props
-import WorkflowCheckList from './WorkflowCheckList.astro';
+import WorkflowCheckList from './WorkflowCheckList.svelte';
+
+interface Work {
+  title: string;
+  description: string;
+  workflow: Work[];
+}
 ---
-
-<style>
-  .timeline01 {
-    margin-top: 4em;
-  }
-  .timeline01 .list{
-    padding-left: 2em;
-    padding-bottom: 2em;
-    counter-increment: section;
-    position: relative;
-  }
-  .timeline01 .list:last-child{
-    padding-bottom: 0.5em;
-  }
-  .timeline01 .list::before{
-    content: "";
-    width: 1px;
-    height: 100%;
-    background-color: #4a69b8;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-  .timeline01 .list::after{
-    content: counter(section, decimal-leading-zero);
-    font-size: 0.8em;
-    font-weight: bold;
-    color: #fff;
-    text-align: center;
-    width: 28px;
-    height: 28px;
-    line-height: 28px;
-    border-radius: 50%;
-    position: absolute;
-    top: 0;
-    left: -0.7em;
-    background-color: #4a69b8;
-  }
-  .timeline01 .title{
-    margin-top: 0;
-    font-weight: bold;
-    font-size: 1.2em;
-    margin-bottom: 0.8em;
-  }
-</style>
-
-<div class="timeline01">
-  {data.map((item, index) => (
-    <div class="list">
-      <h2 class="title">{item.title}</h2>
-      <p class="content">{item.description}</p>
-      <details>
-        <summary>{item.title}</summary>
-        <p>
-        hogehogehohaosdfasdfasdf
-        asdfasdfasdfas
-        dfasdfasdfa
-        </p>
-      </details>
-    </div>
-  ))}
-</div>
-
 <div>
-  {data.map((work, index) => (
-  <WorkflowCheckList work={work} index={index} />
+  {data.map((work: Work, index: number) => (
+  <WorkflowCheckList work={work} index={index} depth={0}/>
   ))}
 </div>
