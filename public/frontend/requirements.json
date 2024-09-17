@@ -1,0 +1,65 @@
+[
+{
+  "id": 6,
+  "priority": "C",
+  "level": "B",
+  "content": "要求と要求を切り分ける",
+  "reason": "",
+  "reference": null
+},
+{
+  "id": 6,
+  "priority": "C",
+  "level": "B",
+  "content": "決めることをスケジュールの優先範囲で決める",
+  "reason": "",
+  "reference": null
+},
+{
+  "id": 6,
+  "priority": "C",
+  "level": "B",
+  "content": "要件を固める",
+  "reason": "",
+  "reference": null
+},
+{
+  "id": 6,
+  "priority": "C",
+  "level": "B",
+  "content": "実現することの軸足と概要を決める",
+  "reason": "",
+  "reference": null
+},
+{
+  "id": 6,
+  "priority": "C",
+  "level": "B",
+  "content": "合意事項を書類化する",
+  "reason": "",
+  "reference": null
+},
+{
+  "id": 6,
+  "priority": "C",
+  "level": "B",
+  "content": "法律やルールを確認する　",
+  "reason": "",
+  "reference": null
+},
+{
+  "id": 6,
+  "priority": "C",
+  "level": "B",
+  "content": "要件変更や追加要件をハンドリングする",
+  "reason": "",
+  "reference": null
+},
+{
+  "id": 6,
+  "priority": "C",
+  "level": "B",
+  "content": "要件変更や追加要件をハンドリングする",
+  "reason": "",
+  "reference": null
+}]

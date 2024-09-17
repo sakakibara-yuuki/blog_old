@@ -1,0 +1,20 @@
+---
+const { data } = Astro.props
+import WorkflowCheckList from './WorkflowCheckList.svelte';
+
+interface Work {
+  title: string;
+  description: string;
+  workflow: Work[];
+}
+---
+<style>
+  .workflow-container {
+    margin-top: 3rem;
+  }
+</style>
+<div class="workflow-container">
+  {data.map((work: Work, index: number) => (
+  <WorkflowCheckList client:load work={work} index={index} depth={0}/>
+  ))}
+</div>

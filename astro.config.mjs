@@ -19,6 +19,8 @@ import react from "@astrojs/react";
 import {h} from 'hastscript'
 import {visit} from 'unist-util-visit'
 
+import svelte from '@astrojs/svelte';
+
 // This plugin is an example to turn `::note` into divs, passing arbitrary
 // attributes.
 function myRemarkPlugin() {
@@ -51,7 +53,7 @@ function myRemarkPlugin() {
 export default defineConfig({
   site: 'https://sakakibara-yuuki.github.io',
   output: 'static',
-  integrations: [mdx(), sitemap(), d2(), icon(), react()],
+  integrations: [mdx(), sitemap(), d2(), icon(), react(), svelte()],
   markdown: {
     remarkPlugins: [
       [remarkToc, { heading: "Contents" }],
@@ -62,5 +64,3 @@ export default defineConfig({
     rehypePlugins: [ rehypeKatex ],
   }
 });
-
-
