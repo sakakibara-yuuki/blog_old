@@ -1,0 +1,50 @@
+title: UIトレース
+date: 2021-09-01
+workflow:
+- title: トレースの目的を決める
+  description: |-
+    やはり最初は目的を決めることが重要.
+    - ツールのトレーニングをする.
+    - コンポーネントの理解度を上げる
+    - レイアウトやスタイルの理解度を上げる
+    - プロダクト全体の構成を把握する
+    - 造形力を上げる
+- title: トレースの準備をする
+  description: |-
+    トレースもとになるサービスのスクショを取る.
+    - [Longshot](https://play.google.com/store/apps/details?id=com.as.screenshot.capture.longshot.newapp&hl=ja)というアプリを使うと便利.
+    - [開発者向けオプション](https://note.com/hitosuke/n/n9850afd72b0b)でPCとつなげるのもあり.
+- title: トレースする
+  description: |-
+    **やらないことを決める**
+    - アイコンはトレースせず, 写真は同じものを使う.
+    - Noto JPだけを使う
+    など. 決めた目的に注力する.
+  workflow:
+    - title: 円形シェイプを4つほど作る
+      description: |-
+        primary colorなどをfigmaなどでスタイル化するためにスクリーンショットから色を抽出する.
+        また, 色の勉強にもなる.
+    - title: 背景色をアートボードに適用する.
+      description: ''
+    - title: 半透明なシェイプでコンポーネントをトレースする.
+      description: |-
+        赤や緑などの色を使う.
+        以下を意識することが重要
+      workflow:
+        - title: 公式リソースの活用
+          description: ''
+        - title: 不可視領域の再現
+          description: ''
+        - title: シンボル化のタイミング
+          description: ''
+- title: トレースの終わりに
+  description: 全体像を把握するため
+  workflow:
+    - title: 作り手の思考をトレースする.
+      description: |-
+        ユースケースの流れを把握するため
+        - ユースケース1
+        - ユースケース2
+    - title: 学びを記録する
+      description: 'ESLint, Prettier, Storybook, Jest, CiCD, etc'

@@ -1,30 +1,19 @@
 [
   {
     "title": "トレースの目的を決める",
-    "description": "やはり最初は目的を決めることが重要.\
-                    \n- ツールのトレーニングをする.\
-                    \n- コンポーネントの理解度を上げる\
-                    \n- レイアウトやスタイルの理解度を上げる\
-                    \n- プロダクト全体の構成を把握する\
-                    \n- 造形力を上げる"
+    "description": "やはり最初は目的を決めることが重要.\n- ツールのトレーニングをする.\n- コンポーネントの理解度を上げる\n- レイアウトやスタイルの理解度を上げる\n- プロダクト全体の構成を把握する\n- 造形力を上げる"
   },
   {
     "title": "トレースの準備をする",
-    "description": "トレースもとになるサービスのスクショを取る.\
-                    \n- [Longshot](https://play.google.com/store/apps/details?id=com.as.screenshot.capture.longshot.newapp&hl=ja)というアプリを使うと便利.\
-                    \n- [開発者向けオプション](https://note.com/hitosuke/n/n9850afd72b0b)でPCとつなげるのもあり."
+    "description": "トレースもとになるサービスのスクショを取る.\n- [Longshot](https://play.google.com/store/apps/details?id=com.as.screenshot.capture.longshot.newapp&hl=ja)というアプリを使うと便利.\n- [開発者向けオプション](https://note.com/hitosuke/n/n9850afd72b0b)でPCとつなげるのもあり."
   },
   {
     "title": "トレースする",
-    "description": "**やらないことを決める**\
-                    \n- アイコンはトレースせず, 写真は同じものを使う.\
-                    \n- Noto JPだけを使う\
-                    \nなど. 決めた目的に注力する.",
+    "description": "**やらないことを決める**\n- アイコンはトレースせず, 写真は同じものを使う.\n- Noto JPだけを使う\nなど. 決めた目的に注力する.",
     "workflow": [
       {
         "title": "円形シェイプを4つほど作る",
-        "description": "primary colorなどをfigmaなどでスタイル化するためにスクリーンショットから色を抽出する.\
-                        \nまた, 色の勉強にもなる."
+        "description": "primary colorなどをfigmaなどでスタイル化するためにスクリーンショットから色を抽出する.\nまた, 色の勉強にもなる."
       },
       {
         "title": "背景色をアートボードに適用する.",
@@ -32,8 +21,7 @@
       },
       {
         "title": "半透明なシェイプでコンポーネントをトレースする.",
-        "description": "赤や緑などの色を使う.\
-                        \n以下を意識することが重要",
+        "description": "赤や緑などの色を使う.\n以下を意識することが重要",
         "workflow": [
           {
             "title": "公式リソースの活用",
@@ -57,9 +45,7 @@
     "workflow": [
       {
         "title": "作り手の思考をトレースする.",
-        "description": "ユースケースの流れを把握するため\
-                        \n- ユースケース1\
-                        \n- ユースケース2"
+        "description": "ユースケースの流れを把握するため\n- ユースケース1\n- ユースケース2"
       },
       {
         "title": "学びを記録する",

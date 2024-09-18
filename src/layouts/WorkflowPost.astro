@@ -5,14 +5,14 @@ import Header from '@components/Header.astro';
 import Footer from '@components/Footer.astro';
 import FormattedDate from '@components/FormattedDate.astro';
 
-type Props = CollectionEntry<'blog'>['data'];
-
-const { title, description, pubDate, updatedDate, heroImage, tags }: Props = Astro.props;
+type Props = CollectionEntry<'workflow'>['data'];
+import Workflow from "@components/Workflow.astro";
+const { title, date, workflow }: Props = Astro.props;
 ---
 
 <html lang="ja">
   <head>
-    <BaseHead title={title} description={description} />
+    <BaseHead title={title} description={""} />
     <style>
 
       .hero-image {
@@ -95,32 +95,33 @@ const { title, description, pubDate, updatedDate, heroImage, tags }: Props = Ast
     <Header />
       <main>
         <article>
-          <div class="hero-image">
-              {heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
-          </div>
-          <div class="prose">
-            <div class="title">
-              <h1>{title}</h1>
-              <div class="date">
-                {
-                  updatedDate && (
-                    <div class="last-updated-on">
-                        <FormattedDate date={updatedDate} /> ←
-                    </div>
-                  )
-                }
-                <FormattedDate date={pubDate} />
-              </div>
-              <div class="tags">
-                {tags && tags.map((tag: string) => (
-                  <div class="tag">
-                    <a href={`/tags/${tag}`}>{tag}</a>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <slot />
-          </div>
+          <Workflow data={workflow} />
+          <!--<div class="hero-image">-->
+          <!--    {heroImage && <img width={1020} height={510} src={heroImage} alt="" />}-->
+          <!--</div>-->
+          <!--<div class="prose">-->
+          <!--  <div class="title">-->
+          <!--    <h1>{title}</h1>-->
+          <!--    <div class="date">-->
+          <!--      {-->
+          <!--        updatedDate && (-->
+          <!--          <div class="last-updated-on">-->
+          <!--              <FormattedDate date={updatedDate} /> ←-->
+          <!--          </div>-->
+          <!--        )-->
+          <!--      }-->
+          <!--      <FormattedDate date={pubDate} />-->
+          <!--    </div>-->
+          <!--    <div class="tags">-->
+          <!--      {tags && tags.map((tag: string) => (-->
+          <!--        <div class="tag">-->
+          <!--          <a href={`/tags/${tag}`}>{tag}</a>-->
+          <!--        </div>-->
+          <!--      ))}-->
+          <!--    </div>-->
+          <!--  </div>-->
+          <!--  <slot />-->
+          <!--</div>-->
         </article>
       </main>
   </body>

@@ -14,4 +14,30 @@ const blog = defineCollection({
   }),
 });
 
-export const collections = { blog };
+type WorkType = {
+  title: string;
+  description: string;
+  workflow?: WorkType[];
+}
+
+const work: z.ZodType<WorkType> = z.lazy(() =>
+  z.object({
+    title: z.string(),
+    description: z.string(),
+    workflow: z.array(work).default([]),
+  })
+);
+
+const workflow = defineCollection({
+  type: 'data',
+  schema: z.object({
+    title: z.string(),
+    date: z.coerce.date(),
+    workflow: z.array(work),
+  }),
+});
+
+export const collections = {
+  "blog": blog,
+  "workflow": workflow
+};
