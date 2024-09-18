@@ -1,0 +1,18 @@
+title: Webデザイン
+description: Webデザインの手順を記録する
+heroImage: /blog-placeholder-3.jpg
+pubDate: 2024-09-07
+updatedDate: 2024-09-07
+workflow:
+- title: ペルソナを動かすシナリオを作る
+  description: ''
+  reference: はじめてのUIデザイン 3-4
+- title: 必要な要素を整理する
+  description: ''
+  reference: はじめてのUIデザイン 3-5
+- title: UIモデル(UI Flows)を設計する
+  description: ''
+  reference: はじめてのUIデザイン 3-6
+- title: プロトタイプを作成する
+  description: ''
+  reference: はじめてのUIデザイン 3-3

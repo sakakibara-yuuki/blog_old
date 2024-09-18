@@ -1,0 +1,36 @@
+title: Webサービス
+description: Webサービスの手順を記録する
+heroImage: /blog-placeholder-3.jpg
+pubDate: 2024-09-07
+updatedDate: 2024-09-07
+workflow:
+- title: ユースケース図を作る
+  description: 全体像を把握するため
+  reference: null
+- title: ユースケース表を作る
+  description: 'ユースケース, 詳細, 関連ページを把握する'
+  reference: null
+- title: シーケンス図を作る
+  description: ユースケースの流れを把握するため
+  reference: null
+- title: 環境開発
+  description: 'ESLint, Prettier, Storybook, Jest, CiCD, etc'
+  reference: null
+- title: デザインをもとにAtomic Designに沿ったコンポーネントに分割
+  description: 下準備
+  reference: null
+- title: Atomsの実装
+  description: ''
+  reference: null
+- title: Moleculuesの実装
+  description: ''
+  reference: null
+- title: Organismsの実装
+  description: ''
+  reference: null
+- title: Templateの実装
+  description: ''
+  reference: null
+- title: Pageの実装
+  description: ''
+  reference: null
