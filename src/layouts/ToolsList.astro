@@ -1,0 +1,61 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseHead from '@components/BaseHead.astro';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from 'src/consts';
+
+const { posts } = Astro.props;
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <style>
+    .card-container {
+      display: grid;
+      gap: 2em;
+    }
+    .card {
+      display: grid;
+      grid-template:
+      "image title" auto
+      "image description" auto
+      / 3fr 7fr;
+      column-gap: 1em;
+      row-gap: 0.5em;
+    }
+    .card img {
+      grid-area: image;
+      height: 100%;
+      object-fit: cover;
+    }
+    .card h3 {
+      grid-area: title;
+      margin: 0;
+    }
+    .card p {
+      margin: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  </style>
+  <body>
+    <Header />
+    <main>
+      <div class="card-container">
+        {posts.map((post) => (
+          <a href={`/tools/${post.collection}/${post.id}/`} class="card">
+            <img src={post.data.heroImage} alt={post.data.title} />
+            <h3>{post.data.title}</h3>
+            <p>{post.data.description}</p>
+          </a>
+        ))}
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>
