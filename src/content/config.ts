@@ -32,7 +32,10 @@ const workflow = defineCollection({
   type: 'data',
   schema: z.object({
     title: z.string(),
-    date: z.coerce.date(),
+    description: z.string(),
+    heroImage: z.string().optional(),
+    pubDate: z.coerce.date().optional(),
+    updatedDate: z.coerce.date().optional(),
     workflow: z.array(work),
   }),
 });
@@ -41,6 +44,10 @@ const guideline = defineCollection({
   type: 'data',
   schema: z.object({
     title: z.string(),
+    description: z.string(),
+    heroImage: z.string().optional(),
+    pubDate: z.coerce.date().optional(),
+    updatedDate: z.coerce.date().optional(),
     guideline: z.array(z.object({
       id: z.number(),
       priority: z.enum(['A', 'B', 'C']),

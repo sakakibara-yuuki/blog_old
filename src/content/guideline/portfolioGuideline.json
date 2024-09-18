@@ -1,5 +1,7 @@
 {
 "title": "ポートフォリオのガイドライン",
+"description": "ポートフォリオのガイドラインを作ってみた.",
+"heroImage": "/blog-placeholder-3.jpg",
 "guideline": [{
   "id": 1,
   "priority": "A",

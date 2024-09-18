@@ -1,12 +1,45 @@
 ---
+import type { CollectionEntry } from 'astro:content';
 import BaseHead from '@components/BaseHead.astro';
 import Header from '@components/Header.astro';
 import Footer from '@components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from 'src/consts';
 import { getCollection } from 'astro:content';
-const guidelines = await getCollection('guideline');
+
+type GuideLinePost = CollectionEntry<'workflow'>;
+const guidelines: GuideLinePost[] = await getCollection('guideline');
 ---
 
+<style>
+  .card-container {
+    display: grid;
+    gap: 2em;
+  }
+  .card {
+    display: grid;
+    grid-template:
+    "image title" auto
+    "image description" auto
+    / 3fr 7fr;
+    column-gap: 1em;
+    row-gap: 0.5em;
+  }
+  .card img {
+    grid-area: image;
+    height: 100%;
+    object-fit: cover;
+  }
+  .card h3 {
+    grid-area: title;
+    margin: 0;
+  }
+  .card p {
+    margin: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+</style>
 
 <!doctype html>
 <html lang="ja">
@@ -18,8 +51,10 @@ const guidelines = await getCollection('guideline');
     <main>
       <div>
         {guidelines.map((guideline) => (
-          <a href={`/tools/guidelines/${guideline.id}/`} class="tag">
-            <span>{guideline.data.title}</span>
+          <a href={`/tools/guidelines/${guideline.id}/`} class="card">
+            <img src={guideline.data.heroImage} alt={guideline.data.title} />
+            <h3>{guideline.data.title}</h3>
+            <p>{guideline.data.description}</p>
           </a>
         ))}
       </div>
