@@ -39,7 +39,7 @@ const tags = [...new Set((await getCollection('blog')).map((post) => post.data.t
     <main>
       <div class="tags">
         {tags.map((tag) => (
-          <a href={`/tags/${tag}/`} class="tag">
+          <a href={`/tools/tags/${tag}/`} class="tag">
             <span>{tag}</span>
           </a>
         ))}

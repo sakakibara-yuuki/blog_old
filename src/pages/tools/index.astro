@@ -25,16 +25,36 @@ import FormattedDate from '@components/FormattedDate.astro';
         text-align: center;
         gap: 2em;
       }
+      .tools__card {
+        display: grid;
+        grid-template-rows: 1fr auto;
+      }
+      .title {
+        grid-row: 2;
+      }
+      .title h3 {
+        margin: 0;
+      }
     </style>
     <main>
       <div class="tools__container">
-        <a href={`/tools/workflows`} class="workflows">
+        <a href={`/tools/tags`} class="tools__card">
           <Image src={toolsImage} alt="workflows" />
-          <span>workflows</span>
+          <span class="title">
+            <h3>Tags</h3>
+          </span>
         </a>
-        <a href={`/tools/guideline`} class="workflows">
+        <a href={`/tools/workflows`} class="tools__card">
           <Image src={toolsImage} alt="workflows" />
-          <span>guideline</span>
+          <span class="title">
+            <h3>Work Flow</h3>
+          </span>
+        </a>
+        <a href={`/tools/guideline`} class="tools__card">
+          <Image src={toolsImage} alt="workflows" />
+          <span class="title">
+            <h3>Guide Line</h3>
+          </span>
         </a>
       </div>
       <!--<div class="tags">-->

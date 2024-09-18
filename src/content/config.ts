@@ -37,6 +37,7 @@ const workflow = defineCollection({
   }),
 });
 
+
 export const collections = {
   "blog": blog,
   "workflow": workflow
