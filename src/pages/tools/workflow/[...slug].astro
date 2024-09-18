@@ -1,6 +1,6 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content';
-import WorkflowPost from '@layouts/WorkflowPost.astro';
+import BlogPost from "@layouts/BlogPost.astro";
 
 type Props = CollectionEntry<'workflow'>;
 
@@ -12,7 +12,14 @@ export async function getStaticPaths() {
   }));
 }
 
-const workflow = Astro.props;
+import Workflow from "@components/Workflow.astro";
+const props: Props = Astro.props;
+const { title, description, heroImage, workflow } = props.data;
 ---
 
-<WorkflowPost {...workflow.data} />
+<BlogPost
+    title={title}
+    description={description}
+    heroImage={heroImage} >
+  <Workflow data={workflow} />
+</BlogPost>

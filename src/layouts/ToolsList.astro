@@ -12,37 +12,37 @@ const { posts } = Astro.props;
 <html lang="ja">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <style>
+      .card-container {
+        display: grid;
+        gap: 2em;
+      }
+      .card {
+        display: grid;
+        grid-template:
+        "image title" auto
+        "image description" auto
+        / 3fr 7fr;
+        column-gap: 1em;
+        row-gap: 0.5em;
+      }
+      .card img {
+        grid-area: image;
+        height: 100%;
+        object-fit: cover;
+      }
+      .card h3 {
+        grid-area: title;
+        margin: 0;
+      }
+      .card p {
+        margin: 0;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    </style>
   </head>
-  <style>
-    .card-container {
-      display: grid;
-      gap: 2em;
-    }
-    .card {
-      display: grid;
-      grid-template:
-      "image title" auto
-      "image description" auto
-      / 3fr 7fr;
-      column-gap: 1em;
-      row-gap: 0.5em;
-    }
-    .card img {
-      grid-area: image;
-      height: 100%;
-      object-fit: cover;
-    }
-    .card h3 {
-      grid-area: title;
-      margin: 0;
-    }
-    .card p {
-      margin: 0;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-  </style>
   <body>
     <Header />
     <main>

@@ -48,14 +48,14 @@ const guideline = defineCollection({
     heroImage: z.string().optional(),
     pubDate: z.coerce.date().optional(),
     updatedDate: z.coerce.date().optional(),
-    guideline: z.array(z.object({
-      id: z.number(),
-      priority: z.enum(['A', 'B', 'C']),
-      level: z.enum(['A', 'B', 'C']),
-      content: z.string(),
-      reason: z.string().optional(),
-      references: z.array(z.string()).optional(),
-    })),
+    // guideline: z.array(z.object({
+    //   id: z.number(),
+    //   priority: z.enum(['A', 'B', 'C']),
+    //   level: z.enum(['A', 'B', 'C']),
+    //   content: z.string(),
+    //   reason: z.string().optional(),
+    //   references: z.array(z.string()).optional(),
+    // })),
   }),
 });
 
