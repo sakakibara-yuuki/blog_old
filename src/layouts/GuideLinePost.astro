@@ -1,0 +1,129 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseHead from '@components/BaseHead.astro';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import FormattedDate from '@components/FormattedDate.astro';
+
+type Props = CollectionEntry<'guideline'>['data'];
+import GuideLineTable from '@components/GuideLineTable.astro';
+const { title, guideline }: Props = Astro.props;
+---
+
+<html lang="ja">
+  <head>
+    <BaseHead title={title} description={""} />
+    <style>
+
+      .hero-image {
+        width: 100%;
+
+        img {
+          display: block;
+          margin: 0 auto;
+          border-radius: 12px;
+          box-shadow: var(--box-shadow);
+        }
+      }
+      .title {
+        display: grid;
+        grid-template-areas:
+          "title title"
+          "date tags";
+        gap: 0.5em;
+        margin-top: 1em;
+        padding: 1em 0 1em 0;
+        text-align: center;
+        align-items: center;
+        line-height: 1;
+        border-bottom: 4px solid var(--md-sys-color-outline);
+
+        h1 {
+          margin: 0 0 0.25em 0;
+          grid-area: title;
+        }
+      }
+      .date {
+        display: flex;
+        justify-content: start;
+        color: var(--md-sys-color-on-surface-variant);
+        padding: 0 0 0 2em;
+      }
+      .last-updated-on {
+        font-style: italic;
+      }
+      .tags {
+        grid-area: tags;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: end;
+        gap: 0.25em;
+        padding: 0 2em 0 0;
+      }
+      .tag {
+        margin-right: 0.5em;
+        padding: 0.25em 0.5em;
+        border: 1px solid var(--md-sys-color-outline);
+        border-radius: 5px;
+      }
+      .tag:hover {
+        background: var(--md-sys-color-secondary-container);
+        a:hover {
+          color: var(--md-sys-color-primary);
+        }
+      }
+      @media (max-width: 720px) {
+        .title {
+          grid-template-areas:
+            "title"
+            "date"
+            "tags";
+        }
+        .date {
+          padding: 0;
+          justify-content: center;
+        }
+        .tags {
+          padding: 0;
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <Header />
+      <main>
+        <article>
+          <GuideLineTable data={guideline} />
+          <!--<div class="hero-image">-->
+          <!--    {heroImage && <img width={1020} height={510} src={heroImage} alt="" />}-->
+          <!--</div>-->
+          <!--<div class="prose">-->
+          <!--  <div class="title">-->
+          <!--    <h1>{title}</h1>-->
+          <!--    <div class="date">-->
+          <!--      {-->
+          <!--        updatedDate && (-->
+          <!--          <div class="last-updated-on">-->
+          <!--              <FormattedDate date={updatedDate} /> ←-->
+          <!--          </div>-->
+          <!--        )-->
+          <!--      }-->
+          <!--      <FormattedDate date={pubDate} />-->
+          <!--    </div>-->
+          <!--    <div class="tags">-->
+          <!--      {tags && tags.map((tag: string) => (-->
+          <!--        <div class="tag">-->
+          <!--          <a href={`/tags/${tag}`}>{tag}</a>-->
+          <!--        </div>-->
+          <!--      ))}-->
+          <!--    </div>-->
+          <!--  </div>-->
+          <!--  <slot />-->
+          <!--</div>-->
+        </article>
+      </main>
+  </body>
+  <Footer />
+</html>

@@ -37,8 +37,23 @@ const workflow = defineCollection({
   }),
 });
 
+const guideline = defineCollection({
+  type: 'data',
+  schema: z.object({
+    title: z.string(),
+    guideline: z.array(z.object({
+      id: z.number(),
+      priority: z.enum(['A', 'B', 'C']),
+      level: z.enum(['A', 'B', 'C']),
+      content: z.string(),
+      reason: z.string().optional(),
+      references: z.array(z.string()).optional(),
+    })),
+  }),
+});
 
 export const collections = {
   "blog": blog,
-  "workflow": workflow
+  "workflow": workflow,
+  "guideline": guideline,
 };

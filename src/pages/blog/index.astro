@@ -12,8 +12,6 @@ type BlogPost = CollectionEntry<'blog'>;
 const posts = (await getCollection('blog')).sort(
 	(a: BlogPost, b: BlogPost) => - a.data.pubDate.valueOf() + b.data.pubDate.valueOf()
 );
-const yaml = await getEntry('workflow', 'ui_trace');
-console.log(yaml);
 ---
 
 <!doctype html>

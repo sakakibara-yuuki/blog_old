@@ -1,4 +1,6 @@
-[{
+{
+"title": "ポートフォリオのガイドライン",
+"guideline": [{
   "id": 1,
   "priority": "A",
   "level": "C",
@@ -22,3 +24,4 @@
   "reason": "代謝が良くなる",
   "reference": null
 }]
+}
