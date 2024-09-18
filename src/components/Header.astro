@@ -60,6 +60,10 @@ import { Icon } from 'astro-icon/components';
     height: 100%;
   }
 
+  .tool {
+    display: none;
+  }
+
   ul {
     display: flex;
     list-style: none;
@@ -107,7 +111,7 @@ import { Icon } from 'astro-icon/components';
       top: var(--header-height);
       right: -100%;
       height: 100vh;
-      width: 40%;
+      width: 80%;
 
       padding-top: var(--header-height);
       overflow-y: hidden;
@@ -116,6 +120,13 @@ import { Icon } from 'astro-icon/components';
       box-shadow: var(--box-shadow);
 
       transition: 0.5s;
+    }
+
+    .tools {
+      display: none;
+    }
+    .tool {
+      display: block;
     }
 
     ul {
@@ -171,7 +182,9 @@ import { Icon } from 'astro-icon/components';
     <ul class="internal-links">
       <li><HeaderLink href="/">Home</HeaderLink></li>
       <li><HeaderLink href="/blog">Blog</HeaderLink></li>
-      <li><HeaderLink href="/tools">Tools</HeaderLink></li>
+      <li class="tools"><HeaderLink href="/tools">Tools</HeaderLink></li>
+      <li class="tool"><HeaderLink href="/tools/tags">Tags</HeaderLink></li>
+      <li class="tool"><HeaderLink href="/tools/workflows">Work flow</HeaderLink></li>
       <li><HeaderLink href="/about">About</HeaderLink></li>
     </ul>
   </nav>
