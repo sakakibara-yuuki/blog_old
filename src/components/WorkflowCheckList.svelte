@@ -29,7 +29,7 @@
 </script>
 
 <div class="container {size}">
-  <div class="work">
+  <div class="work" style="--priority: '{work.priority ? work.priority : 'C'}'">
     <span class="title">
       <input type="checkbox" id={workId} />
       <label for={workId}>{work.title}</label>
@@ -43,6 +43,15 @@
         <em>{error.message}</em>
       {/await}
     </span>
+    {#if work.weight}
+      <span>{work.weight}</span>
+    {/if}
+    {#if work.duration}
+      <span>{work.duration}</span>
+    {/if}
+    {#if work.references}
+      <span>{work.references}</span>
+    {/if}
     {#if work.workflow && work.workflow.length > 0}
       <details open>
         <summary>break</summary>
@@ -58,7 +67,7 @@
   .size-0 {
     & label,
     .work::after,
-    .work::before {
+    .work::before{
       font-size: var(--s2);
     }
     & .description {
@@ -130,7 +139,7 @@
     border-top-left-radius: 10px;
   }
   .work::after {
-    content: "A";
+    content: var(--priority);
     position: absolute;
     border-radius: 50%;
     border: 0.25em solid var(--md-sys-color-primary);

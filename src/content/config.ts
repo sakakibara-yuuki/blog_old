@@ -25,6 +25,10 @@ const work: z.ZodType<WorkType> = z.lazy(() =>
     title: z.string(),
     description: z.string(),
     workflow: z.array(work).default([]),
+    priority: z.enum(['A', 'B', 'C']).optional(),
+    weight: z.enum(['light', 'heavy']).optional(),
+    duration: z.coerce.string().time().optional(),
+    references: z.array(z.string()).optional(),
   })
 );
 
