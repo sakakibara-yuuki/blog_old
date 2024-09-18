@@ -1,14 +1,16 @@
 ---
-import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
+import BaseHead from '@components/BaseHead.astro';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from 'src/consts';
 import { getCollection } from 'astro:content';
-import FormattedDate from '../../components/FormattedDate.astro';
-import SearchList from '../../components/SearchList';
+import FormattedDate from '@components/FormattedDate.astro';
+import SearchList from '@components/SearchList';
+import type { CollectionEntry } from 'astro:content';
+type BlogPost = CollectionEntry<'blog'>;
 
 const posts = (await getCollection('blog')).sort(
-	(a, b) => - a.data.pubDate.valueOf() + b.data.pubDate.valueOf()
+	(a: BlogPost, b: BlogPost) => - a.data.pubDate.valueOf() + b.data.pubDate.valueOf()
 );
 ---
 

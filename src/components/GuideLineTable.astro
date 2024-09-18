@@ -268,9 +268,7 @@ color: 'var(255 255 255)'},
       const isAsc = th.classList.contains('asc');
       const sortRows = renderRows(id, isAsc);
 
-      console.log(rows);
       const sortedRows = rows.sort(sortRows);
-      console.log(sortedRows);
 
       for (const row of sortedRows) {
         tbody.appendChild(row);

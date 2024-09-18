@@ -1,0 +1,10 @@
+---
+import ToolsList from '@layouts/ToolsList.astro';
+import type { CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
+
+type WorkflowPost = CollectionEntry<'workflow'>;
+const workflows: WorkflowPost[] = await getCollection('workflow');
+---
+
+<ToolsList posts={workflows} />

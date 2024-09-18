@@ -14,4 +14,53 @@ const blog = defineCollection({
   }),
 });
 
-export const collections = { blog };
+type WorkType = {
+  title: string;
+  description: string;
+  workflow?: WorkType[];
+}
+
+const work: z.ZodType<WorkType> = z.lazy(() =>
+  z.object({
+    title: z.string(),
+    description: z.string(),
+    workflow: z.array(work).default([]),
+  })
+);
+
+const workflow = defineCollection({
+  type: 'data',
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    heroImage: z.string().optional(),
+    pubDate: z.coerce.date().optional(),
+    updatedDate: z.coerce.date().optional(),
+    workflow: z.array(work),
+  }),
+});
+
+const guideline = defineCollection({
+  type: 'data',
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    heroImage: z.string().optional(),
+    pubDate: z.coerce.date().optional(),
+    updatedDate: z.coerce.date().optional(),
+    guideline: z.array(z.object({
+      id: z.number(),
+      priority: z.enum(['A', 'B', 'C']),
+      level: z.enum(['A', 'B', 'C']),
+      content: z.string(),
+      reason: z.string().optional(),
+      references: z.array(z.string()).optional(),
+    })),
+  }),
+});
+
+export const collections = {
+  "blog": blog,
+  "workflow": workflow,
+  "guideline": guideline,
+};

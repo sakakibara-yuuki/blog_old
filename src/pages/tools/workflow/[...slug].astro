@@ -1,0 +1,25 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+import BlogPost from "@layouts/BlogPost.astro";
+
+type Props = CollectionEntry<'workflow'>;
+
+export async function getStaticPaths() {
+  const workflows: Props[] = await getCollection('workflow');
+  return workflows.map((workflow) => ({
+    params: { slug: workflow.id },
+    props: workflow,
+  }));
+}
+
+import Workflow from "@components/Workflow.astro";
+const props: Props = Astro.props;
+const { title, description, heroImage, workflow } = props.data;
+---
+
+<BlogPost
+    title={title}
+    description={description}
+    heroImage={heroImage} >
+  <Workflow data={workflow} />
+</BlogPost>

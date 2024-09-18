@@ -1,0 +1,25 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+import BlogPost from "@layouts/BlogPost.astro";
+
+type Props = CollectionEntry<'guideline'>;
+
+export async function getStaticPaths() {
+  const guidelines: Props[] = await getCollection('guideline');
+  return guidelines.map((guideline) => ({
+    params: { slug: guideline.id },
+    props: guideline,
+  }));
+}
+
+import GuideLineTable from "@components/GuideLineTable.astro";
+const props: Props = Astro.props;
+const { title, description, heroImage, guideline } = props.data;
+---
+
+<BlogPost
+    title={title}
+    description={description}
+    heroImage={heroImage} >
+  <GuideLineTable data={guideline} />
+</BlogPost>
