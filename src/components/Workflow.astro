@@ -1,6 +1,7 @@
 ---
 const { data } = Astro.props
 import WorkflowCheckList from './WorkflowCheckList.svelte';
+import { Icon } from "astro-icon/components";
 
 interface Work {
   title: string;
@@ -8,13 +9,73 @@ interface Work {
   workflow: Work[];
 }
 ---
+
 <style>
   .workflow-container {
-    margin-top: 3rem;
+    margin-top: 3em;
+  }
+  dialog {
+    position: sticky;
+    top: 70vh;
+    left: 100%;
+    z-index: 1;
+    border-radius: 5px;
+    background-color: var(--md-sys-color-tertiary);
+    margin: 0;
+    padding: 0.5em;
+    border: none;
+  }
+  .dialog-matrix {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    justify-items: center;
+    align-items: center;
+    font-size: var(--s-2);
+    font-weight: 300;
+    line-height: 1;
+    padding: 0.125em;
+  }
+  .dialog-matrix button {
+    background-color: var(--md-sys-color-tertiary-container);
+    color: var(--md-sys-color-on-tertiary-container);
+    border: none;
+    cursor: pointer;
+  }
+  .dialog-matrix-header {
+    font-size: var(--s-2);
+    font-weight: 600;
   }
 </style>
-<div class="workflow-container">
-  {data.map((work: Work, index: number) => (
-  <WorkflowCheckList client:load work={work} index={index} depth={0}/>
-  ))}
+
+<div class="container">
+  <!-- <dialog open> -->
+  <!--   <div class="dialog-matrix"> -->
+  <!--     <span></span> -->
+  <!--     <button><Icon name="mdi:feather" /></button> -->
+  <!--     <button><Icon name="mdi:weight-lifter" /></button> -->
+  <!--     <Icon name="mdi:summation" /> -->
+  <!--     <button><span class="dialog-matrix-header">A</span></button> -->
+  <!--     <span>20</span> -->
+  <!--     <span>30</span> -->
+  <!--     <span>50</span> -->
+  <!--     <button><span class="dialog-matrix-header">B</span></button> -->
+  <!--     <span>10</span> -->
+  <!--     <span>30</span> -->
+  <!--     <span>40</span> -->
+  <!--     <button><span class="dialog-matrix-header">C</span></button> -->
+  <!--     <span>30</span> -->
+  <!--     <span>10</span> -->
+  <!--     <span>40</span> -->
+  <!--     <Icon name="mdi:summation" /> -->
+  <!--     <span>60</span> -->
+  <!--     <span>70</span> -->
+  <!--     <span>130</span> -->
+  <!--   </div> -->
+  <!-- </dialog> -->
+  <div class="workflow-container">
+    {data.map((work: Work, index: number) => (
+    <WorkflowCheckList client:load work={work} index={index} depth={0}/>
+    ))}
+  </div>
 </div>
