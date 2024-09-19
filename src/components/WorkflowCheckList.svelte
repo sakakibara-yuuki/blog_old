@@ -4,6 +4,7 @@
   export let depth;
   const size = "size-" + depth;
   const workId = `work-${index}-${depth}`;
+  import Icon from "@iconify/svelte";
   import remarkParse from "remark-parse";
   import remarkRehype from "remark-rehype";
   import rehypeSanitize from "rehype-sanitize";
@@ -26,14 +27,50 @@
   }
 
   let promise = transformMarkdownToHtml(work.description);
+  let workWeight = {weight: 400, width: "5px"};
+  switch (work.weight) {
+    case "light":
+      workWeight.weight = 200;
+      workWeight.width = "3px";
+      break;
+    case "heavy":
+      workWeight.weight = 700;
+      workWeight.width = "7px";
+      break;
+  }
+  let priorityColor = "var(--md-sys-color-primary)";
+  switch (work.priority) {
+    case "A":
+      priorityColor = "hsl(0 75 41)";
+      break;
+    case "B":
+      priorityColor = "hsl(45 75 41)";
+      break;
+    default:
+      priorityColor = "hsl(90 75 41)";
+      break;
+  }
 </script>
 
 <div class="container {size}">
-  <div class="work" style="--priority: '{work.priority ? work.priority : 'C'}'">
-    <span class="title">
+  <div
+      class="work"
+      style="--priority: '{work.priority ? work.priority : 'C'}';
+             --priority-color: {priorityColor}">
+    <span class="title" style="border-width: {workWeight.width}; font-weight: {workWeight.weight};">
       <input type="checkbox" id={workId} />
       <label for={workId}>{work.title}</label>
     </span>
+    <div class="info">
+      {#if work.weight == "light"}
+        <Icon icon="mdi:feather" />
+      {:else if work.weight == "heavy"}
+        <Icon icon="mdi:weight-lifter" />
+      {/if}
+      {#if work.duration}
+        <span>{work.duration}</span>
+      {/if}
+    </div>
     <span class="description">
       {#await promise}
         <em>Loading...</em>
@@ -43,12 +80,6 @@
         <em>{error.message}</em>
       {/await}
     </span>
-    {#if work.weight}
-      <span>{work.weight}</span>
-    {/if}
-    {#if work.duration}
-      <span>{work.duration}</span>
-    {/if}
     {#if work.references}
       <span>{work.references}</span>
     {/if}
@@ -123,26 +154,24 @@
     display: grid;
     grid-template-areas:
       "title"
+      "info"
       "description";
   }
   .work::before {
     content: "";
-    background-color: var(--md-sys-color-primary);
+    background-color: var(--md-sys-color-primary-container);
     position: absolute;
     top: calc(1.5em + 0.25em + 0.125em); /* radius + border-width */
     left: 0;
     width: 0.25em;
     height: calc(100% - 1.5em - 0.125em); /* radius + border-width-half */
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
+    border-radius: 10px;
   }
   .work::after {
     content: var(--priority);
     position: absolute;
     border-radius: 50%;
-    border: 0.25em solid var(--md-sys-color-primary);
+    border: 0.25em solid var(--priority-color);
     top: 0.125em;
     left: calc(-0.75em - 0.125em); /* radius-half + border-width-half */
     width: 1.5em;
@@ -152,6 +181,24 @@
   }
   .work:has(> .title input[type="checkbox"]:checked) {
     color: var(--md-sys-color-surface-container-high);
+    transition: 0.2s;
+    &::after {
+      background-color: var(--md-sys-color-surface-container-low);
+      border-color: var(--md-sys-color-surface-container-low);
+    }
+    &::before {
+      background-color: var(--md-sys-color-surface-container-low);
+    }
+    & .title {
+      border-color: var(--md-sys-color-surface-container-low);
+    }
+    & a {
+      color: var(--md-sys-color-surface-container-low);
+    }
+    & .description {
+      background-color: var(--md-sys-color-surface-container-low);
+      color: var(--md-sys-color-surface-container-low);
+    }
   }
   .work:has(> .title input[type="checkbox"]) {
     color: var(--md-sys-color-on-surface);
@@ -161,15 +208,15 @@
     display: inline-block;
     position: relative;
     line-height: 2;
-    font-weight: bold;
-    border: 0.125em solid var(--md-sys-color-primary-container);
+    border-style: solid;
+    border-color: var(--md-sys-color-primary);
+    /* border: 0.125em solid var(--md-sys-color-primary-container); */
     padding-left: 1em;
     padding-right: 1em;
     max-width: max-content;
   }
   .title:has(input[type="checkbox"]:checked)::after {
     content: "";
-    background-color: var(--md-sys-color-surface-container-high);
     position: absolute;
     top: calc(1.5em + 0.125em);
     left: 0.125em;
@@ -185,12 +232,31 @@
   label {
     cursor: pointer;
   }
+  .info {
+    display: grid;
+    grid-template-areas: "icon duration";
+    gap: 0.5em;
+    justify-content: flex-start;
+    align-items: center;
+    width: max-content;
+    padding-left: 0.25em;
+    padding-right: 0.5em;
+  }
+  .info > :first-child {
+    grid-area: icon;
+  }
+  .info > :nth-child(2) {
+    grid-area: duration;
+    font-style: italic;
+  }
   .description {
     grid-area: description;
     display: block;
-    padding: 0;
+    padding: 0 1em;
     margin: 0;
-    padding-left: 1em;
+    background-color: var(--md-sys-color-secondary-container);
+    color: var(--md-sys-color-on-secondary-container);
+    border-radius: 10px;
   }
   details {
     margin-left: 1.5em;
