@@ -276,6 +276,209 @@ Bert Bosが提案した"Template Layout"という仕様が元とっている.
 </div>
 
 ## CSS Gridの処理
+### 自動配置
+css gridには自動配置機能がある.
+グリッドアイテムには次の3つのステップがある.
+1. (行, 列)が指定されたアイテムが配置される.
+1. (行,)が指定されたアイテムが配置される.
+1. (,列)が指定もしくは無指定のアイテムが配置される.
+
+
+#### 自動配置の例
+以下では自動配置の例を示す.
+
+```css
+.grid {
+  display: grid;
+  grid-template-columns: 20% 20% auto 200px;
+  grid-template-rows: 360px 180px;
+  gap: 10px;
+}
+/* span は無指定 */
+.item2 {
+  grid-column: span 2;
+}
+/* span は無指定 */
+.item3 {
+  grid-column: span 2;
+}
+```
+
+<div style="display: grid;
+            gap: 3px;
+            background-color: gray;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            text-align: center;
+            ">
+<div style="                     background-color: #a494b4;">item1 (1)</div>
+<div style="grid-column: span 2; background-color: #a494b4;">item2 (2)</div>
+<div style="grid-column: span 2; background-color: #a494b4;">item3 (3)</div>
+<div style="background-color: #a494b4;">item4 (4)</div>
+<div style="background-color: #a494b4;">item5 (5)</div>
+</div>
+
+注意点だが、`span`は自動配置として扱われる.  
+ここで, (n)は配置順を示す.
+
+#### 一部を指定配置にする
+以下ではitem2, item3を(行, 列), (行,)指定配置した場合の例を示す.
+
+```css
+.grid {
+  display: grid;
+  grid-template-columns: 20% 20% auto 200px;
+  grid-template-rows: 360px 180px;
+  gap: 10px;
+}
+/* 行, 列の指定 */
+.item2 {
+  grid-column: 3 / 5;
+  grid-row: 1 / 3;
+}
+/* 行, の指定 */
+.item3 {
+  grid-row: 2;
+}
+```
+
+<div style="display: grid;
+            gap: 3px;
+            background-color: gray;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            text-align: center;
+            ">
+<div style="                     background-color: #a494b4;">item1 (3)</div>
+<div style="grid-column: 3 / 5; grid-row: 1 / 3; background-color: #a494b4;">item2 (1)</div>
+<div style="grid-row: 2; background-color: #a494b4;">item3 (2)</div>
+<div style="background-color: #a494b4;">item4 (4)</div>
+<div style="background-color: #a494b4;">item5 (5)</div>
+</div>
+
+なお, ここで
+```css
+/* (,列) を指定, (行, )は無指定 */
+.item2 {
+  grid-column: 3 / 5;
+  grid-row: span 2;
+}
+/* (行,) を指定 */
+.item3 {
+  grid-row: 2;
+}
+```
+とすることで,
+<div style="display: grid;
+            gap: 3px;
+            background-color: gray;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            text-align: center;
+            ">
+<div style="                     background-color: #a494b4;">item1 (2)</div>
+<div style="grid-column: 3 / 5; grid-row: span 2; background-color: #a494b4;">item2 (3)</div>
+<div style="grid-row: 2; background-color: #a494b4;">item3 (1)</div>
+<div style="background-color: #a494b4;">item4 (4)</div>
+<div style="background-color: #a494b4;">item5 (5)</div>
+</div>
+となる.
+
+ここでは, item3は行を指定されているため、はじめに配置される.
+item2は行が指定されていないため, 無指定として配置される.
+
+#### 配置を全部埋める
+さきほどでは, 空いているスペースがあった。これを埋めるには`dense`を使う.
+
+```css
+.grid {
+  display: grid;
+  grid-template-columns: 20% 20% auto 200px;
+  grid-template-rows: 360px 180px;
+  grid-auto-flow: dense;
+  gap: 10px;
+}
+/* 上の例と同じ */
+...
+```
+<div style="display: grid;
+            gap: 3px;
+            background-color: gray;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            grid-auto-flow: dense;
+            text-align: center;
+            ">
+<div style="                     background-color: #a494b4;">item1 (2)</div>
+<div style="grid-column: 3 / 5; grid-row: span 2; background-color: #a494b4;">item2 (3)</div>
+<div style="grid-row: 2; background-color: #a494b4;">item3 (1)</div>
+<div style="background-color: #a494b4;">item4 (4)</div>
+<div style="background-color: #a494b4;">item5 (5)</div>
+</div>
+
+普通は右から左へ, 上から下へ埋まっていく.  
+`grid-auto-flow: row`と指定すると, 右から左へ, 上から下へ埋まっていく.  
+`grid-auto-flow: column`と指定すると, 上から下へ, 右から左へ埋まっていく.  
+デフォルトでは`grid-auto-flow: row`である.
+
+
+#### 配置を被せる
+(行, 列)が指定されると, 空いているかどうかに関わらず配置される.
+
+```css
+.grid {
+  display: grid;
+  grid-template-columns: 20% 20% auto 200px;
+  grid-template-rows: 360px 180px;
+  grid-auto-flow: dense;
+  gap: 10px;
+}
+
+/* (行, 列)を指定 */
+.item1 {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  z-index: 1;
+  opacity: 0.8;
+}
+
+/* (行, 列)を指定 */
+/* self-justify を指定 */
+.item2 {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  self-justify: center;
+}
+```
+<div style="display: grid;
+            gap: 3px;
+            background-color: gray;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            grid-auto-flow: dense;
+            text-align: center;
+            ">
+<div style="grid-column: 1 / -1;
+            grid-row: 1;
+            z-index: 1;
+            opacity: 0.8;
+            background-color: #a494b4;
+            text-align: left;">item1 (2)</div>
+<div style="grid-column: 1 / -1; grid-row: 1; background-color: red; justify-self: center;">item2 (3)</div>
+<div style="grid-row: 2; background-color: #a494b4;">item3 (1)</div>
+<div style="background-color: #a494b4;">item4 (4)</div>
+<div style="background-color: #a494b4;">item5 (5)</div>
+</div>
+
+この例では, item1, item2が被せられている.　　
+`z-index: 1`が指定されているため, item1が上に配置される.  
+item2はitem1の下に配置される.  
+
+また、配置先での配置を指定するには`justify-self`, `align-self`を使う.
+item2は`justify-self: center`が指定されているため, 横方向の中央に配置される.
+
+
+
 
 ## テンプレート
 
