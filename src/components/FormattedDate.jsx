@@ -5,7 +5,6 @@
  * Distributed under terms of the MIT license.
  */
 
-
 export default function FormattedDate({date}) {
   return (
     <time dateTime={date.toISOString()}>

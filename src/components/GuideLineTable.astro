@@ -1,6 +1,8 @@
 ---
 import { Icon } from 'astro-icon/components'
-const { data } = Astro.props
+type Props = CollectionEntry<'guideline'>;
+const { data }: Props = Astro.props
+import { type CollectionEntry } from 'astro:content';
 
 const priorityStyle = {
 "A": {
@@ -172,7 +174,7 @@ color: 'var(255 255 255)'},
     </tr>
   </thead>
   <tbody>
-    {data.map((item, index) => (
+    {data.map((item: any, index: string) => (
       <tr id=`row-${index}` class="checkable-row">
         <td data-id="check">
           <label>
