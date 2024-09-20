@@ -15,8 +15,8 @@ export async function getStaticPaths() {
 }
 type Props = CollectionEntry<'blog'>;
 
-const { tag } = Astro.params;
-const { posts }: Array<Props> = Astro.props;
+const { tag }: string = Astro.params;
+const { posts }: Props[] = Astro.props;
 ---
 
 <!doctype html>
