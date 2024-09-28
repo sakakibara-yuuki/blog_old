@@ -37,10 +37,10 @@ const workflow = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    heroImage: z.string().optional(),
+    heroImage: z.string(),
+    workflow: z.array(work),
     pubDate: z.coerce.date().optional(),
     updatedDate: z.coerce.date().optional(),
-    workflow: z.array(work),
   }),
 });
 
