@@ -14,7 +14,7 @@ export async function getStaticPaths() {
 
 import Workflow from "@components/Workflow.astro";
 const props: Props = Astro.props;
-const { title, description, heroImage, workflow }: Props = props.data;
+const { title, description, heroImage, workflow } = props.data;
 ---
 
 <BlogPost
