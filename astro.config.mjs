@@ -51,7 +51,8 @@ function myRemarkPlugin() {
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://sakakibara-yuuki.github.io',
+  // site: 'https://sakakibara-yuuki.github.io',
+  site: 'https://sakakibara.xyz',
   output: 'static',
   integrations: [mdx(), sitemap(), d2(), icon(), react(), svelte()],
   markdown: {
