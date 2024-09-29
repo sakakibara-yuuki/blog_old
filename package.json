@@ -46,7 +46,7 @@
     "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
-    "@astrojs/ts-plugin": "^1.10.1",
+    "@astrojs/ts-plugin": "^1.10.2",
     "eslint": "^9.10.0",
     "eslint-plugin-astro": "^1.2.4"
   }

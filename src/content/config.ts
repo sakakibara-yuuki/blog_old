@@ -20,7 +20,7 @@ type WorkType = {
   workflow?: WorkType[];
 }
 
-const work: z.ZodType<WorkType> = z.lazy(() =>
+const work = z.lazy(() =>
   z.object({
     title: z.string(),
     description: z.string(),
@@ -44,27 +44,7 @@ const workflow = defineCollection({
   }),
 });
 
-const guideline = defineCollection({
-  type: 'data',
-  schema: z.object({
-    title: z.string(),
-    description: z.string(),
-    heroImage: z.string().optional(),
-    pubDate: z.coerce.date().optional(),
-    updatedDate: z.coerce.date().optional(),
-    guideline: z.array(z.object({
-      id: z.number(),
-      priority: z.enum(['A', 'B', 'C']),
-      level: z.enum(['A', 'B', 'C']),
-      content: z.string(),
-      reason: z.string().optional(),
-      references: z.array(z.string()).optional(),
-    })),
-  }),
-});
-
 export const collections = {
   "blog": blog,
   "workflow": workflow,
-  "guideline": guideline,
 };

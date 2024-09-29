@@ -40,10 +40,11 @@ import { Icon } from 'astro-icon/components';
 
 <script>
   const searchBar = document.getElementById('search');
-  searchBar.addEventListener('keydown', (event) => {
+  searchBar!.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
       event.preventDefault();
-      const searchPattern = event.target.value;
+      const target = event.target as HTMLInputElement;
+      const searchPattern = target.value;
       window.location.href = '/' + `blog?q=${searchPattern}`;
     }
   });
