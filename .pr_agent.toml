@@ -1,20 +1,20 @@
 [pr_reviewer]
-extra_instructions = "Please use Japanese for explanations"
+extra_instructions = "説明には日本語を使ってください."
 
 [pr_description]
-extra_instructions = "Please use Japanese for explanations"
+extra_instructions = "説明には日本語を使ってください."
 
 [pr_code_suggestions]
-extra_instructions = "Please use Japanese for explanations"
+extra_instructions = "説明には日本語を使ってください."
 
 [pr_add_docs]
-extra_instructions = "Please use Japanese for explanations"
+extra_instructions = "説明には日本語を使ってください."
 
 [pr_update_changelog]
-extra_instructions = "Please use Japanese for explanations"
+extra_instructions = "説明には日本語を使ってください."
 
 [pr_test]
-extra_instructions = "Please use Japanese for explanations"
+extra_instructions = "説明には日本語を使ってください."
 
 [pr_improve_component]
-extra_instructions = "Please use Japanese for explanations"
+extra_instructions = "説明には日本語を使ってください."
