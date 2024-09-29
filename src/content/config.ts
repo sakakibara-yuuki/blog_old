@@ -20,7 +20,7 @@ type WorkType = {
   workflow?: WorkType[];
 }
 
-const work = z.lazy(() =>
+const work: z.ZodSchema<WorkType> = z.lazy(() =>
   z.object({
     title: z.string(),
     description: z.string(),

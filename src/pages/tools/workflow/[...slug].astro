@@ -20,6 +20,9 @@ const { title, description, heroImage, workflow } = props.data;
 <BlogPost
     title={title}
     description={description}
-    heroImage={heroImage} >
+    pubDate={new Date()}
+    heroImage={heroImage}
+    tags={['workflow']}
+    >
   <Workflow data={workflow} />
 </BlogPost>

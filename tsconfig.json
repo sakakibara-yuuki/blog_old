@@ -1,9 +1,8 @@
 {
-  // "extends": "astro/tsconfigs/strict",
-  "extends": "astro/tsconfigs/base",
+  "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    // "strict": true,
-    // "noImplicityAny": true,
+    "strict": true,
+    "noImplicityAny": true,
     "plugins": [
       {
         "name": "@astrojs/ts-plugin"
