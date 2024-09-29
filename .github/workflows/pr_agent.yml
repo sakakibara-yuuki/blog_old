@@ -21,6 +21,3 @@ jobs:
         env:
           OPENAI_KEY: ${{ secrets.OPENAI_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: PR Agent action step
-        id: pragent
-        uses: docker://codiumai/pr-agent:0.23-github_action
