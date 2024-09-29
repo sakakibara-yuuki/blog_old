@@ -13,10 +13,11 @@ export async function getStaticPaths() {
         props: { posts: posts.filter((post) => post.data.tags!.includes(tag)) },
 	}));
 }
-type Props = CollectionEntry<'blog'>;
 
-const { tag }: string = Astro.params;
-const { posts }: Props[] = Astro.props;
+type PostType = CollectionEntry<'blog'>;
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
 ---
 
 <!doctype html>
@@ -34,7 +35,7 @@ const { posts }: Props[] = Astro.props;
         and the contents may be inadequate. Please understand.
         </p>
         <ul>
-          {posts.map((post: Props) => (
+          {posts.map((post: PostType) => (
             <li>
               <a href={`/blog/${post.slug}`}>{post.data.title}</a>
             </li>
