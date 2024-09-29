@@ -34,7 +34,7 @@ jobs:
     environment:
       name: github-pages
       # url: ${{ steps.deployment.outputs.page_url }}
-      url: sakakibara.xyz
+      url: "https://www.sakakibara.xyz"
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
