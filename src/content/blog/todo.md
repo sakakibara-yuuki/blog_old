@@ -23,6 +23,8 @@ tags: ["astro", "math"]
 - [MongoDB Crash Course](https://www.youtube.com/watch?v=ofme2o29ngU)
 
 ## 書きたいもの
+- 料理を覚える
+- ペーパードライバー復活の記録
 - 計画について
 - Grid Layout
 - TypeScript について
