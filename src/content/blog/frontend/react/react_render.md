@@ -1,13 +1,14 @@
 ---
 title: 'Reactによる描画'
 author: "sakakibara"
-description: 'Lorem ipsum dolor sit amet'
+description: 'Reactにおけるレンダリング'
 heroImage: '/blog-placeholder-3.jpg'
 pubDate: 2024-09-29
 tags: ["frontend", "react"]
 ---
 
 # Introduction
+Reactにおけるレンダリングについて理解することを目的とする.
 
 ## Contents
 ## レンダーとは
@@ -29,9 +30,9 @@ tags: ["frontend", "react"]
 import { createRoot } from 'react-dom';
 const root = createRoot(document.getElementById('root'));
 root.render(
-<StrictMode>
-  <App />
-</StrictMode>
+  <StrictMode>
+    <App />
+  </StrictMode>
 );
 ```
 
@@ -48,4 +49,6 @@ stateがsetter関数によって更新されると, レンダーが(おそらく
 1. 再レンダー時には, すでにDOMがあるので, 更新された部分だけを更新する.
 
 再レンダー時には, 内部で保持している仮想DOMとレンダー後の仮想DOMを比較し, その差分のみをリアルDOMに反映する.
+仮想DOM(Virtual DOM)は実際のDOMの軽量なコピーで, Reactがメモリ上で操作を行うことができる.
+これにより, 実際のDOM操作を最小限に抑え, パフォーマンスを向上させることができます
 
