@@ -17,3 +17,31 @@ tags: ["astro", "math"]
 `println`はデバッグ用途でのみ使用するべきである.[^goboot]
 
 [^goboot]: https://go.dev/ref/spec#Bootstrapping
+
+## bcryptでハマったところ
+`bcrypt`はPasswordなどをハッシュ化するためのライブラリである. 
+とはいったものの, 実際に使ってみると不可解な点が見受けられる.
+どうも, ハッシュ化した結果, 同じような文字列が出力されるのだ.
+
+```json
+{
+"password": "$2a$10$8Xi4EKCo2LPkuRmUO74JDOYXFkFXDT2HH53KiR8rHRKA3nnyvE8X."
+}
+```
+これはいったいどういうことだろう.
+
+実は, `bcrypt`のハッシュ化にはフォーマットがある.
+
+```plaintext
+$2a$[cost]$[salt][hashed_password]
+```
+
+`$2a$`はバージョンを示し,
+`$10$`はコストパラメータを示す.
+その後の22文字はソルト`8Xi4EKCo2LPkuRmUO74JDO`である.
+残りは`YXFkFXDT2HH53KiR8rHRKA3nnyvE8X.`は実際にハッシュ化されたパスワードである.
+
+このように, `bcrypt`はハッシュ化した結果をフォーマットして出力する.
+
+そう, `bcrypt`を使用する限り, saltは不要なのである.
+自分はこれに気づかず, モデルに`Salt`を追加してしまっていた.
