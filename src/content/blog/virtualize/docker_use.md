@@ -3,6 +3,7 @@ title: "docker: Dockerの使い方"
 author: "sakakibara"
 description: "dockerの使い方"
 pubDate: 2024-06-25
+updatedDate: 2024-11-8
 heroImage: "/virtualize/docker_use.webp"
 tags: ["仮想化", "docker", "container"]
 ---
@@ -23,12 +24,13 @@ dockerの主要な使い方は
 ざっとこんな感じである。
 それでは、dockerの使い方を見ていこう。
 
-##### :::note  
+:::note{.note}
 imageとはimageファイル、
 つまり光学メディアつまりCDやDVDのソフト化したものである。
 たいていはシステムの完全な情報を一つのファイルに格納している。
 昔はシステムの情報をCDやDVDに焼いていたが、現在では実際にCDやDVDに焼くことは少い(自分の周りでは)。
 ただ慣例からimageファイルという言葉が使われている。SDに入れてもUSBに入れてもimageファイル。仮想化環境に入れてもimageファイルなのである。
+:::
 
 ### imageを持ってくる
 `ubuntu`のimageを持ってくる。
