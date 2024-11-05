@@ -81,15 +81,18 @@ tags: ["react", "atomic design"]
 
 ### Presentational Component and Container Component
 
-Atomic Designの前に,　コンポーネントを分割する考え方を紹介する.
-それらはコンポーネントを２つの側面から見る.  
-つまり, 外見と動作である.
+Atomic Designの前に,　コンポーネントを分割する考え方を紹介する.  
+この考え方はコンポーネントを外見と動作という2つの側面から見る.  
 
 #### Presentational Component
 
 Presentational Componentは外見を担当するコンポーネントである.  
-スタイリングされており,
-propsを受け取り、それを表示するだけの最小限の機能をもつ.
+このコンポーネントは
+- スタイリングされ
+- propsを受け取り
+- 表示する
+
+といった最小限の機能をもつ.
 
 ```typescript
 type ButtonProps = {
@@ -117,9 +120,10 @@ export function Button(props: ButtonProps) {
 
 Container Componentは動作を担当するコンポーネントである。
 
-ここではデザインについて一切考えず, Presentational Componentにデータを渡す.
-
-また, Hooksをつかって, 振る舞いを実装し, ContextやReduxを使ってデータを管理する.
+このコンポーネントではデザインについて一切考えず,
+- Presentational Componentにデータを渡し
+- Hooksによる振る舞いを実装し
+- ContextやReduxを使ってデータを管理する.
 
 ```typescript
 import { useSate, useCallback } from "react";
@@ -157,16 +161,21 @@ export function CountButton(props: CountButtonProps) {
 }
 ```
 
-この例では, Container ComponentはPresentational Componentの親であり, Presentational Component はContainer Componentから渡されたpropsを使って表示を行っている.
+この例では, Container ComponentはPresentational Componentの親であり, 子であるPresentational Component は親であるContainer Componentから渡されたpropsを使って表示を行っている.
 
 このように外見と動作を分離することで, コンポーネントの可読性や再利用性が向上する.
 
 ## Atomic Design
 
-Atomic DesignとはBrad Frostが考案したデザインシステムである。
-画面を5段階に分割し、それを組み合わせることでUIを構築する。
-根底にはコンポーネント化された要素が画面を構成しているという考え方があり, Reactとの相性が良い。しかし, ReactやVue専用のツールなどではない。
-もともとはデザインの場面で考えられてきた概念である.
+Atomic DesignとはBrad Frostが考案したデザインシステムである.
+もともとはデザインの場面で考えられてきた概念であり, ReactやVue専用のツールなどではない. デザインの設計に関する思想である.  
+Atomic Designでは画面を5段階に分割し、それを組み合わせることでUIを構築する.
+思想の源流に"画面はコンポーネント化された要素によって構成されている"という考え方がある. この思想は Reactとの相性が良い.  
+なお, Atomic Designは前述したPresentational / Container Componentの考え方とは別ものとして考えたほうが良い. また, Atomic Designはあくまで思想であるため, 必ずしも厳密に実際に適用する必要は無い.
+
+また, そもそもReactのコンポーネントの利点は再利用性があることである.
+Webでは特定のインターフェースを様々な箇所で何度も使いまわすことが多い.
+それぞれのコンポーネントがバラバラになってしまうと, 保守性が下がる.
 
 <!-- | 階層     | 説明                                                                                          | -->
 <!-- | -------- | --------------------------------------------------------------------------------------------- | -->
@@ -181,53 +190,82 @@ Atomic DesignとはBrad Frostが考案したデザインシステムである。
 AtomsはAtomic Designの最下層に位置するコンポーネントである.
 ボタンやテキストなどこれ以上分割できない要素を指す.
 
-- Atomsは状態や振る舞いを持たない.
+Atomsは以下の特徴を持つ.
+- 状態や振る舞いを持たない.
 - 文章, 色, 大きさなどの描画に関する情報はPropsで渡される.
-- 大きさも親コンポーネントから制御できるように, propsで渡す
   - CSSの[内在サイズ](https://developer.mozilla.org/ja/docs/Glossary/Intrinsic_Size)(max-contentなど)を使わないことが多い.
-- 特定のドメインに依存せず, 汎用的に利用できるコンポーネント.
+- 特定のドメインに依存せず, 汎用的に利用できる.
 
-Atomsはデザインの最小単位であり, ボタンやテキストなどこれ以上分割できない要素
-を指す.
+Atomsでは**色・フォント・レイアウトなどのデザインについては考えない**.  
 
-Presentational Componentと同じように, 振る舞いについては考えず, 外見を担当するコンポーネントである.  
-しかし, Presentational Component とは異なり**色・フォント・レイアウトなどのデザインについては考えない.**
+:::note{.warning}
+ただし, 原子に電子数などの定数が定められているように, フォントサイズなどの具体的なプロパティについては考える. という宗派もある.
+:::
 
-これ一番難しくない???
+:::note{.tip}
+よく, デザインからコンポーネントを切り出していると, Atomsだらけになってしまうことがある.  
+"Atoms = 最小単位"という定義から何がAtomsに該当するかが切り出しやすいことが原因に思える. だが, これは誤解(?)である.  
+Atomic Design全体に言えることだが, これらの分割はあくまで再利用性を高めるためのものであり, 再利用される予定が無いコンポーネントは分割する必要は無い.
+むしろ, 無理に分割することで保守性が下がるので過剰な分割は控えるべきである.
+:::
+
 
 ### Molecule
-Moleculesは複数のAtoms, Moleculesを組み合わせたものであり, 一つの機能を持つコンポーネントである.
-
-- Moleculesは基本的には状態や振る舞いをもたない.
-- MoleculesはAtomsのレイアウトを担当する.
-- Moleculesで担う役割は一つ.
+Moleculesは複数のAtoms, Moleculesを組み合わせたものであり, 単一の機能を持つコンポーネントである.
 
 テキストボックスなどがこれに該当する.
-Presentational Componentと同じように, 振る舞いについては考えず, 外見を担当するコンポーネントである.  
-しかし, Presentational Component とは異なり**色・フォントなどのデザインについては考えない.**
+
+Moleculesは以下の特徴を持つ.
+- 状態や振る舞いをもたない.
+- Atomsのレイアウトを担当する.
+- Moleculesで担う役割は一つ.
+
+MoleculesはAtomsとは異なり**レイアウトついてのみ考える.**
+
+:::note{.warning}
+ただし, 再利用性が保たれていることが重要である. また, moleculesはそれ単体で操作の仕方がわかるようになっていることが望ましい.  
+他の箇所での再利用性が難しくなってしまうため, 可能な状態であることが望ましい.
+:::
 
 ### Organisms
 Organismsはより具体的な機能を持つコンポーネントである.
-この意味において, Organismsが無いページは存在しない.
-意外と小さな, カードやフォーム, ヘッダーやフッターなどがこれに該当する.
-ここでは, ドメイン知識に依存したデータを受け取ったり, コンテキストを参照したり, 独自の振る舞いを持つ.
+この意味において, Organismsが無いページは存在しない.  
+意外と小さなカードやフォーム, ヘッダーやフッターなどがこれに該当する.  
+Organismsではドメイン知識に依存したデータを受け取ったり, コンテキストを参照したりといった独自の振る舞いを持つ.
 
-- Organismsは独自の状態や振る舞い・外見を持つ.
-- **外見をもつOrganismsはPresentational Componentとして作成する.**
-- **振る舞いをもつOrganismsはContainer Componentとして作成する.**
+Organismsは以下の特徴を持つ.
+- 独自の状態や振る舞い・外見を持つ.
+- 外見をもつOrganismsはPresentational Componentとして作成する.
+- 振る舞いをもつOrganismsはContainer Componentとして作成する.
 
-Organismsは必ずしも単一のファイルで構成されるとは限らない.
+Organismsは必ずしも単一のファイルで構成されるとは限らず,
+Presentational ComponentとContainer Componentに分割することもある.
+
+:::note{.warning}
+OrganismsはAtomsやMoleculesを利用して作られるが, 必ずしもMoleculesをを利用する必要はない. つまり, Atomsを直接利用するOrganismsもある.
+ここで重要なのが, Organismsはそこまで再利用性を重視する必要が無いということである.
+よく使用されるOrganismsはECサイトの商品一覧などのように商品のカードはMoleculesで構成されていて, それらをOrganismsでまとめるようなものである.
+:::
 
 ### Template
+いわゆるワイヤーフレームと同じ, ページに表示する実データが反映される前の状態を指す. ページ構造やレイアウト構成などを説明するためのレイヤーである.
 
 - ページ全体のレイアウトを担当する.
 
 複数のOrganismを配置し, CSSでレイアウトを調整する.
 
+Templateは具体性のあるコンテンツが取り除かれているため, ページの"コンテンツ構造"に焦点を当てている.
+Templateによって各コンポーネントがどのように表示されて, どのように動作するのかを考えることができる.
+ユーザーの視点でデザインやマーケティング的な要素を確認することもTemplateがあることで可能になる.
+
 ### Page
+PageはTemplateに対して実データを反映させた状態のものをいう.
+ある種, Pageはプログラミング的にはPageはTemplateのインスタンスにであると言える.
+
 レイアウトはTemplateで済ましているので, ここでは状態の管理, ルーターの処理, API通信, Contextの作成などの振る舞いを持つ.
 
 - router, API通信などのロジックを持つ.
 
-<!-- ## Global State Management( Recoil ) -->
-<!-- ## Json Place Holder -->
+## 次へ
+- [ReactのAtomic Designのベストプラクティスについて](../react/react_atomic_design_bestpractice)
+

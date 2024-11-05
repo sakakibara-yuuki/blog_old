@@ -1,0 +1,12 @@
+title: SEO対策
+description: SEOに必要な作業や手順を記録する
+heroImage: /blog-placeholder-3.jpg
+pubDate: 2024-09-07
+updatedDate: 2024-09-07
+workflow:
+- title: ユースケース図の作成
+  description: 全体像を把握するため
+  priority: 'C'
+  weight: 'heavy'
+  duration: '00:20:00'
+  references: ['[ユースケース図の書き方](http://sakakibara.xyz/blog/frontend/typescript/typescript_config)']
