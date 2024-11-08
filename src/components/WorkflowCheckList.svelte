@@ -161,10 +161,11 @@
     margin-left: 2em;
     padding-bottom: 2em;
     display: grid;
-    grid-template-areas:
-      "title"
-      "info"
-      "description";
+    grid-template:
+      "title" 1fr
+      "info" 1fr
+      "description" auto
+      "references" auto;
   }
   .work::before {
     content: "";
@@ -262,10 +263,13 @@
     grid-area: description;
     display: block;
     padding: 0 1em;
-    margin: 0;
     background-color: var(--md-sys-color-secondary-container);
     color: var(--md-sys-color-on-secondary-container);
     border-radius: 10px;
+  }
+  .references {
+    margin-top: 0;
+    margin-bottom: 0;
   }
   .references li {
     list-style: square;
