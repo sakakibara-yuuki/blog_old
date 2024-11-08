@@ -9,4 +9,5 @@ workflow:
   priority: 'C'
   weight: 'heavy'
   duration: '00:20:00'
-  references: ['[ユースケース図の書き方](http://sakakibara.xyz/blog/frontend/typescript/typescript_config)']
+  references:
+    - '[ユースケース図の書き方](http://sakakibara.xyz/blog/frontend/typescript/typescript_config)'

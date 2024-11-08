@@ -19,7 +19,8 @@ workflow:
 - title: 環境開発の構築
   description: 'ESLint, Prettier, Storybook, Jest, CiCD, etc.  
                 また, ディレクトリレイアウトの決定もここで行う.'
-  references: ['[typescriptの設定](http://sakakibara.xyz/blog/frontend/typescript/typescript_config)']
+  references:
+    - '[typescriptの設定](http://sakakibara.xyz/blog/frontend/typescript/typescript_config)'
   priority: 'B'
   weight: 'light'
   duration: '00:20:00'
