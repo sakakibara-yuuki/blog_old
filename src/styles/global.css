@@ -56,7 +56,7 @@ h3,
 h4,
 h5,
 h6 {
-	margin: 2rem 0 0.5rem 0;
+	margin: 2rem 0 0.5rem;
 	line-height: 1.2;
 }
 h1 {
@@ -118,7 +118,7 @@ img {
   border-radius: 8px;
 }
 code {
-  padding: 0 0.5em 0 0.5em;
+  padding: 0 0.5em;
   margin: 0 0.3em;
   border-radius: 4px;
   vertical-align: bottom;
@@ -154,7 +154,7 @@ blockquote {
 }
 
 .note{
-  padding: 0.5em 1em 0.5em 1em;
+  padding: 0.5em 1em;
   border-left: 4px solid #1f6feb;
 }
 .note:before{
@@ -164,7 +164,7 @@ blockquote {
 }
 
 .tip{
-  padding: 0.5em 1em 0.5em 1em;
+  padding: 0.5em 1em;
   border-left: 4px solid #238636;
 }
 .tip:before{
@@ -174,7 +174,7 @@ blockquote {
 }
 
 .important{
-  padding: 0.5em 1em 0.5em 1em;
+  padding: 0.5em 1em;
   border-left: 4px solid #8957e5;
 }
 .important:before{
@@ -184,7 +184,7 @@ blockquote {
 }
 
 .warning{
-  padding: 0.5em 1em 0.5em 1em;
+  padding: 0.5em 1em;
   border-left: 4px solid #9e6a03;
 }
 .warning:before{
@@ -194,7 +194,7 @@ blockquote {
 }
 
 .caution{
-  padding: 0.5em 1em 0.5em 1em;
+  padding: 0.5em 1em;
   border-left: 4px solid #da3633;
 }
 .caution:before{

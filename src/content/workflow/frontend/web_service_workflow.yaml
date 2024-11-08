@@ -4,33 +4,64 @@ heroImage: /blog-placeholder-3.jpg
 pubDate: 2024-09-07
 updatedDate: 2024-09-07
 workflow:
-- title: ユースケース図を作る
-  description: 全体像を把握するため
+- title: ユースケース図の作成
+  description: 'ユースケース, 詳細, 関連ページを把握する. これもAtomic Designのようにグラフと表にまとめると良い.'
+  priority: 'C'
+  weight: 'heavy'
+- title: シーケンス図の作成
+  description: '実際のユースケースの流れを把握するために作成. Client, Front, Back, DBなどの関係を把握する.'
+  priority: 'C'
+  weight: 'heavy'
+- title: デザインカンプの作成
+  description: 'Figmaなどを使って, デザインカンプを作成する'
+  priority: 'A'
+  weight: 'heavy'
+- title: 環境開発の構築
+  description: 'ESLint, Prettier, Storybook, Jest, CiCD, etc.  
+                また, ディレクトリレイアウトの決定もここで行う.'
+  references: ['[typescriptの設定](http://sakakibara.xyz/blog/frontend/typescript/typescript_config)']
+  priority: 'B'
+  weight: 'light'
+  duration: '00:20:00'
+- title: デザインカンプをコンポーネントに分割
+  description: |-
+    Atomic Designsに従い, コンポーネントを分割する.  
+    Template(ワイヤーフレームに相当)からAtomsへ
+    分解すると, 過剰な分割にならずに済む.
+    表を作成すると良い.
   reference: null
-- title: ユースケース表を作る
-  description: 'ユースケース, 詳細, 関連ページを把握する'
-  reference: null
-- title: シーケンス図を作る
-  description: ユースケースの流れを把握するため
-  reference: null
-- title: 環境開発
-  description: 'ESLint, Prettier, Storybook, Jest, CiCD, etc'
-  reference: null
-- title: デザインをもとにAtomic Designに沿ったコンポーネントに分割
-  description: 下準備
-  reference: null
-- title: Atomsの実装
-  description: ''
-  reference: null
-- title: Moleculuesの実装
-  description: ''
-  reference: null
-- title: Organismsの実装
-  description: ''
-  reference: null
-- title: Templateの実装
-  description: ''
-  reference: null
-- title: Pageの実装
-  description: ''
-  reference: null
+  priority: 'A'
+  weight: 'light'
+- title: 各コンポーネントの実装
+  description: '各コンポーネントを実装していく. 余裕があれば, この途中でJestやStorybookを使ってテストを行う'
+  priority: 'A'
+  weight: 'heavy'
+  workflow:
+  - title: 各コンポーネントのStorybookの作成
+    description: 'Storybookを使ってデザインを確認する.'
+    priority: 'C'
+    weight: 'heavy'
+  - title: 各コンポーネントの実装
+    description: '各コンポーネントを実装していく.'
+    priority: 'A'
+    weight: 'heavy'
+  - title: 各コンポーネントの単体テスト
+    description: 'この途中でJestやStorybookを使ってテストを行う'
+    priority: 'B'
+    weight: 'heavy'
+- title: APIクライアント等の実装
+  description: '極力外部依存性を排除する. 依存性の注入を行う'
+  priority: 'A'
+  weight: 'heavy'
+- title: セキュリティ対策
+  description: 'XSS, CSRF, SQL Injectionなどのセキュリティ対策を行う'
+  priority: 'A'
+  weight: 'light'
+- title: SEO対策
+  description: 'metatag, sitemap, robots.txtなどのSEO対策を行う'
+  priority: 'B'
+  weight: 'light'
+- title: アクセシビリティ
+  description: 'ARIA, a11y, WCAGなどのアクセシビリティ対策を行う'
+  priority: 'B'
+  weight: 'light'

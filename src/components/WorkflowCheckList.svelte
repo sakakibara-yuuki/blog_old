@@ -27,6 +27,7 @@
   }
 
   let promise = transformMarkdownToHtml(work.description);
+  let workReferences = work.references ? work.references.map(ref => transformMarkdownToHtml(ref)) : [];
   let workWeight = {weight: 400, width: "5px"};
   switch (work.weight) {
     case "light":
@@ -80,9 +81,17 @@
         <em>{error.message}</em>
       {/await}
     </span>
-    {#if work.references}
-      <span>{work.references}</span>
-    {/if}
+    <ul class="references">
+      {#await Promise.all(workReferences)}
+        <li>Loading...</li>
+      {:then references}
+        {#each references as reference}
+          <li>{@html reference}</li>
+        {/each}
+      {:catch error}
+        <li>{error.message}</li>
+      {/await}
+    </ul>
     {#if work.workflow && work.workflow.length > 0}
       <details open>
         <summary>break</summary>
@@ -257,6 +266,9 @@
     background-color: var(--md-sys-color-secondary-container);
     color: var(--md-sys-color-on-secondary-container);
     border-radius: 10px;
+  }
+  .references li {
+    list-style: square;
   }
   details {
     margin-left: 1.5em;
