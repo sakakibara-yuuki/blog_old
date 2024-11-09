@@ -1,0 +1,42 @@
+title: "電磁界解析"
+description: "電磁界解析のワークフロー"
+heroImage: "https://images.unsplash.com/photo-1612838326824-4"
+pubDate: "2021-09-01"
+updatedDate: "2021-09-01"
+workflow:
+  - title: "解析条件の設定"
+    description: "解析対象の形状、材質、周波数範囲など、解析条件を設定する。"
+    priority: "A"
+    weight: "heavy"
+
+  - title: "メッシュの作成"
+    description: "形状を細分化してメッシュを作成し、数値解析に適した構造に変換する。"
+    priority: "B"
+    weight: "heavy"
+
+  - title: "境界条件の設定"
+    description: "モデルに適切な境界条件を設定することで、解析結果に影響を与える要素を調整する。"
+    priority: "A"
+    weight: "light"
+
+  - title: "ソルバーの選択と設定"
+    description: "必要な精度と計算資源に応じて、適切なソルバーを選択し、設定を行う。"
+    priority: "A"
+    weight: "heavy"
+
+  - title: "解析の実行"
+    description: "すべての条件と設定が完了したら、解析を実行して結果を計算する。"
+    priority: "A"
+    weight: "heavy"
+    duration: "02:00:00"
+
+  - title: "結果の確認と解析"
+    description: "解析結果を可視化し、電磁界の分布、電力密度、インピーダンスなどを評価する。"
+    priority: "A"
+    weight: "light"
+
+  - title: "検証と最適化"
+    description: "解析結果が目的に合致しているかを確認し、必要に応じて条件を調整して再解析を行う。"
+    priority: "B"
+    weight: "light"
+

@@ -161,11 +161,11 @@
     margin-left: 2em;
     padding-bottom: 2em;
     display: grid;
-    grid-template:
-      "title" 1fr
-      "info" 1fr
-      "description" auto
-      "references" auto;
+    grid-template-areas:
+      "title"
+      "info"
+      "description"
+      "references";
   }
   .work::before {
     content: "";
@@ -251,6 +251,8 @@
     width: max-content;
     padding-left: 0.25em;
     padding-right: 0.5em;
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
   }
   .info > :first-child {
     grid-area: icon;
