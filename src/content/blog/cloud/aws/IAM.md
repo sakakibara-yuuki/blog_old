@@ -95,11 +95,11 @@ role: {
   }
 }
 direction: left
-group -> user
+group -> user: {style.stroke-dash: 3}
 role -> user
 role -> group
-
 ```
+
 使用例として
 - EC2インスタンスのロール: EC2インスタンスからS3バケットにアクセスするために, ロールを通じてアクセス権を付与.
 - クロスアカウントアクセス: 異なるAWSアカウント間でリソースにアクセスするためのロールを作成.
@@ -151,7 +151,7 @@ role: {
     border-radius: 8
   }
 }
-group -> user
+group -> user: {style.stroke-dash: 3}
 direction: left
 policy -> user: {style.animated: true}
 policy -> group: {style.animated:true}
