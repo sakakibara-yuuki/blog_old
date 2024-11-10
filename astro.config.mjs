@@ -20,6 +20,7 @@ import {h} from 'hastscript'
 import {visit} from 'unist-util-visit'
 
 import svelte from '@astrojs/svelte';
+import astroD2Integration from 'astro-d2';
 
 // This plugin is an example to turn `::note` into divs, passing arbitrary
 // attributes.
@@ -54,7 +55,13 @@ export default defineConfig({
   // site: 'https://sakakibara-yuuki.github.io',
   site: 'https://sakakibara.xyz',
   output: 'static',
-  integrations: [mdx(), sitemap(), d2(), icon(), react(), svelte()],
+  integrations: [
+    mdx(),
+    sitemap(),
+    d2({layout: 'elk'}),
+    icon(),
+    react(),
+    svelte()],
   markdown: {
     remarkPlugins: [
       [remarkToc, { heading: "Contents" }],
