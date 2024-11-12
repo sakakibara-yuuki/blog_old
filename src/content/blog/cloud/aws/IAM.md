@@ -108,6 +108,15 @@ role -> group
 - クロスアカウントアクセス: 異なるAWSアカウント間でリソースにアクセスするためのロールを作成.
 他のアカウントが自分のリソースにアクセスできるようにする.
 
+例えば, EC2インスタンスからS3バケットにファイルをアップロードするとする. この場合, アプリケーションからS3バケットにアクセスするためにAWS SDKを使用しなければならない. では, そのためにIAMユーザーを作成してアクセスキーを発行するのかというと, それはアンチパターンにつながる. なぜなら, 以下の問題が発生するからである.
+- アクセスキーが漏洩すると, アプリケーションのアクセスキーを設定し直す必要がある. そのためにアプリケーションを一時停止して, 新しいアクセスキーを設定して, 再度デプロイする必要がある.
+- アプリケーションの権限管理のためのIAMユーザーを作成しなければならない.
+
+このような問題を解決するために, IAMロールを使用する.
+IAMロールを使用すれば, アプリケーション内にアクセスキーをハードコードする必要がなくなる.
+まず, IAMロールにポリシーを付与する. そして, IAMロールをEC2インスタンスにアタッチする. これで, EC2インスタンスはIAMロールに付与された権限を持つことができる.
+IAMロールをアタッチすると, Security Token Service(STS)というサービスから一時的なアクセスキーを受け取ることができる. このアクセスキーの情報はアプリケーションが持つ必要は無い. また, アクセスキーは一定時間毎にリフレッシュされる.
+
 ### IAMポリシー
 対して, IAMポリシーはAWSリソースに対するアクセス権限を定義するための**JSON形式の文書**である.
 ポリシーをユーザーやグループ, ロールに付与することで, AWSリソースに対するアクセス権限を制御できる.
@@ -163,3 +172,89 @@ policy -> role: {style.animated:true}
 role -> user
 role -> group
 ```
+デフォルトではユーザーやグループには何もポリシーが付与されていない.
+最低限のポリシーを必要になってから徐々に付与することがベストプラクティスになっている.
+### ポリシーの書き方
+ポリシーはJSON形式で記述される.  
+すべての操作を許可するポリシーは以下のようになる.
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowAllSamplePolicy",
+            "Effect": "Allow",
+            "Action": "*",
+            "Resource": "*"
+        }
+    ]
+}
+```
+特定の操作だけ許可するポリシーは以下のようになる.
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "SpecificAllSamplePolicy",
+            "Effect": "Allow",
+            "Action": "s3:*",
+            "Resource": "*"
+        }
+    ]
+}
+```
+これで`s3`に関する全ての操作が許可される.
+さらに細かくリソースを制御することもできる.
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "SpecificAllSamplePolicy",
+            "Effect": "Allow",
+            "Action": "s3:*",
+            "Resource": "arn:aws:s3:::example-bucket"
+        }
+    ]
+}
+```
+
+IAMポリシーの要素については以下の通り.
+
+|要素|説明|
+|---|---|
+|Version|AWSが管理するバージョン情報. 固定値.|
+|Statement|ポリシーの内容を記述する. 複数のポリシーを記述可能.|
+|Sid|ステートメントID. ポリシー内で一意である必要がある. 省略可能.|
+|Effect|`Allow`または`Deny`. アクションの許可または拒否を指定.|
+|Action|Effectで指定した許可または拒否の対象を指定.|
+|Resource|Actionで指定した対象を実行するリソースを指定.|
+|Condition|ポリシーを実行できる条件を指定.|
+
+- [IAM JSON ポリシー リファレンス](https://docs.aws.amazon.com/ja_jp/IAM/latest/UserGuide/reference_policies.html)
+- [IAM JSON policy reference](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html)
+
+### ARN(Amazon Resource Name)
+ARNは以下のような構造を持つ.
+```plaintext
+arn:(partition):(service):(region):(account-id):(resource)
+arn:(partition):(service):(region):(account-id):(resourcetype)/(resource)
+arn:(partition):(service):(region):(account-id):(resourcetype):(resource)
+```
+例えば, S3バケットのARNは以下のようになる.
+```plaintext
+arn:aws:s3:::example-bucket
+```
+これじゃぁ省略が多くて意味がわからないと思うが,
+iam-sampleというIAMユーザーのARNは以下のようになる.
+```plaintext
+arn:aws:iam::123456789012:user/iam-sample
+```
+ワイルドカードを使うこともできる.  
+`admin`グループのすべてのユーザーを指定するARNは以下のようになる.
+```plaintext
+arn:aws:iam::123456789012:admin/*
+```
+- [ARNの詳細](https://docs.aws.amazon.com/ja_jp/IAM/latest/UserGuide/reference-arns.html)
+- [ARNの詳細(英語)](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html)

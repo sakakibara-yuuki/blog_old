@@ -1,0 +1,128 @@
+title: AWS ECSの設定
+description: AWS ECSの設定を行う
+heroImage: /blog-placeholder-3.jpg
+pubDate: 2024-09-07
+updatedDate: 2024-09-07
+workflow:
+- title: VPCの作成
+  description: 右上の"VPCの作成"からVPCを作成する
+  priority: A
+  weight: light
+  duration: '00:20:00'
+  references:
+    - '[ECSとは](https://docs.aws.amazon.com/ja_jp/AmazonECS/latest/developerguide/Welcome.html)'
+  workflow:
+  - title: Nameタグ/CIDRの設定
+    description: Nameはよく"production-project-environment-vpc"のように設定されることが多い. "10.0.0.0/16"が推奨されている. IPv6はなくていい.
+    priority: A
+- title: Subnetの作成
+  description: 先程作成したVPCに対してSubnetを作成する
+  priority: A
+  workflow:
+  - title: Nameタグ/CIDRの設定
+    description: |-
+      "10.0.1.0/24"を設定する.
+      なお, AWSのVPCは最後が"0, 1, 2, 3, 255"の5つはAWSによって予約されているので注意する.
+      また, 同じモーダルで複数のSubnetを作成することも可能.
+    priority: A
+- title: インターネットゲートウェイ(IGW)の作成
+  description: |-
+    VPCを作成してもインターネットに接続されていないので, IGWを作成する.
+    作成はただ単純にNameタグを設定するだけ.
+  priority: A
+  workflow:
+    - title: VPCへアタッチ
+      description: 先程作成したVPCに対してIGWをアタッチする. "アクション"からVPCへアタッチを選択して, 先程作成したVPCを選択して終わり.
+      priority: A
+- title: ルートテーブルの作成
+  description: |-
+    ルートテーブルの項目を開く.
+    IGWを作成したらIGWにアタッチされているVPCのルートテーブルがくっついている.
+    このルートテーブルを編集する.
+  priority: A
+  workflow:
+    - title: ルートを編集
+      description: |-
+        0.0.0.0/16(全てのIPアドレス)をIGWに向けるように設定する.
+        "送信先"を0.0.0.0/16, "ターゲット"をIGWに設定する.
+      priority: A
+    - title: サブネットの関連付け
+      description: |-
+        ルートテーブルの上部タグに"サブネットの関連付け"がある.
+        "サブネットの関連付けの編集"を選択して, 先程作成したSubnetを関連付ける.
+        これにより, IGWとSubnet間で通信が可能になった.
+      priority: A
+- title: ECR(Elastic Container Registory)にアップロード
+  description: |-
+    ルートテーブルの項目を開く.
+    IGWを作成したらIGWにアタッチされているVPCのルートテーブルがくっついている.
+    このルートテーブルを編集する.
+  priority: A
+  workflow:
+    - title: Dockerfileの作成
+      description: |-
+        .env.productionをつかってマルチステージビルドを行う.
+    - title: ECRでリポジトリを作成
+      description: |-
+        "ECS"に移動して, "リポジトリ"を選択する. これにより, ECRに移動することができる.
+        おそらく"プライベートリポジトリ"が選択されているはずである.
+        "リポジトリの作成"を選択して, リポジトリを作成する.
+        リポジトリにはわかりやすい名前をつける.
+        イミュータビリティはImmutableを選択する.
+        "作成"を選択する.
+    - title: ECRのリポジトリへアップロード
+      description: |-
+        - 先ほど作成したリポジトリ名を選択.
+        - プッシュコマンドを表示を選択.
+         - `aws ecr ...`から始まるコマンドでECRへログインできる.
+         - `docker build -t ...`でDockerイメージをビルドする.
+         - `docker tag ...`でDockerイメージにpushできるようにタグをつける. これによりタグ付けされた同じイメージが作成される.
+         - `docker push ...`でDockerイメージをECRにpushする. イメージレイヤーが一つずつpushされる.
+
+        ここに書かれているコマンドを実行すると, ECRにDockerイメージがpushされる.
+- title: ECSクラスタの作成
+  description: |-
+    ECSクラスタへ移動して. クラスタを選択.
+    クラスター名を入力して, クラスタを作成する. (ex. simple-memo-ecs)
+    CloudWatachのContainer Insightsを有効にする.
+    これでECSクラスタが作成される.
+    ECSにはクラスタ・タスク・サービス・コンテナの4つの概念がある.
+    まず, タスクを作成する.
+  workflow:
+  - title: Taskの定義
+    description: |-
+      タスクはコンテナがどんな条件でどんなふうに動くのかを定義するものである.
+      タスク定義のタブを選択して, "新しいタスク定義を作成"を選択する.
+      - タスク定義ファミリーはわかりやすい名前をつける. (ex. simplememo)
+      - タスクロールはecsTaskExecutionRole(自作)を選択する.
+      以上でタスク定義は完成.
+    workflow:
+    - title: コンテナの登録
+      description: |-
+        別タブでECRに移動して, 先ほど作成したリポジトリを選択する.
+        名前とイメージURIをつかってコンテナを登録する.
+        CloudWatchのログだけは出すようにしておく.
+        これでコンテナの登録が完了.
+  - title: サービスにタスクを追加
+    description: |-
+      クラスターのタブを選択.
+      先程作成したクラスターを選択.
+      "サービス"上部タブを選択して, "作成"を選択.
+      #### 環境
+      - 起動タイプを選択
+      - FARGATEを選択
+      #### デプロイ設定
+      - アプリケーションタイプは"サービス"を選択
+      - ファミリーで自分が作成したタスク定義を選択
+      - サービス名を入力(ex. simple-memo-service)
+      残りはデフォルトでOK.
+      #### ネットワーキング
+      - 作成したVPCを選択
+      - この時点でsubnetが表示されるので, 作成したsubnetを選択する.
+      - セキュリティグループを作成する.
+        - 名前を変更する. (ex. simple-memo-ecs)
+        - Typeを"HTTP"に変更する. ソースをAnywhereに変更する.
+        - 作成する.
+      - 残りはデフォルトでOK. "作成"を選択してサービスの作成が完了.  
+      ここでデバッグ作業発生.
+      23:40に発見. ネットワークの接続ができないらしい.
