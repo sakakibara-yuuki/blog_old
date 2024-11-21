@@ -4,6 +4,7 @@ import BaseHead from '@components/BaseHead.astro';
 import Header from '@components/Header.astro';
 import Footer from '@components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from 'src/consts';
+import Analytics from '@vercel/analytics/astro'
 
 type WorkflowType = CollectionEntry<"workflow">;
 const { posts } = Astro.props;
@@ -58,5 +59,6 @@ const { posts } = Astro.props;
       </div>
     </main>
     <Footer />
+  <Analytics />
   </body>
 </html>
