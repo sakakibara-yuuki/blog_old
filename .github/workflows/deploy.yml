@@ -19,8 +19,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: curl -fsSL https://d2lang.com/install.sh | sh -s --
-      - name: Install playwright
-        run: npx playwright install --with-deps
       - name: Checkout your repository using git
         uses: actions/checkout@v4
       - name: Install, build, and upload your site
