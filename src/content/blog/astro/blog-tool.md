@@ -62,3 +62,8 @@ $$
 [可換図式](https://redgregory.notion.site/Diagrams-With-KaTeX-9166ebfa650a463dbdf67357143ebaed)
 または
 [quivar](https://q.uiver.app/#q=WzAsMyxbMCwwLCJBIl0sWzEsMCwiQiJdLFsxLDEsIkMiXSxbMCwxLCJmIl0sWzEsMiwiZyJdLFswLDIsImcgXFxjaXJjIGYiLDJdXQ==)を使う。
+
+### mermaid
+[このサイト](https://mohhasbias.github.io/blog/render-mermaidjs-in-astro/)を主に参考にした.
+
+結局自分のastro.config.mjsにrehypeMermaidscriptを追加することになった.
