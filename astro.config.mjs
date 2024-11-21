@@ -7,7 +7,6 @@ import remarkToc from "remark-toc";
 import remarkDirective from "remark-directive";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
-import remarkMermaid from "remark-mermaidjs";
 
 import icon from "astro-icon";
 import react from "@astrojs/react";
@@ -68,8 +67,7 @@ export default defineConfig({
       [remarkToc, { heading: "Contents" }],
        remarkDirective,
        myRemarkPlugin,
-       remarkMath,
-       remarkMermaid
+       remarkMath
     ],
     rehypePlugins: [ rehypeKatex ],
   }
