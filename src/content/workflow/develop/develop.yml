@@ -1,0 +1,73 @@
+title: システム設計の手順
+description: UMLを中心に、システム設計の手順をまとめる。
+heroImage: /blog-placeholder-3.jpg
+pubDate: 2024-12-03
+updatedDate: 2024-12-03
+workflow:
+- title: 要件定義
+  description: ''
+  reference: null
+  priority: A
+  workflow:
+  - title: コンテキスト図を作成する。
+    description: ''
+    reference: null
+    priority: A
+  - title: ユースケース図を作成する。
+    description: ''
+    reference: null
+    priority: A
+  - title: アクティビティ図を作成する。
+    description: ''
+    reference: null
+    priority: B
+  - title: 状態遷移図を作成する。
+    description: ''
+    reference: null
+    priority: B
+  - title: ドメインモデルを作成する。
+    description: ''
+    reference: null
+    priority: A
+  - title: オブジェクト図を作成する。　
+    description: ''
+    reference: null
+    priority: C
+- title: 基本設計
+  description: ''
+  reference: null
+  priority: A
+  workflow:
+  - title: 画面設計
+    description: ''
+    reference: null
+    priority: A
+  - title: 機能設計
+    description: ''
+    reference: null
+    priority: A
+  - title: ER図を作成する。
+    description: ''
+    reference: null
+    priority: B
+  - title: データフロー図を作成する。
+    description: ''
+    reference: null
+    priority: B
+- title: 詳細設計
+  description: ''
+  reference: null
+  priority: A
+  workflow:
+  - title: ロバストネス分析
+    description: ''
+    reference: null
+    priority: B
+  - title: シーケンス図
+    description: ''
+    reference: null
+    priority: A
+  - title: クラス図
+    description: ''
+    reference: null
+    priority: A

@@ -587,6 +587,50 @@ kill [-signal] pid|name
 ジョブはシェルによって管理されるプロセスの集まりである。
 コマンドによって生じる複数のプロセス群をまとめて管理するために使用される。これによって単一のコマンド(だが、複数のプロセスを生成する)ものを一つのものとして(ジョブとして)管理することができる。
 
+#### ranger
+#### expect : view web page in terminal
+#### w3m : view web page in terminal
+#### pgrep : view web page in terminal
+#### pkill : view web page in terminal
+#### rsync : sync file with ssh
+
+**ファイルを探す。**
+
+```zsh title=find
+find [option] [starting-point(path)...] [expression]
+```
+
+- `find path -maxdepth 2 -name 'file_name_reg'`
+- `find path -mindepth 3 -path 'path_name_reg'`
+- `find path -type f -name 'path_name_reg' -printf`
+
+これもオプションが多い。unixの哲学はどうした。kissはどうした。
+
+| command                                           | description                                                                              |
+| :------------------------------------------------ | ---------------------------------------------------------------------------------------- |
+| `find path -maxdepth 2 -name 'file_name_reg'`     | 最大深さ2でpathからスタートして`file_name_reg`でマッチするファイルを探しパスを表示する。 |
+| `find path -mindepth 3 -path 'path_name_reg'`     | 最小深さ3でpathからスタートして`path_name_reg`でマッチするパスを探してパスを表示する。   |
+| `find path -type f -path 'path_name_reg' -printf` | pathから`path_name_reg`にマッチするパスを探し、ファイルを集め、表示する。                |
+
+`find`コマンドのexpressionにワイルドカードなどを使用する場合はシングルクォート(ダブルクオート)で囲む必要がある。shellが展開してしまい複数のexpressionが渡されてしまうためである。
+たとえば、
+
+```zsh
+find . -name *.txt
+```
+
+だと、実質
+
+```zsh
+find . -name a.txt b.txt c.txt
+```
+
+のように`find`コマンドを呼び出していることと同じになる。
+
+`find`コマンドはtypeオプションを使用することでファイルの種類を指定することができる。これはファイルやディレクトリ以外にもブロックファイルやキャラクタファイル, ソケットなども指定することができる。
+また、`-printf`オプションのようにファイルを実行することができる。
+`-exec rm`のようにすると`find`見つけたファイルを削除することができる。
+
 ## [番外編]
 
 ### 知っておいたほうがよいコマンド
