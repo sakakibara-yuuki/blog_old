@@ -588,6 +588,7 @@ kill [-signal] pid|name
 コマンドによって生じる複数のプロセス群をまとめて管理するために使用される。これによって単一のコマンド(だが、複数のプロセスを生成する)ものを一つのものとして(ジョブとして)管理することができる。
 
 #### ranger
+#### pwgen : password generater
 #### expect : view web page in terminal
 #### w3m : view web page in terminal
 #### pgrep : view web page in terminal
