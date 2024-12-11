@@ -1,5 +1,5 @@
 ---
-title: 'terraform_parameter'
+title: 'terraform parameter'
 author: "sakakibara"
 description: 'Lorem ipsum dolor sit amet'
 heroImage: '/blog-placeholder-3.jpg'

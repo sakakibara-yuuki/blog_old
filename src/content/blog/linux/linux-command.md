@@ -587,50 +587,92 @@ kill [-signal] pid|name
 ジョブはシェルによって管理されるプロセスの集まりである。
 コマンドによって生じる複数のプロセス群をまとめて管理するために使用される。これによって単一のコマンド(だが、複数のプロセスを生成する)ものを一つのものとして(ジョブとして)管理することができる。
 
-#### ranger
-#### pwgen : password generater
-#### expect : view web page in terminal
-#### w3m : view web page in terminal
-#### pgrep : view web page in terminal
-#### pkill : view web page in terminal
 #### rsync : sync file with ssh
 
-**ファイルを探す。**
+**ファイルをSSHで同期する**
 
 ```zsh title=find
-find [option] [starting-point(path)...] [expression]
+rsync [option] [user@]host:src... [dest]
+rsync [option] src... [user@]host:dest
 ```
 
-- `find path -maxdepth 2 -name 'file_name_reg'`
-- `find path -mindepth 3 -path 'path_name_reg'`
-- `find path -type f -name 'path_name_reg' -printf`
+- `rsync -auv img /backup`
+- `rsync -auvz img sakaki@192.168.11.6:/backup`
+- `rsync -auvz -e 'ssh -i secret.pem' img sakaki@192.168.11.6:/backup` 
 
-これもオプションが多い。unixの哲学はどうした。kissはどうした。
 
 | command                                           | description                                                                              |
 | :------------------------------------------------ | ---------------------------------------------------------------------------------------- |
-| `find path -maxdepth 2 -name 'file_name_reg'`     | 最大深さ2でpathからスタートして`file_name_reg`でマッチするファイルを探しパスを表示する。 |
-| `find path -mindepth 3 -path 'path_name_reg'`     | 最小深さ3でpathからスタートして`path_name_reg`でマッチするパスを探してパスを表示する。   |
-| `find path -type f -path 'path_name_reg' -printf` | pathから`path_name_reg`にマッチするパスを探し、ファイルを集め、表示する。                |
+| `rsync -a img /backup`     | (archive)指定したディレクトリに含まれるファイル・ディレクトリ・パーミッション・所有者・タイムスタンプをそのままコピーする。 |
+| `rsync -u img /backup`     | (update)追加・更新されたファイルだけコピーする。 |
+| `rsync -v img /backup`     | (verbose)コピーしているファイルを詳しく表示する。 |
+| `rsync -z img /backup`     | (zip-compress)通信を圧縮する。 |
+| `rsync -e "ssh -i secret.pem" img /backup`     | (rsh:remote shell)sshのコマンドを指定する。 |
 
-`find`コマンドのexpressionにワイルドカードなどを使用する場合はシングルクォート(ダブルクオート)で囲む必要がある。shellが展開してしまい複数のexpressionが渡されてしまうためである。
-たとえば、
+`rsync`は`cp`コマンドと同じで、コピー元をコピー先へ転送する。
+リモートからローカルへ、ローカルからリモートへと転送することができる。
+追加・更新されたファイルだけを同期させたり、
+転送元で削除されたファイルを転送先でも削除することができる。
+一般的にはリモートバックアップ用に使用される。
 
-```zsh
-find . -name *.txt
+#### pkill/pgrep : view web page in terminal
+
+**プロセス名を検索・Killする**
+
+```zsh title=find
+pgrep [option] pattern
+pkill [option] pattern
 ```
 
-だと、実質
+- `pgrep waybar`
+- `pgrep -u sakakibara waybar`
+- `pgrep -G sakakibara`
+- `pkill waybar`
+- `pkill -u sakakibara waybar`
+- `pkill -G sakakibara`
 
-```zsh
-find . -name a.txt b.txt c.txt
+| command                | description                            |
+| :--------------------- | :------------------------------------- |
+| `pgrep waybar`         | プロセス名がwaybarのプロセスを表示する。 |
+| `pgrep -u sakakibara waybar` | ユーザーがsakakibaraでプロセス名がwaybarのプロセスを表示する。 |
+| `pgrep -G sakakibara` | グループがsakakibaraでプロセス名がwaybarのプロセスを表示する。 |
+
+#### mktemp : make temporary file
+
+**一時ファイルを作成する**
+
+```zsh title=find
+mktemp [option]... [template]
 ```
 
-のように`find`コマンドを呼び出していることと同じになる。
+- `mktemp testXXX`
+- `mktemp -t temp.XXX`
+- `mktemp -d temp.XXX`
+- `mktemp -p src/app/temp.XXX`
 
-`find`コマンドはtypeオプションを使用することでファイルの種類を指定することができる。これはファイルやディレクトリ以外にもブロックファイルやキャラクタファイル, ソケットなども指定することができる。
-また、`-printf`オプションのようにファイルを実行することができる。
-`-exec rm`のようにすると`find`見つけたファイルを削除することができる。
+| command                | description                            |
+| :--------------------- | :------------------------------------- |
+| `mktemp testXXX`       | テンプレートを指定してここに一時ファイルを作成する。 |
+| `mktemp -t tempXXX`   | テンプレートを指定して`/tmp/`に一時ファイルを作成する。 |
+| `mktemp -d temp.XXX`   | テンプレートを指定して`/tmp/`に一時ディレクトリを作成する。 |
+| `mktemp -p src/app/temp.XXX`   | テンプレートを指定して`src/app/`に一時ファイルを作成する。 |
+
+tempfileを作ったところで、どこに作ったのかを忘れてしまう。
+
+```zsh
+TEMPFILE=`mktemp -t temp.XXX`
+```
+のように変数に格納しておくと便利。
+
+#### expect : automate interactive program
+**対話的なプログラムを自動化する**
+
+```zsh title=find
+expect [-c cmds] [template]
+```
+
+#### pwgen : password generater
+#### w3m : view web page in terminal
 
 ## [番外編]
 

@@ -125,104 +125,189 @@ Env = var.enviro
 - [terraform parameter](../terraform_parameter)
 - [terraform app server build](../terraform_app_server_build)
 - [terraform grammer](../terraform_grammer)
+- [terraform lb](../terraform_lb)
+- [terraform route53](../terraform_route53)
+- [terraform acm](../terraform_acm)
+- [terraform s3](../terraform_s3)
 
-## LBの設定
-ELBのデータ構造は次のようになっている。
+## CloudFront
+![CloudFront](./terraform_cloudfront.png)
+
+キャッシュサーバーを世界中に配置することで、ユーザーに近い場所からコンテンツを配信することができる。
+なのでオリジンの設定だとか、ドメインの設定だとかが必要になる。
+
+データ構造は次の通りになる。
 
 ```d2
-Load Balancer <- Listener
-Target Group <- Listener
-Target Group <- Target Group attachment
-EC2 <- Target Group attachment
-```
+CloudFront <- Route53 Record
+ACM Certificate <- CloudFront
+Origin Access Identity <- CloudFront
+Origin Access Identity <- Policy Document
 
-### aws_lb
-| 項目 | 型 | 説明 |
-| --- | --- | --- |
-| name | string | ロードバランサー名 |
-| internal | bool | 内部向けLBかどうか |
-| load_balancer_type | enum | "application", "network", "gateway" |
-| security_groups | string[] | LBに関連付けるセキュリティグループ |
-| subnets | string[] | LBに関連付けるサブネット |
-| tags | object | タグ |
-
-```hcl
-resource "aws_lb" "lb" {
-  name               = "${var.project}-${var.environment}-app-lb"
-  load_balancer_type = "application"
-  security_groups    = [aws_security_group.web_sg.id]
-  subnets = [
-    aws_subnet.public_subnet_1a.id,
-    aws_subnet.public_subnet_1c.id
-  ]
+Policy Document : {
+    label: Policy Document
+    shape: page
 }
 ```
 
-### aws_lb_target_group
+### aws_cloudfront_origin_access_identity
+cloudfrontがs3にアクセスする際、どういった権限を持つかを定義するのがaccess identityである。
+![access identity](./terraform_access_identity.png)
+
 | 項目 | 型 | 説明 |
 | --- | --- | --- |
-| name | string | ロードバランサー名 |
-| port | number | ポート番号 |
-| protocol | string | "HTTP", "HTTPS", "TCP", "UDP", "TCP_UDP" |
-| vpc_id | string | VPC ID |
-| tags | object | タグ |
+| comment | string | コメント |
 
+内容はたったこれだけである。
+
+### aws_cloudfront_distribution
+cloudfrontの(本体の)設定を行う。
+設定内容は以下の通り。
+- 基本設定
+- オリジン
+- ビヘイビア
+- アクセス制限
+- 証明書
+
+#### 基本設定
+| 項目 | 型 | 説明 |
+| --- | --- | --- |
+| enabled | bool | 有効かどうか |
+| is_ipv6_enabled | bool | ipv6を有効にするかどうか |
+| comment | string | コメント |
+| price_class | enum | "PriceClass_ALL" |
+| aliases | string[] | ドメイン名設定 |
+| origin | block | オリジンの設定 |
+| default_cache_behavior | block | デフォルトのビヘイビア |
+| ordered_cache_behavior | block | その他のビヘイビア |
+| restrictions | block | アクセス制限 |
+| viewer_certificate | block | 証明書設定 |
+
+#### オリジン(origin)
+キャッシュサーバーにとってのオリジンサーバーの設定を行う。
+ELBをオリジンとするのか、S3をオリジンとするのかを設定する。
+
+| 項目 | 型 | 説明 |
+| --- | --- | --- |
+| domain_name | string | DNSのドメイン名 |
+| origin_id | string | オリジンを識別するユニークな名前 |
+| custom_origin_config | string | 独自オリジン(ELB) |
+| s3_origin_config | block | s3の設定 |
+
+origin_idはビヘイビアから参照されるため、一意である必要がある。
+
+custom_origin_config
+| 項目 | 型 | 説明 |
+| --- | --- | --- |
+| origin_protocol_policy | enum | "http-only" or "https-only" or "match-viewer" |
+| origin_ssl_protocols | string[] | "SSLv3" or "TLSv1" or "TLSv1.1", "TLSv1.2" |
+| http_port | number | httpのポート番号 |
+| https_port | number | httpsのポート番号 |
+
+s3_origin_config
+| 項目 | 型 | 説明 |
+| --- | --- | --- |
+| origin_access_identity | string | ドメイン名設定 |
+
+#### ビヘイビア(default_cache_behavior, ordered_cache_behavior)
+
+どういうURLを受け付けて、どこへ振り分けるかを設定する。
+
+default_cache_behaviorとordered_cache_behaviorがある。
+どちらも似たような設定になる。
+
+どいういうURLを受け付けるかの設定は以下の通り。
+![terraform_cloudfront_behavior](./terraform_cloudfront_behavior_1.png)
+
+| 項目 | 型 | 説明 |
+| --- | --- | --- |
+| path_pattern | string | パスパターン |
+| allowed_methods | string[] | 許可するメソッド |
+| cached_methods | string[] | キャッシュするメソッド |
+| viewer_protocol_policy | enum | "allow-all" or "redirect-to-https" or "https-only" |
+
+default_cache_behaviorでは、path_patternは不要。
+
+どこへ振り分けるかの設定は以下の通り。
+![terraform_cloudfront_behavior 2](./terraform_cloudfront_behavior_2.png)
+
+| 項目 | 型 | 説明 |
+| --- | --- | --- |
+| target_origin_id | string | 転送先のオリジンID |
+| forwarded_values | string | 転送するリクエストデータ |
+
+forwarded_values
+| 項目 | 型 | 説明 |
+| --- | --- | --- |
+| query_string | bool | HTTPポート番号 |
+| headers | string[] | HTTPSポート番号 |
+| cookies | block | "all" or "none" or "whitelist", whitelisted_names |
+
+S3側はキャッシュするが、ELB側はキャッシュしないといった設定ができる。
+
+
+さらにそのとき、キャッシュするのかといった設定も行う。
+![terraform_cloudfront_behavior 3](./terraform_cloudfront_behavior_3.png)
+
+| 項目 | 型 | 説明 |
+| --- | --- | --- |
+| min_ttl | string | 最小キャッシュ期間(秒) |
+| default_ttl | string | デフォルトキャッシュ期間(秒) |
+| max_ttl | string | 最大キャッシュ期間(秒) |
+| compress | bool | 圧縮するかどうか |
+
+### アクセス制限(restrictions)
+
+![terraform_cloudfront_access](./terraform_cloudfront_access.png)
+
+| 項目 | 型 | 説明 |
+| --- | --- | --- |
+| geo_restriction | block | 制限する地域 |
+
+geo_restriction
+| 項目 | 型 | 説明 |
+| --- | --- | --- |
+| restriction_type | string | "none" or "whitelist" or "blacklist" |
+| locations | string[] | 制限する地域("JP") |
+
+地域毎のアクセス制限を行うことができる。
+
+### 証明書(viewer_certificate)
+![terraform_cloudfront_certificate](./terraform_cloudfront_certificate.png)
+
+| 項目 | 型 | 説明 |
+| --- | --- | --- |
+| cloudfront_default_certificate | bool | CloudFrontのデフォルト証明書を利用するか |
+| acm_certificate_arn | string | ACM証明書のARN |
+| minimum_protocol_version | enum | "TLSv1", "TLSv1_2016", "TLSv1.1_2016", "TLSv1.2_2019" |
+| ssl_support_method | enum | "sni-only" or "vip" |
+
+`cloudfront_deafult_certificate`をtrueにすると、CloudFrontのデフォルト証明書を利用することができる。
+`acm_certificate_arn`を指定すると、独自のACM証明書を利用することができる。
+
+sni-onlyは、SNI (Server Name Indication: 1台のサーバーで複数の証明書を利用できる)を利用して証明書を選択する。
+
+## モジュール
+リソース生成処理を一つの塊にして呼び出せるようにしたものをモジュールと呼ぶ。
+言ってしまえば関数のようなものである。
+
+### モジュールの定義方法
+ファイルを以下のように、引数・処理・戻り値・README.mdのように記述するとわかりやすい。
+![terraform_module](./terraform_module.png)
+
+### モジュールの呼び出し方法
+`main.tf`では`webserver`モジュールを以下のように呼び出す。
 ```hcl
-resource "aws_lb_target_group" "alb_target_group" {
-  name     = "${var.project}-${var.environment}-app-tg"
-  port     = 3000
-  protocol = "HTTP"
-  vpc_id   = aws_vpc.vpc.id
-  tags = {
-    Name    = "${var.project}-${var.environment}-app-tg"
-    Project = var.project
-    Env     = var.environment
-  }
+module "webserver" {
+  source = "./modules/webserver"
+  instance_type = "t2.micro"
+  ami = "ami-0c55b159cbfafe1f0"
+}
+
+// 返り値
+output "instance_id" {
+  value = module.webserver.instance_id
 }
 ```
 
-### aws_lb_target_group_attachment
-| 項目 | 型 | 説明 |
-| --- | --- | --- |
-| target_group_arn | string | 所属させたいターゲットグループのARN |
-| target_id | string | EC2インスタンスなどのID |
-
-```hcl
-resource "aws_lb_target_group_attachment" "alb_target_group_attachment" {
-  target_group_arn = aws_lb_target_group.alb_target_group.arn
-  target_id        = aws_instance.app_server.id
-}
-```
-
-### aws_lb_listener
-HTTPの場合
-
-| 項目 | 型 | 説明 |
-| --- | --- | --- |
-| load_balancer_arn | string | ロードバランサーのARN |
-| port | number | ポート番号 |
-| protocol | enum | "HTTP", "HTTPS", ... |
-| certificate_arn | string | 証明書(ACM)のARN (HTTPSのみ) |
-| default_action | object | ... |
-
-default_actionの中身は次のようになる。
-| 項目 | 型 | 説明 |
-| --- | --- | --- |
-| type | enum | "forward", "redirect", etc... |
-| target_group_arn | string | forwardする場合の転送先 |
-
-```hcl
-resource "aws_lb_listener" "alb_listener_http" {
-  load_balancer_arn = aws_lb.alb.arn
-  port              = 80
-  protocol          = "HTTP"
-
-  default_action {
-    type             = "forward"
-    target_group_arn = aws_lb_target_group.alb_target_group.arn
-  }
-}
-```
-
-これまでのことを少し詳しくまとめる。
-
+## IAM

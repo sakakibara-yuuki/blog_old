@@ -5,18 +5,20 @@ pubDate: 2024-12-03
 updatedDate: 2024-12-03
 workflow:
 - title: 要件定義
-  description: ''
-  reference: null
+  description: |-
+    顧客の要求を収集し、システムの機能や性能を明確にする。
   priority: A
+  references: ["[要件定義](../../../../blog/develop/uml/requirements-definition)"]
   workflow:
   - title: コンテキスト図を作成する。
     description: ''
-    reference: null
     priority: A
+    references: ["[コンテキスト図](../../../../blog/develop/uml/context-diagram)"]
   - title: ユースケース図を作成する。
     description: ''
     reference: null
     priority: A
+    references: ["[ユースケース図](../../../../blog/develop/uml/usecase-diagram)"]
   - title: アクティビティ図を作成する。
     description: ''
     reference: null
@@ -29,6 +31,7 @@ workflow:
     description: ''
     reference: null
     priority: A
+    references: ["[ドメインモデル図](../../../../blog/develop/uml/domainmodel-diagram)"]
   - title: オブジェクト図を作成する。　
     description: ''
     reference: null
