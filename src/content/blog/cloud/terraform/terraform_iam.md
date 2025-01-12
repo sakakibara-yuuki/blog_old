@@ -9,8 +9,21 @@ tags: ["astro", "math"]
 
 # Introduction
 ## Contents
-## Section1
 ## terraform IAM Role
+```d2
+direction: right
+IAM User : {
+    label: IAM User\nor\nResource
+}
+IAM User <- IAM Role : {
+    label: "Trust Policy\n誰が被るか"
+    style.stroke-dash: 3
+}
+IAM Role -> Instance : {
+    label: "Policy\n誰にアクセスするか"
+    style.stroke-dash: 3
+}
+```
 terraformの、というかAWSのIAM Roleはかなり複雑である。
 
 ```d2
@@ -42,6 +55,9 @@ Policy <- Policy attachement: {
 ```
 
 ### 信頼ポリシーの作成
+
+- [めっちゃわかりやすい記事](https://zenn.dev/fdnsy/articles/e98c43d9c3f611)
+
 信頼ポリシーとは何か。
 IAM Roleは、他のAWSサービスやアカウントに対してどのような操作を許可するかを定義するものであり、帽子で表現される。
 ある種類(色など)の帽子をかぶっている人が特定の建物や区域や施設に入れるような約束の下では、その帽子自体が侵入許可書になる。
@@ -76,6 +92,9 @@ principalsの中身は以下の通り。
 | --- | --- | --- |
 | type | string | "AWS", "Service"など |
 | identifiers | string[] | ARN, サービスURLなど |
+
+`statement`において、actionsはAWSサービスに対する行動が記述されており、
+`resource`では`actions`よりも具体的に、どのサービスのどのリソースをactionsの目的語とするかを記述する。
 
 以下は何が書いてあるかわからないと思うが、マネジメントコンソールでIAM Roleを作成すると、以下のようなJSONが生成される。
 ```json
@@ -113,6 +132,9 @@ terraform state show data.aws_iam_policy_document.ec2_assume_role
 
 ### IAM Roleの作成
 `aws_iam_role`リソースを使ってIAM Roleを作成する。
+
+信頼ポリシーは`assume_role_policy`で指定する。
+このポリシーには`actions = ["sts:AssumeRole"]`が必ず含まれている必要がある。
 
 | 項目 | 型 | 説明 |
 | --- | --- | --- |

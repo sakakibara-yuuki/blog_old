@@ -219,21 +219,50 @@ blockquote {
 }
 .def p:first-child::before{
   font-style: italic;
-  content: "def:";
+  content: "定義:";
 }
 
+/*定義: definition*/
+/*公理: axiom*/
+/*定理: theorem*/
+/*命題: proposition*/
+/*補題: lemma*/
+/*系: corollary*/
+
+.axiom,
+.theorem,
+.proposition,
+.corollary,
 .lemma{
   border-radius: 13px;
   padding: 0.5em 1em;
   background-color: var(--md-sys-color-tertiary-container);
   color: var(--md-sys-color-on-tertiary-container);
+  margin-bottom: 1em;
 }
+
+.axiom,
+.theorem,
+.proposition,
+.corollary,
 .lemma p:first-child{
-  font-size: var(--s1);
-  color: var(--md-sys-color-tertiary);
+  font-size: var(--s0);
+  color: var(--md-sys-on-color-tertiary);
+}
+.axiom p:first-child:before{
+  content: "公理: ";
+}
+.theorem p:first-child:before{
+  content: "定理: ";
+}
+.proposition p:first-child:before{
+  content: "命題: ";
 }
 .lemma p:first-child:before{
-  content: "lemma: ";
+  content: "補題: ";
+}
+.corollary p:first-child:before{
+  content: "系: ";
 }
 
 .sr-only {

@@ -449,6 +449,22 @@ find . -name a.txt b.txt c.txt
 また、`-printf`オプションのようにファイルを実行することができる。
 `-exec rm`のようにすると`find`見つけたファイルを削除することができる。
 
+#### tar: tape archive
+**アーカイブを作成する。**
+
+```zsh title=tar
+tar [option] [file]
+```
+
+- `tar -cvf file.tar file`
+- `tar -xvf file.tar`
+- `tar -cf terraform.tar \
+  --exclude='terraform/.terraform' \
+  --exclude='terraform/.terraform.lock.hcl' \
+  terraform`
+
+`tar`コマンドで除外ファイル・ディレクトリを指定する場合は`--exclude`オプションはアーカイブ対象のディレクトリ(この例では`terraform`)よりも前に指定する必要がある。
+
 #### chmod : change mode
 
 **mode を変更する。**

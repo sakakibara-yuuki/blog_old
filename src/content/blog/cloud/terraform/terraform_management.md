@@ -10,6 +10,10 @@ tags: ["astro", "math"]
 # Introduction
 ## Contents
 ## Terraformの管理
+
+- [terraform backend overview](https://developer.hashicorp.com/terraform/language/backend)
+- [terraform backend s3](https://developer.hashicorp.com/terraform/language/backend/s3)
+
 複数人でインフラ管理を行う際、複数人で同時に`terraform apply`を実行すると、競合が発生する可能性がある。  
 
 ![terraform_tfstate_1](./terraform_tfstate_1.png)
@@ -65,6 +69,38 @@ terraform {
   }
 }
 ```
+
+backendのブロックでは
+- 一つのproviderにつき、一つのbackendしか指定できない。
+- backendブロックはvariables, locals, などのデータを参照できない。
+- backendブロック内で宣言された値を他の場所で参照できない。
+
+ことに注意する。
+
+どこに状態ファイル(state file: `terraform.tfstate`)を配置するかについて、デフォルトでは`local`に設定されており、`local`以外にも
+- `remote`
+- `azurerm`
+- `gcs`
+- `http`
+- `oss`
+- `pg`
+- `s3`
+
+などの種類がある。これら種類をbackend typesと呼ぶ。
+それぞれのbackend typesによって、引数が異なる。
+
+:::note{.warning}
+状態ファイルには機密性の高い情報が含まれるため、そのような情報は環境変数を通じて渡すことが推奨されている。機密性の高い情報をハードコードすると、`.terraform`ディレクトリから情報が漏洩する可能性がある。
+:::
+
+terraformはbackendの情報を`.terraform/terraform.tfstate`に保存する。
+planを実行すると、以前に作成されたplanファイルを`.terraform/terraform.tfstate`ファイルから情報を読み込み、その情報を元に新しいplanファイルを作成する。
+
+そのため、backendの設定を変更した場合、`terraform init`を再度実行してbackendを検証し、設定してからでないと、`apply`, `plan`を実行することはできない。
+
+:::note{.tip}
+localからremoteへbackendを以降する場合、`terraform.tfstate`を手動でバックアップを取ることが推奨される。
+:::
 
 ### terraformで管理しているリソースの一覧を表示する
 現在、S3に`tfstate`ファイルが保存されている。

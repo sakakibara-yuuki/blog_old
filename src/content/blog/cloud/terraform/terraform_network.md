@@ -104,18 +104,27 @@ route tableはルートテーブルリソースを提供し、
 route table associationはルートテーブルとサブネットの関連付けを提供する。
 つまり、route tableという"点"とその点をサブネットという点につなぐ線がroute table associationである。
 
-### route table
+terraformでは`aws_route_table`、`aws_route_table_association`の他に`aws_route`もある。
+`aws_route`と`aws_route_table`は同時に使用することが推奨されていない。
+
+２つの違いを端的に表すと`aws_route`は単一のルートを定義し、`aws_route_table`はルートテーブル全体を定義することである。
+つまり、同じルートテーブルの構成を異なる方法で管理するのだ。
+同じルートテーブルに対して、２つの方法を適用させると競合が発生するので推奨されない。
+
+### aws_route_table
+- [aws route table](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table)
 | 項目 | 型 | 説明 |
 | --- | --- | --- |
-| `vpc_id` | string | VPCのID |
+| `vpc_id`* | string | VPCのID |
 | `tags` | object | タグ |
 
 ![aws_route table](./aws_route_table.png)
 
-### route table association
+### aws_route_table_association
+- [aws route table association](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table_association)
 | 項目 | 型 | 説明 |
 | --- | --- | --- |
-| `route_table_id` | string | ルートテーブルID |
+| `route_table_id`* | string | ルートテーブルID |
 | `subnet_id` | string | サブネットID |
 
 ![aws_route table_association](./aws_route_table_association.png)
@@ -200,12 +209,23 @@ VPC <- security group <- security group rule
 ```
 
 ### aws_security_group
+
+- [security group](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group)
+
 | 項目 | 型 | 説明 |
 | --- | --- | --- |
 | `name` | string | セキュリティグループ名 |
 | `description` | string | 説明 |
 | `vpc_id` | string | VPCのID |
 | `tags` | object | タグ |
+
+:::note{.warning}
+`ingress`と`egress`をここで設定することもできるが、これは複数のCIDRブロックを管理するのが困難になるため、苦労するので避けるべきである。
+代わりに、`aws_vpc_security_group_egress_rule`と`aws_vpc_security_group_ingress_rule`を使うことをお勧めする。
+
+逆に`aws_vpc_security_group_egress_rule`と`aws_vpc_security_group_ingress_rule`と`aws_security_group_rule`を同時に使用するべきではない。
+:::
+
 
 ### aws_security_group_rule
 | 項目 | 型 | 説明 |
@@ -217,6 +237,9 @@ VPC <- security group <- security group rule
 | `to_port` | number | 終了ポート or 終了ICMPタイプ番号 |
 | `cidr_blocks` | string[] | CIDRブロック |
 | `source_security_group_id` | string | アクセス許可したいセキュリティグループID |
+| `referenced_security_group_id` | string | アクセス許可したいセキュリティグループID |
+
+`referenced_security_group_id`が`source_security_group_id`の代わりに使われている。
 
 ### aws_prefix_list
 複数のCIDRブロックをまとめて管理するためのリソースをprefix listという。  
